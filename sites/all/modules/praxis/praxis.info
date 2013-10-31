@@ -1,0 +1,11 @@
+name = Praxis
+description = "praxis custom logic"
+package = "Praxis Custom"
+core = 7.x
+
+; Information added by drupal.org packaging script on 2013-08-07
+version = "7.x-2.3"
+core = "7.x"
+project = "praxis"
+datestamp = "1375899483"
+
