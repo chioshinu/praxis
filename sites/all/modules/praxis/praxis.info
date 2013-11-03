@@ -9,3 +9,5 @@ core = "7.x"
 project = "praxis"
 datestamp = "1375899483"
 
+files[] = praxis.install
+files[] = praxis.module
