@@ -55,15 +55,17 @@ function praxis_block_view($delta = '') {
 }
 
 function praxis_home_doctors_contents(){
+    global $language;
     $nodes = node_load_multiple(array(), array('type' => 'doctor_biography'));
-    debug($nodes);
+//    debug($nodes);
     $data = array();
     foreach($nodes as $bio){
         $data[] = array(
             'name' => $bio->title_field,
-            'img' => $bio->field_ph['und'][0]['uri'],
+            'img' => isset($bio->field_ph['und']) ? $bio->field_ph['und'][0]['uri'] : '',
             'uid' => $bio->uid,
-            'nid' => $bio->nid
+            'nid' => $bio->nid,
+            'node' => $bio
         );
     }
     $html = "";
@@ -75,7 +77,9 @@ function praxis_home_doctors_contents(){
             'width' => '',
             'height' => '',
         );
-        $html .= '<li>'.theme('image_style', $img).'</li>';
+        $title = field_view_field('node', $value['node'], 'title_field', array(), $language->language);
+//        debug($title, $value['nid']);
+        $html .= '<li>'.theme('image_style', $img).'<span>'.drupal_render($title).'</span></li>';
     }
     return "<ul>{$html}</ul>";
 }
