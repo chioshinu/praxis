@@ -72,8 +72,9 @@ function praxis_home_doctors_contents(){
             $i++;
         }
     }
-
-
+    if ($i<9 && count($slide) >0){
+        $data[] = $slide;
+    }
 
     drupal_add_js(drupal_get_path('module', 'praxis') . '/js/jquery.slides.js');
     $build['myelement'] = array(
