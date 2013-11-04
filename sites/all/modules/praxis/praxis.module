@@ -55,31 +55,54 @@ function praxis_block_view($delta = '') {
 }
 
 function praxis_home_doctors_contents(){
-    global $language;
     $nodes = node_load_multiple(array(), array('type' => 'doctor_biography'));
 //    debug($nodes);
     $data = array();
+    $i = 0;
     foreach($nodes as $bio){
-        $data[] = array(
-            'name' => $bio->title_field,
-            'img' => isset($bio->field_ph['und']) ? $bio->field_ph['und'][0]['uri'] : '',
-            'uid' => $bio->uid,
-            'nid' => $bio->nid,
-            'node' => $bio
-        );
+        if ($i == 0){
+            $slide = array();
+        }
+        $slide[] = $bio;
+        if ($i == 9){
+            $data[] = $slide;
+            $i = 0;
+        }
+        else{
+            $i++;
+        }
     }
-    $html = "";
 
-    foreach ($data as $value){
-        $img = array(
-            'style_name' => 'thumbnail',
-            'path' => $value['img'],
-            'width' => '',
-            'height' => '',
-        );
-        $title = field_view_field('node', $value['node'], 'title_field', array(), $language->language);
-//        debug($title, $value['nid']);
-        $html .= '<li>'.theme('image_style', $img).'<span>'.drupal_render($title).'</span></li>';
-    }
-    return "<ul>{$html}</ul>";
+
+
+    drupal_add_js(drupal_get_path('module', 'praxis') . '/js/jquery.slides.js');
+    $build['myelement'] = array(
+        '#theme' => 'doctors_block',
+        '#doctors' => $data,
+    );
+    $output = theme('doctors_home_block', array('doctors' => $data));
+    return $output;
 }
+
+function praxis_theme() {
+    global $language;
+    return array(
+        'doctors_home_block' => array(
+            'template' => 'doctors',
+            'variables' => array('doctors' => array(), 'lang' => $language->language),
+        ),
+    );
+}
+
+//function praxis_js_alter(&$javascript) {
+//    //We define the path of our new jquery core file
+//    //assuming we are using the minified version 1.9.1
+//    $jquery_path = drupal_get_path('module','praxis') . '/js/jquery-1.9.1.min.js';
+//    //We duplicate the important information from the Drupal one
+//    $javascript[$jquery_path] = $javascript['misc/jquery.js'];
+//    //..and we update the information that we care about
+//    $javascript[$jquery_path]['version'] = '1.9.1';
+//    $javascript[$jquery_path]['data'] = $jquery_path;
+//    //Then we remove the Drupal core version
+//    unset($javascript['misc/jquery.js']);
+//}

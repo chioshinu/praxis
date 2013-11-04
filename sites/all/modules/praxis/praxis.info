@@ -11,3 +11,4 @@ datestamp = "1375899483"
 
 files[] = praxis.install
 files[] = praxis.module
+files[] = doctors.tpl.php
