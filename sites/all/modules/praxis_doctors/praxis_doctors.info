@@ -1,4 +1,4 @@
-name = Praxis
+name = Doctors
 description = "praxis custom logic"
 package = "Praxis Custom"
 core = 7.x
@@ -9,6 +9,6 @@ core = "7.x"
 project = "praxis"
 datestamp = "1375899483"
 
-files[] = praxis.install
-files[] = praxis.module
+files[] = praxis_doctors.install
+files[] = praxis_doctors.module
 files[] = doctors.tpl.php
