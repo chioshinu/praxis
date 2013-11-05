@@ -356,7 +356,12 @@ ul li.expanded {
   display: none;
 }
 .body-inner {
+  
+}
+.slideshow-aside {
   overflow: hidden;
+  float: left;
+  margin: 0 29px 0 0;
 }
 .stuff-ocupation {
   overflow: hidden;
@@ -364,21 +369,22 @@ ul li.expanded {
 }
 .stuff-ocupation h3 {
   font-size: 18px;
-  color: #5E5E5E;
-  margin: 0 0 18px;
+  color: #fff;
+  margin: 11px 0 18px;
 }
 .ocupation-list {
   overflow-y: auto;
   margin: 0;
   padding: 0;
-  list-style: disc outside; 
+   
 }
 .ocupation-list > li {
+  padding: 0 0 0 8px;
   font-size: 12px;
   line-height: 1.2;
-  color: #6B6C6E;
+  color: #fff;
   max-height: 226px;
-  list-style: disc;
+  background: url(../images/list_icon.png) no-repeat center left;
 }
 .subscribe {
   overflow: hidden;
@@ -414,13 +420,15 @@ ul li.expanded {
 }
 .home-main-sidebar {
   overflow: hidden;
+  float: left;
+  margin: 0 16px 0 -18px;
   padding: 12px 11px 10px 15px;
   border: 4px solid #E6E6E6;
   border-radius: 4px 4px 4px 4px;
   -moz-border-radius: 4px 4px 4px 4px;
   -webkit-border-radius: 4px 4px 4px 4px;
   -o-border-radius: 4px 4px 4px 4px;
-  width: 276px;
+  width: 286px;
   box-sizing: content-box;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
@@ -533,7 +541,7 @@ ul li.expanded {
   display: block;
   float: left;
   padding: 0 0 0 15px;
-  width: 36px;
+  width: 49px;
   line-height: 18px;
   background-color: #585858;
   border: 2px solid #777;
@@ -560,6 +568,80 @@ ul li.expanded {
 .timetable > li p.wide {
   padding: 0 2px 0 4px;
   width: 78px;
+}
+#block-praxis-doctors-home-doctors {
+  overflow:hidden;
+  
+  border: 4px solid #E6E6E6;
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  -o-border-radius: 4px 4px 4px 4px;
+  -ms-border-radius: 4px 4px 4px 4px;
+  padding: 0;
+}
+#block-praxis-doctors-home-doctors h2 {
+  overflow: hidden;
+  margin: 0;
+  padding: 13px 43px 11px;
+  font-family: Arial, sans-serif;
+  background-color: #E6E6E6;
+  font-size: 22px;
+  color: #231F20;
+}
+ul#slides {
+  overflow: hidden;
+  
+}
+li.slidesjs-slide ul {
+  overflow: hidden;
+  margin: 0;
+}
+li.slidesjs-slide ul > li {
+  overflow: hidden;
+  margin: 10px 0 10px 30px;
+  padding: 7px 7px 8px;
+  border: 1px solid #CFCECE;
+  box-shadow: 0 0 3px 0 #CFCECE;
+}
+li.slidesjs-slide ul > li a {
+  display: block;
+  text-align: center;
+  max-width: 76px;
+  max-height: 108px;
+  overflow: hidden;
+}
+li.slidesjs-slide ul > li a:hover {
+  text-decoration: none;
+}
+li.slidesjs-slide ul > li a img {
+  display: block;
+  width: 76px;
+  height: 83px;
+}
+li.slidesjs-slide ul > li a span {
+  font-size: 9px;
+  font-weight: bold;
+  font-family: Arial, sans-serif; 
+  color:#231F20;
+  line-height: 1.3;
+  word-spacing: 1px;
+  display: block;
+}
+a.slidesjs-previous {
+  margin: 0 0 7px 574px;
+}
+a.slidesjs-previous, a.slidesjs-next {
+  width: 17px;
+  display: inline-block;
+  height: 17px;
+  line-height: 17px;
+  text-indent: -99999px;
+  background: url(../images/errow_rounded_bg.png) no-repeat;
+}
+a.slidesjs-next {
+  margin: 0 18px 7px 6px;
+  background: url(../images/errow_rounded_bg_next.png) no-repeat;
 }
 /*-------------------------------------------------------------*/
 .footer-block {
