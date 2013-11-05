@@ -76,7 +76,7 @@ body,
 }
 #content .section,
 .sidebar .section {
-  padding: 0 15px;
+  padding: 0;
 }
 #breadcrumb {
   margin: 0 15px;
@@ -341,9 +341,6 @@ ul li.expanded {
   overflow: hidden;
 }
 .main-wrap-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 318px;
   background-color: #39A8B4;
@@ -603,6 +600,8 @@ li.slidesjs-slide ul > li {
   padding: 7px 7px 8px;
   border: 1px solid #CFCECE;
   box-shadow: 0 0 3px 0 #CFCECE;
+  max-height: 106px;
+  min-height: 106px;
 }
 li.slidesjs-slide ul > li a {
   display: block;
@@ -638,6 +637,7 @@ a.slidesjs-previous, a.slidesjs-next {
   line-height: 17px;
   text-indent: -99999px;
   background: url(../images/errow_rounded_bg.png) no-repeat;
+  outline: none;
 }
 a.slidesjs-next {
   margin: 0 18px 7px 6px;

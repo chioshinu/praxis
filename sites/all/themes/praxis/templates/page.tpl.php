@@ -169,8 +169,8 @@
         <?php endif; ?>
 
         <div id="content" class="column"><div class="section">
-                <div id="main-wrapper" class="clearfix"><div id="main" class="clearfix">
-                        <div class="main-wrap-bg"></div>
+                <div id="main-wrapper" class="clearfix"><div class="main-wrap-bg"></div><div id="main" class="clearfix">
+                        
                         <?php if ($breadcrumb): ?>
                             <div id="breadcrumb"><?php print $breadcrumb; ?></div>
                         <?php endif; ?>
