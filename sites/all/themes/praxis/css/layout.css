@@ -596,6 +596,8 @@ li.slidesjs-slide ul {
 }
 li.slidesjs-slide ul > li {
   overflow: hidden;
+  display: block;
+  float: left;
   margin: 10px 0 10px 30px;
   padding: 7px 7px 8px;
   border: 1px solid #CFCECE;

@@ -4,7 +4,7 @@
         <li>
             <ul>
                 <?php foreach($slide as $node): ?>
-                    <li class="doctor-thumbnail" style="float: left">
+                    <li class="doctor-thumbnail">
                         <a href="#">
                             <?php
                                 $image = array(
@@ -31,7 +31,7 @@
     jQuery('document').ready(function(){
         jQuery('#slides').slidesjs({
             width: 635,
-            height: 284,
+            height: 300,
             pagination: {
                 active: false,
                 // [boolean] Create pagination items.
