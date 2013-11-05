@@ -104,7 +104,7 @@
                     </ul>
                     <div class="telephone">
                         <p >+41 (0) 55 555 05 05</p>
-                        <span>&nbsp; </span>
+                `        <span>&nbsp; </span>
                     </div>
                 </div>
                 <h1 class="logo">
