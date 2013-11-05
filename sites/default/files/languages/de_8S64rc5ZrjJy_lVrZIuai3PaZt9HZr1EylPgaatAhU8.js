@@ -1,1 +1,0 @@
-Drupal.locale = { 'pluralFormula': function ($n) { return Number(($n!=1)); }, 'strings': {"":{"Hide":"Ausblenden","Not published":"Nicht ver\u00f6ffentlicht","Flag translations as outdated":"\u00dcbersetzung als veraltet markieren","Resume":"Weiter","Pause":"Pause"}} };
