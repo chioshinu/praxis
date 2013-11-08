@@ -229,8 +229,7 @@ table ul.links li {
 .block ol,
 .block ul {
   margin: 0;
-  padding: 0 0 0.25em 1em; /* LTR */
-}
+ }
 .contextual-links-wrapper {
   font-size: small !important;
 }
@@ -522,10 +521,7 @@ h1#site-name {
 /* ------------------- Main ------------------- */
 
 #main {
-  margin-bottom: 40px;
-  position: relative;
-  top: -318px;
-  left: 0;
+  margin-bottom: 40px;  
 }
 
 /* ----------------- Featured ----------------- */

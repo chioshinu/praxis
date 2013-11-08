@@ -13,10 +13,12 @@ body,
 #header {
   height: 137px;
 }
+.region region-content {
+  overflow: hidden;
+}
 #header,
 #featured div.section,
 #messages div.section,
-#main,
 #triptych,
 #footer-columns,
 #footer,
@@ -43,8 +45,6 @@ body,
   top: 0;
   width: 480px;
 }
-#content,
-#sidebar-first,
 #sidebar-second,
 .region-triptych-first,
 .region-triptych-middle,
@@ -58,7 +58,7 @@ body,
   position: relative;
 }
 .one-sidebar #content {
-  width: 720px;
+  
 }
 .two-sidebars #content {
   width: 480px;
@@ -69,7 +69,7 @@ body,
 }
 #sidebar-first,
 #sidebar-second {
-  width: 240px;
+  
 }
 #main-wrapper {
   min-height: 300px;
@@ -336,14 +336,41 @@ ul li.expanded {
   text-decoration: none;
 }
 /*--------------------------------------------------------------*/
-#main-wrapper {
-  position: relative;
+/*----------------------< Sidebar >-----------------------------*/
+/*--------------------------------------------------------------*/
+.sidebar-left {
   overflow: hidden;
+  width: 308px;
+  margin: 0 4px 0 0;
+  float: left;
+}
+/*--------------------------------------------------------------*/
+/*----------------------< Content >-----------------------------*/
+/*--------------------------------------------------------------*/
+#main-wrapper {
+  
 }
 .main-wrap-bg {
   width: 100%;
   height: 318px;
   background-color: #39A8B4;
+}
+.content-wrapper {
+  overflow: hidden;
+  width: 100%;
+  background: url(../images/content_wrapper_bg.png) repeat-x;
+}
+.main_container_inner {
+  overflow: hidden;
+  width: 960px;
+  margin: 0 auto;
+}
+.main-column {
+  overflow: hidden;
+  width: 643px;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
 }
 .view-home-slideshow {
   overflow: hidden;
@@ -357,8 +384,7 @@ ul li.expanded {
 }
 .slideshow-aside {
   overflow: hidden;
-  float: left;
-  margin: 0 29px 0 0;
+  margin: 0;
 }
 .stuff-ocupation {
   overflow: hidden;
@@ -367,7 +393,7 @@ ul li.expanded {
 .stuff-ocupation h3 {
   font-size: 18px;
   color: #fff;
-  margin: 11px 0 18px;
+  margin: 8px 0 9px;
 }
 .ocupation-list {
   overflow-y: auto;
@@ -378,7 +404,7 @@ ul li.expanded {
 .ocupation-list > li {
   padding: 0 0 0 8px;
   font-size: 12px;
-  line-height: 1.2;
+  line-height: 1.3;
   color: #fff;
   max-height: 226px;
   background: url(../images/list_icon.png) no-repeat center left;
@@ -386,7 +412,7 @@ ul li.expanded {
 .subscribe {
   overflow: hidden;
   width: 288px;
-  margin: 8px 0;
+  margin: 11px 0 9px;
 }
 .subscribe form input.subscribe {
   float: left;
@@ -417,18 +443,16 @@ ul li.expanded {
 }
 .home-main-sidebar {
   overflow: hidden;
-  float: left;
-  margin: 0 16px 0 -18px;
-  padding: 12px 11px 10px 15px;
+  margin: 8px 0 0;
+  padding: 11px 11px 25px 14px;
   border: 4px solid #E6E6E6;
   border-radius: 4px 4px 4px 4px;
   -moz-border-radius: 4px 4px 4px 4px;
   -webkit-border-radius: 4px 4px 4px 4px;
   -o-border-radius: 4px 4px 4px 4px;
-  width: 286px;
-  box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 .scadhule-block {
   overflow: hidden;
@@ -439,7 +463,7 @@ ul li.expanded {
 }
 .scadhule-title h3 {
   overflow: hidden;
-  width: 196px;
+  width: 191px;
   height: 29px;
   margin: 15px 0 0;
   padding: 0 8px;
@@ -458,13 +482,14 @@ ul li.expanded {
 }
 .scadhule-block p {
   overflow: hidden;
-  margin: 25px 0 0;
+  margin: 27px 0 0;
   color: #585858;
   font-size: 10px;
   font-family: Arial, sans-serif;
 }
 .praxis-info {
   overflow: hidden;
+  margin: 0 0 34px;
   padding: 14px 4px 0;
   border: 1px solid #DBDBDB;
   box-shadow: 0 0 2px 0 #F0F0F0;
@@ -517,7 +542,7 @@ ul li.expanded {
 }
 .links-listing > li.emergency a {
   width: 70px;
-  margin: 0 25px 0 0;
+  margin: 0 24px 0 0;
   background-position: -84px 1px;
 }
 .links-listing > li.medix a {
@@ -538,20 +563,24 @@ ul li.expanded {
   display: block;
   float: left;
   padding: 0 0 0 15px;
-  width: 49px;
+  width: 70px;
   line-height: 18px;
   background-color: #585858;
   border: 2px solid #777;
   font-size: 11px;
   color: #fff;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 .timetable > li span.narrow {
   padding: 0 0 0 4px;
-  width: 53px;
+  width: 51px;
 }
 .timetable > li p {
   display: inline-block;
-  width: 68px;
+  width: 62px;
+  height: 20px;
   margin: 0;
   line-height: 20px;
   padding: 0 0 0 3px;
@@ -565,6 +594,10 @@ ul li.expanded {
 .timetable > li p.wide {
   padding: 0 2px 0 4px;
   width: 78px;
+}.slidesjs-container {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 #block-praxis-doctors-home-doctors {
   overflow:hidden;
@@ -580,7 +613,7 @@ ul li.expanded {
 #block-praxis-doctors-home-doctors h2 {
   overflow: hidden;
   margin: 0;
-  padding: 13px 43px 11px;
+  padding: 11px 43px 8px;
   font-family: Arial, sans-serif;
   background-color: #E6E6E6;
   font-size: 22px;
@@ -598,18 +631,22 @@ li.slidesjs-slide ul > li {
   overflow: hidden;
   display: block;
   float: left;
-  margin: 10px 0 10px 30px;
-  padding: 7px 7px 8px;
+  margin: 7px 0 9px 30px;
+  padding: 6px 6px 8px;
   border: 1px solid #CFCECE;
   box-shadow: 0 0 3px 0 #CFCECE;
-  max-height: 106px;
-  min-height: 106px;
+  max-height: 125px;
+  min-height: 125px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 li.slidesjs-slide ul > li a {
   display: block;
   text-align: center;
   max-width: 76px;
-  max-height: 108px;
+  max-height: 110px;
+  min-height: 110px;
   overflow: hidden;
 }
 li.slidesjs-slide ul > li a:hover {
@@ -619,13 +656,14 @@ li.slidesjs-slide ul > li a img {
   display: block;
   width: 76px;
   height: 83px;
+  margin: 0 0 8px;
 }
 li.slidesjs-slide ul > li a span {
   font-size: 9px;
   font-weight: bold;
   font-family: Arial, sans-serif; 
   color:#231F20;
-  line-height: 1.3;
+  line-height: 1.2;
   word-spacing: 1px;
   display: block;
 }
@@ -684,4 +722,12 @@ a.slidesjs-next {
 }
 #block-menu-menu-footer-menu .content .menu > li.first a {
   padding: 0 7px 0 0;
+}
+ul, menu, dir {
+display: block;
+-webkit-margin-before: 0;
+-webkit-margin-after: 0;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 0;
 }

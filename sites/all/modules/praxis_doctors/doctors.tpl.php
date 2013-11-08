@@ -31,7 +31,7 @@
     jQuery('document').ready(function(){
         jQuery('#slides').slidesjs({
             width: 635,
-            height: 300,
+            height: 275,
             pagination: {
                 active: false,
                 // [boolean] Create pagination items.
