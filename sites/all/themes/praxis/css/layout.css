@@ -360,10 +360,15 @@ ul li.expanded {
   width: 100%;
   background: url(../images/content_wrapper_bg.png) repeat-x;
 }
+.content-pages-wrapper {
+  overflow: hidden;
+  width: 100%;
+  background: url(../images/pages_top_bg.png) repeat-x;
+}
 .main_container_inner {
   overflow: hidden;
   width: 960px;
-  margin: 0 auto;
+  margin: 0 auto 106px;
 }
 .main-column {
   overflow: hidden;
@@ -375,6 +380,8 @@ ul li.expanded {
 .view-home-slideshow {
   overflow: hidden;
   width: 640px;
+  height: 318px;
+  margin: 0 0 0 6px;
 }
 #block-views-home-slideshow-block h2 {
   display: none;
@@ -384,6 +391,7 @@ ul li.expanded {
 }
 .slideshow-aside {
   overflow: hidden;
+  height: 318px;
   margin: 0;
 }
 .stuff-ocupation {
@@ -601,7 +609,7 @@ ul li.expanded {
 }
 #block-praxis-doctors-home-doctors {
   overflow:hidden;
-  
+  margin: 0 0 9px;
   border: 4px solid #E6E6E6;
   border-radius: 4px 4px 4px 4px;
   -moz-border-radius: 4px 4px 4px 4px;
@@ -683,6 +691,9 @@ a.slidesjs-next {
   margin: 0 18px 7px 6px;
   background: url(../images/errow_rounded_bg_next.png) no-repeat;
 }
+.views_slideshow_cycle_main {
+  overflow: hidden;
+}
 /*-------------------------------------------------------------*/
 .footer-block {
   overflow: hidden;
@@ -730,4 +741,89 @@ display: block;
 -webkit-margin-start: 0px;
 -webkit-margin-end: 0px;
 -webkit-padding-start: 0;
+}
+/*----------------------------------------------*/
+/*-----------------< PAGES >--------------------*/
+/*----------------------------------------------*/
+
+/*-----------------< News >---------------------*/
+.breadcrumb {
+  overflow: hidden;
+  padding: 0;
+  color: #fff;
+}
+.breadcrumb a {
+  display: inline-block;
+  margin: 13px 0 10px;
+  color: #fff;
+  font-size: 12px;
+}
+.breadcrumb a:hover {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.news-head {
+  overflow: hidden;
+  position: relative;
+  height: 309px;
+}
+.news-head img {
+  display: block;
+}
+.news-head h2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 0 30px;
+  line-height: 60px;
+  background-color: #0b0b0b;
+  opacity: 0.75;
+  font-size: 32px;
+  color: #fff; 
+}
+#block-system-main {
+  overflow: hidden;
+  width: 550px;
+  margin: 0 84px 0 0;
+  float: left;
+}
+.sidebar-right-inner {
+  overflow: hidden;
+  width: 326px;
+  margin: 31px 0 0;
+}
+.sidebar-right-inner .stuff-ocupation,
+.sidebar-right-inner .scadhule-block, 
+.sidebar-right-inner .praxis-contact,
+.sidebar-right-inner .subscribe {
+  overflow: hidden;
+  margin: 0 0 10px;
+  padding: 20px 10px 16px 18px;
+  background-color: #F2F9FA;
+  border-top: 1px solid #C4DAD9;
+  border-right: 1px solid #C4DAD9;
+  border-bottom: 2px solid #C4DAD9;
+  border-left: 2px solid #C4DAD9;
+}
+.sidebar-right-inner .stuff-ocupation h3 {
+  font-size: 20px;
+  color: #0A817F;
+}
+.sidebar-right-inner .stuff-ocupation .ocupation-list {
+  overflow: hidden;
+}
+.sidebar-right-inner .stuff-ocupation .ocupation-list > li {
+  overflow: hidden;
+  color: #393939;
+  font-size: 13px;
+  padding: 0 0 0 11px;
+  list-style: none;
+  background: url(../images/sidebar-right-dot.png) no-repeat left center;
+}
+.sidebar-right-inner .subscribe {
+
 }

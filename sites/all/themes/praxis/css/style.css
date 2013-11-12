@@ -521,7 +521,7 @@ h1#site-name {
 /* ------------------- Main ------------------- */
 
 #main {
-  margin-bottom: 40px;  
+    
 }
 
 /* ----------------- Featured ----------------- */
@@ -572,9 +572,7 @@ h1#page-title {
   line-height: 1;
 }
 #content h2 {
-  margin-bottom: 2px;
-  font-size: 1.429em;
-  line-height: 1.4;
+  
 }
 .node .content {
   font-size: 1.071em;
@@ -749,9 +747,7 @@ ul.links {
   padding-top: 10px;
 }
 .sidebar .block {
-  border: 1px solid;
-  padding: 15px 20px;
-  margin: 0 0 20px;
+  
 }
 .sidebar h2 {
   margin: 0 0 0.5em;
