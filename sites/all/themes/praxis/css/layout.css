@@ -929,8 +929,39 @@ display: block;
     font-weight: bold;
     font-family: Arial, sans-serif;
 }
+.view-presse-page .view-content .views-row .views-field-body {
+    overflow: hidden;
+    display: block;
+    margin: 0 0 28px;
+}
 .view-presse-page .view-content .views-row .views-field-body .field-content p {
     overflow: hidden;
-    margin: 0 0 28px;
+    margin: 0;
     line-height: 1.5;
+}
+.date-author {
+    overflow: hidden;
+    height: 28px;
+    padding: 0 10px;
+    line-height: 28px;
+    background-color: #f4f4f4;
+    text-align: right;
+}
+.date-author .views-field-created {
+   display: inline-block;
+}
+.date-author .views-field-created,
+.date-author .views-field-uid,
+.date-author .views-field-uid .field-content a {
+    font-size: 13px;
+    color: #515151;
+    font-style: italic;
+}
+.date-author .views-field-created span {
+    display: block;
+    padding: 0 4px 0 0;
+}
+.date-author .views-field-created span:after {
+    content: '-';
+    padding: 0 0 0 4px;
 }
