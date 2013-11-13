@@ -25,13 +25,6 @@
  */
 ?>
 <?php foreach ($fields as $id => $field): ?>
-<!--    <pre>-->
-<!--    --><?php //print_r($row) ?>
-<!--    </pre>-->
-<!--    <pre>-->
-<!--    --><?php //print_r($id) ?>
-<!--    </pre>-->
-<!--    --><?php //die(); ?>
     <?php if (!empty($field->separator)): ?>
         <?php print $field->separator; ?>
     <?php endif; ?>
@@ -42,9 +35,12 @@
     <?php print $field->wrapper_suffix; ?>
     <?php if ($id == 'created'): ?>
         <div class="share">
-            <a class="fb" href="<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>"></a>
-            <a class="tw" href="<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>"></a>
+            <a class="fb" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>" target="_blank"></a>
+            <a class="tw" href="https://twitter.com/share?url=<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>" target="_blank"></a>
         </div>
+    <?php endif ?>
+    <?php if ($id == "body"): ?>
+        <a class="load_more" href="<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>">More ...</a>
     <?php endif ?>
 
 <?php endforeach; ?>
