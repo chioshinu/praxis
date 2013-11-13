@@ -827,3 +827,60 @@ display: block;
 .sidebar-right-inner .subscribe {
 
 }
+
+/*----------------- News page ------------------*/
+.view-news-page{
+
+}
+
+.view-news-page .views-row{
+    margin: 30px 0 0 0;
+
+}
+
+.view-news-page .views-row .views-field-title{
+    font: 20px Arial;
+    color: #39A7B3;
+    display: block;
+    line-height: 29px;
+}
+
+.view-news-page .views-row .views-field-title a, .view-news-page .views-row .views-field-title a:hover{
+    color: #39A7B3;
+}
+
+.view-news-page .views-row .views-field-created{
+
+}
+
+.view-news-page .views-row .share{
+    display: block;
+    float: right;
+}
+
+.view-news-page .views-row .share a{
+    display: block;
+    float: left;
+}
+
+.view-news-page .views-row .share .fb{
+    background: url("../images/fb_share.png") no-repeat;
+    width: 49px;
+    height: 18px;
+    margin: 0 8px 0 0;
+}
+
+.share .tw{
+    background: url("../images/twitter_share.png") no-repeat;
+    width: 49px;
+    height: 18px;
+}
+
+.view-news-page .views-row .views-field-body{
+    font: 13px Arial;
+    color: #272727;
+}
+
+.view-news-page .views-row .views-field-field-image-news{
+
+}
