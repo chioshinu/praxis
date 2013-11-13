@@ -6,6 +6,9 @@ body,
 #page  {
   height: 100%;
 }
+body {
+  font-size: 13px;
+}
 #page-wrapper {
   min-height: 100%;
   min-width: 960px;
@@ -746,7 +749,6 @@ display: block;
 /*-----------------< PAGES >--------------------*/
 /*----------------------------------------------*/
 
-/*-----------------< News >---------------------*/
 .breadcrumb {
   overflow: hidden;
   padding: 0;
@@ -883,4 +885,33 @@ display: block;
 
 .view-news-page .views-row .views-field-field-image-news{
 
+}
+/*-----------------< Press Page >---------------------*/
+.view-presse-page {
+    overflow: hidden;
+}
+.view-presse-page .view-content {
+    overflow: hidden;
+    margin: 26px 0 0;
+}
+.view-presse-page .view-content .views-row {
+    overflow: hidden;
+    margin: 0 0 45px;
+}
+.view-presse-page .view-content .views-row-odd {
+    overflow: hidden;
+    margin: 0 0 40px;
+}
+.view-presse-page .view-content .views-row .views-field-title .field-content  a {
+    display: block;
+    margin: 0 0 14px;
+    color: #005A7E;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+.view-presse-page .view-content .views-row .views-field-body .field-content p {
+    overflow: hidden;
+    margin: 0 0 28px;
+    line-height: 1.5;
 }
