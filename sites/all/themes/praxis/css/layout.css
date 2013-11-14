@@ -787,6 +787,13 @@ display: block;
   font-size: 32px;
   color: #fff; 
 }
+.landing div.section div#main-wrapper div#main div.body-inner div.region #block-system-main {
+    overflow: hidden;
+    width: 640px;
+    margin: 0;
+    float: none;
+}
+
 #block-system-main {
   overflow: hidden;
   width: 550px;

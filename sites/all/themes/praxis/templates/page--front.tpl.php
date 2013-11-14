@@ -169,7 +169,7 @@
                 </div> <!-- /.section, /#sidebar-first -->
         <?php endif; ?>
 
-        <div id="content" class="main-column"><div class="section">
+        <div id="content" class="main-column landing"><div class="section">
                 <div id="main-wrapper" class="clearfix"><div id="main" class="clearfix">
                         
                         <?php if ($breadcrumb): ?>
