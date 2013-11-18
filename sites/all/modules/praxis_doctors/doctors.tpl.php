@@ -8,7 +8,7 @@
                         <a href="#">
                             <?php
                                 $image = array(
-                                    'style_name' => 'thumbnail',
+                                    'style_name' => 'home_doctor',
                                     'path' => isset($node->field_ph['und']) ? $node->field_ph['und'][0]['uri'] : '',
                                     'width' => '',
                                     'height' => '',
