@@ -95,6 +95,7 @@ function praxis_doctors_block_view($delta = '') {
 }
 
 function praxis_doctors_home_doctors_contents(){
+    global $language;
     $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
 //    debug($nodes);
     $data = array();
@@ -121,13 +122,14 @@ function praxis_doctors_home_doctors_contents(){
         '#theme' => 'doctors_block',
         '#doctors' => $data,
     );
-    $output = theme('doctors_home_block', array('doctors' => $data));
+    $output = theme('doctors_home_block', array('doctors' => $data, 'lang' => $language->language));
     return $output;
 }
 
 function praxis_doctors_block_specializations(){
+    global $language;
     $terms = i18n_taxonomy_localize_terms(taxonomy_get_tree(2, 0, null, true));
-    return theme('specialization_block', array('terms' => $terms));
+    return theme('specialization_block', array('terms' => $terms, 'lang' => $language->language));
 
 }
 
@@ -146,8 +148,8 @@ function praxis_doctors_theme() {
             'template' => 'specialization_block',
             'variables' => array('terms' => array(), 'lang' => $language->language),
         ),
-        'doctor_page' => array(
-            'template' => 'doctor_page',
+        'single_doctor_page' => array(
+            'template' => 'single_doctor_page',
             'variables' => array('doctor' => array(), 'lang' => $language->language),
         ),
     );

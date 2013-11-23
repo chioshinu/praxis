@@ -10,7 +10,7 @@
             <ul>
                 <?php foreach($doctors as $doctor): ?>
                     <li class="doctor-middle">
-                        <a href="#">
+                        <a href="<?php if ($lang != 'en'): ?>/<?php print $lang; ?><?php endif ?>/team/doctors/<?php print $doctor->nid ?>">
                             <?php
                             $image = array(
                                 'style_name' => 'team_doctor',
@@ -47,14 +47,32 @@
                 jQuery('.section-wrapper').css('height', 'auto');
             }});
 
-        jQuery('.activate-anchor').click(function(){
-            var anchor = window.location.hash.substring(1);
-            var id = hash ? Drupal.settings.ids[anchor] : 0;
-//            console.log(active_id);
-            if (id){
-                jQuery('#accordion' ).accordion("option", "active", id );
+//        jQuery('.activate-anchor').click(function(){
+////            var anchor = window.location.hash.substring(1);
+//
+//        });
+        if ("onhashchange" in window) { // event supported?
+            window.onhashchange = function () {
+                hashChanged(window.location.hash);
             }
-
-        });
+        }
+        else { // event not supported:
+            var storedHash = window.location.hash;
+            window.setInterval(function () {
+                if (window.location.hash != storedHash) {
+                    storedHash = window.location.hash;
+                    hashChanged(storedHash);
+                }
+            }, 100);
+        }
     });
+
+    function hashChanged(hash){
+        var anchor = hash.substring(1);
+        var id = hash ? Drupal.settings.ids[anchor] : 0;
+//            console.log(active_id);
+        if (id){
+            jQuery('#accordion' ).accordion("option", "active", id );
+        }
+    }
 </script>

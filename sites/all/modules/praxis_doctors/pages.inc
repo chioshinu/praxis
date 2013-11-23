@@ -1,16 +1,19 @@
 <?php
 
 function team_view($type){
+    global $language;
     $types = array(
         'staff' => 'Praxis team',
         'doctors' => 'Arzte',
         'therapists' => 'Terapeuten'
     );
 
-    $terms = i18n_taxonomy_localize_terms(taxonomy_get_tree(2, 0, null, true));
+    $terms = taxonomy_get_tree(2, 0, null, true);
     $arr = array();
     foreach($terms as $value){
-        $arr[$value->tid] = $value->name;
+        $term = i18n_taxonomy_term_get_translation($value, $language->language);
+
+        $arr[$term->tid] = $term->name;
     }
     $js = array();
 
@@ -20,12 +23,15 @@ function team_view($type){
     $i =0;
     foreach ($nodes as $node){
         if($node->field_type['und'][0]['value'] == $types[$type]){
-            if (!isset($res[$node->field_secialization['und'][0]['tid']])){
-                $res[$node->field_secialization['und'][0]['tid']] = array();
-                $js[slug($arr[$node->field_secialization['und'][0]['tid']])] = $i;
+            $term = taxonomy_term_load($node->field_secialization['und'][0]['tid']);
+            $translation = i18n_taxonomy_term_get_translation($term, $language->language);
+            if (!isset($res[$translation->tid])){
+
+//                $res[] = array();
+                $js[slug($arr[$translation->tid])] = $i;
                 $i++;
             }
-            $res[$node->field_secialization['und'][0]['tid']][] = $node;
+            $res[$translation->tid][] = $node;
         }
 
     }
@@ -36,7 +42,7 @@ function team_view($type){
     drupal_add_js('/misc/ui/jquery.ui.accordion.min.js');
     drupal_add_css('/misc/ui/jquery.ui.core.css');
     drupal_add_css('/misc/ui/jquery.ui.accordion.css');
-    $output = theme('doctors_page', array('data' => $res, 'terms' => $arr));
+    $output = theme('doctors_page', array('data' => $res, 'terms' => $arr, 'lang' => $language->language));
     return $output;
 }
 
@@ -45,6 +51,7 @@ function doctor_view($id){
     if (!$node){
         drupal_not_found();
     }
-    return theme('doctor_page', array('doctor'=>$node));
+    $output = theme('single_doctor_page', array('doctor'=>$node));
+    return $output;
 }
 
