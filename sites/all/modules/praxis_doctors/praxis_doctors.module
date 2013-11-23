@@ -8,7 +8,7 @@
  */
 function praxis_doctors_user_insert(&$edit, $account, $category) {
     if (isset($account->roles[4])){
-        $bio = entity_create('node', array('type' => 'doctor_biography', 'uid' => $account->uid, 'language' => 'en'));
+        $bio = entity_create('node', array('type' => 'doctor_biography', 'uid' => $account->uid, 'status' => 0, 'language' => 'en'));
         $ewrapper = entity_metadata_wrapper('node', $bio);
         $ewrapper->field_email->set($account->mail);
         $ewrapper->save(true);
@@ -33,6 +33,12 @@ function praxis_doctors_menu() {
     $items['team/staff'] = array(
         'page callback' => 'team_view',
         'page arguments' => array(1),
+        'access arguments' => array('access content'),
+        'file' => 'pages.inc'
+    );
+    $items['team/doctors/%'] = array(
+        'page callback' => 'doctor_view',
+        'page arguments' => array(2),
         'access arguments' => array('access content'),
         'file' => 'pages.inc'
     );
@@ -89,7 +95,7 @@ function praxis_doctors_block_view($delta = '') {
 }
 
 function praxis_doctors_home_doctors_contents(){
-    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography'));
+    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
 //    debug($nodes);
     $data = array();
     $i = 0;
@@ -139,7 +145,11 @@ function praxis_doctors_theme() {
         'specialization_block' => array(
             'template' => 'specialization_block',
             'variables' => array('terms' => array(), 'lang' => $language->language),
-        )
+        ),
+        'doctor_page' => array(
+            'template' => 'doctor_page',
+            'variables' => array('doctor' => array(), 'lang' => $language->language),
+        ),
     );
 }
 

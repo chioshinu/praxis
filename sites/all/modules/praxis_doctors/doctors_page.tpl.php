@@ -1,6 +1,6 @@
 <?php ?>
 <!--<pre>-->
-<!--    --><?php //print_r($doctors); ?>
+<!--    --><?php //print_r($data[0][0]); ?>
 <!--</pre>-->
 
 <div id="accordion">

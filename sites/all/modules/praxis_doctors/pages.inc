@@ -14,8 +14,8 @@ function team_view($type){
     }
     $js = array();
 
-    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography'));
-//    drupal_debug($nodes);
+    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
+//    drupal_debug($nodes[0]);
     $res = array();
     $i =0;
     foreach ($nodes as $node){
@@ -38,5 +38,13 @@ function team_view($type){
     drupal_add_css('/misc/ui/jquery.ui.accordion.css');
     $output = theme('doctors_page', array('data' => $res, 'terms' => $arr));
     return $output;
+}
+
+function doctor_view($id){
+    $node = node_load($id);
+    if (!$node){
+        drupal_not_found();
+    }
+    return theme('doctor_page', array('doctor'=>$node));
 }
 
