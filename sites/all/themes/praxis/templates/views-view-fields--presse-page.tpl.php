@@ -24,28 +24,19 @@
  * @ingroup views_templates
  */
 ?>
-<?php foreach ($fields as $id => $field): ?>
-<!--    <pre>-->
-<!--        --><?php //print_r($id); ?>
-<!--    </pre>-->
-    <?php if (!empty($field->separator)): ?>
-        <?php print $field->separator; ?>
-    <?php endif; ?>
-    <?php if ($id == 'created'): ?>
-        <div class="date-author">
-    <?php endif; ?>
-    <?php print $field->wrapper_prefix; ?>
-    <?php print $field->label_html; ?>
-    <?php print $field->content; ?>
-    <?php print $field->wrapper_suffix; ?>
-    <?php if ($id == "uid"): ?>
-        </div>
-    <?php endif; ?>
-    <?php if ($id == "body"): ?>
-        <div class="intro-text">
-            <?php print $fields['body']->content; ?> 
-            <a class="read_more_text" href="<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>">weiter lesen...</a>
-        </div>
-    <?php endif ?>
-<?php endforeach; ?>
-<?php //die(); ?>
+
+
+
+<?php //print $fields['title']->content; ?>
+<h3><?php print $row->node_title; ?></h3>
+
+<?php print $fields['body']->content; ?>
+<?php if (count($row->field_field_file)>0): ?>
+    <a href="<?php print $row->field_field_file[0]['raw']['url']; ?>" class="more">More</a>
+<?php else: ?>
+    <a href="<?php print $row->field_field_link[0]['raw']['value']; ?>" class="more">More</a>
+<?php endif; ?>
+<div class="date-author">
+    <?php print $fields['created']->content; ?>
+    <?php print $fields['field_author']->content; ?>
+</div>

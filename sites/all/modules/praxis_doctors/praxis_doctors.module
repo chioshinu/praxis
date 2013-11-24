@@ -8,13 +8,41 @@
  */
 function praxis_doctors_user_insert(&$edit, $account, $category) {
     if (isset($account->roles[4])){
-        $bio = entity_create('node', array('type' => 'doctor_biography', 'uid' => $account->uid, 'language' => 'en'));
+        $bio = entity_create('node', array('type' => 'doctor_biography', 'uid' => $account->uid, 'status' => 0, 'language' => 'en'));
         $ewrapper = entity_metadata_wrapper('node', $bio);
         $ewrapper->field_email->set($account->mail);
         $ewrapper->save(true);
         entity_save('node', $bio);
         drupal_goto('node/'.$bio->nid.'/edit');
     }
+}
+
+function praxis_doctors_menu() {
+    $items['team/doctors'] = array(
+        'page callback' => 'team_view',
+        'page arguments' => array(1),
+        'access arguments' => array('access content'),
+        'file' => 'pages.inc'
+    );
+    $items['team/therapists'] = array(
+        'page callback' => 'team_view',
+        'page arguments' => array(1),
+        'access arguments' => array('access content'),
+        'file' => 'pages.inc'
+    );
+    $items['team/staff'] = array(
+        'page callback' => 'team_view',
+        'page arguments' => array(1),
+        'access arguments' => array('access content'),
+        'file' => 'pages.inc'
+    );
+    $items['team/doctors/%'] = array(
+        'page callback' => 'doctor_view',
+        'page arguments' => array(2),
+        'access arguments' => array('access content'),
+        'file' => 'pages.inc'
+    );
+    return $items;
 }
 
 function praxis_doctors_user_update(&$edit, $account, $category) {
@@ -30,7 +58,12 @@ function praxis_doctors_block_info() {
     $blocks['home_doctors'] = array(
         'info' => t('Home doctors')
     );
-
+    $blocks['specializations'] = array(
+        'info' => t('Specialties Block')
+    );
+    $blocks['home_specializations'] = array(
+        'info' => t('Home page Specialties Block')
+    );
     return $blocks;
 }
 
@@ -51,12 +84,19 @@ function praxis_doctors_block_view($delta = '') {
             // function.
             $block['content'] = praxis_doctors_home_doctors_contents($delta);
             break;
+        case 'specializations':
+            $block['content'] = praxis_doctors_block_specializations();
+            break;
+        case 'home_specializations':
+            $block['content'] = praxis_doctors_block_specializations();
+            break;
     }
     return $block;
 }
 
 function praxis_doctors_home_doctors_contents(){
-    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography'));
+    global $language;
+    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
 //    debug($nodes);
     $data = array();
     $i = 0;
@@ -82,8 +122,15 @@ function praxis_doctors_home_doctors_contents(){
         '#theme' => 'doctors_block',
         '#doctors' => $data,
     );
-    $output = theme('doctors_home_block', array('doctors' => $data));
+    $output = theme('doctors_home_block', array('doctors' => $data, 'lang' => $language->language));
     return $output;
+}
+
+function praxis_doctors_block_specializations(){
+    global $language;
+    $terms = i18n_taxonomy_localize_terms(taxonomy_get_tree(2, 0, null, true));
+    return theme('specialization_block', array('terms' => $terms, 'lang' => $language->language));
+
 }
 
 function praxis_doctors_theme() {
@@ -93,5 +140,21 @@ function praxis_doctors_theme() {
             'template' => 'doctors',
             'variables' => array('doctors' => array(), 'lang' => $language->language),
         ),
+        'doctors_page' => array(
+            'template' => 'doctors_page',
+            'variables' => array('data' => array(), 'terms' => array(), 'lang' => $language->language),
+        ),
+        'specialization_block' => array(
+            'template' => 'specialization_block',
+            'variables' => array('terms' => array(), 'lang' => $language->language),
+        ),
+        'single_doctor_page' => array(
+            'template' => 'single_doctor_page',
+            'variables' => array('doctor' => array(), 'lang' => $language->language),
+        ),
     );
+}
+
+function slug($str){
+    return str_replace(' ', '_',str_replace('/', '', strtolower($str)));
 }

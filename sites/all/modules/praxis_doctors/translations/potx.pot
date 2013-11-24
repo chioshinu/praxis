@@ -1,0 +1,47 @@
+# $Id: potx.pot,v 1.1.4.7 2009/04/04 09:14:49 hass Exp $
+#
+# LANGUAGE translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  potx-cli.php,v 1.1.2.6.4.4 2008/10/13 21:55:18 goba
+#  potx.inc,v 1.1.2.17.2.7.2.19 2009/04/02 11:01:54 goba
+#  potx.info,v 1.1.2.3.2.2.2.1 2009/04/02 11:05:29 goba
+#  potx.install,v 1.1.2.1 2008/09/25 06:49:33 goba
+#  potx.module,v 1.1.2.12.2.2.2.10 2009/03/13 10:13:14 goba
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2009-04-04 11:11+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: single_doctor_page.tpl.php:75
+msgid "Education"
+msgstr ""
+
+#: single_doctor_page.tpl.php:83
+msgid "Training"
+msgstr ""
+
+#: single_doctor_page.tpl.php:91
+msgid "Licensure and Board Certification"
+msgstr ""
+
+#: single_doctor_page.tpl.php:99
+msgid "Honors"
+msgstr ""
+
+#: single_doctor_page.tpl.php:107
+msgid "Selected Publications"
+msgstr ""
+
+#: single_doctor_page.tpl.php:108
+msgid "Click Here"
+msgstr ""

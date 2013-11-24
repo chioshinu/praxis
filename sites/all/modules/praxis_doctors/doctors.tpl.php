@@ -5,10 +5,10 @@
             <ul>
                 <?php foreach($slide as $node): ?>
                     <li class="doctor-thumbnail">
-                        <a href="#">
+                        <a href="<?php if ($lang != 'en'): ?>/<?php print $lang; ?><?php endif ?>/team/doctors/<?php print $node->nid ?>">
                             <?php
                                 $image = array(
-                                    'style_name' => 'thumbnail',
+                                    'style_name' => 'home_doctor',
                                     'path' => isset($node->field_ph['und']) ? $node->field_ph['und'][0]['uri'] : '',
                                     'width' => '',
                                     'height' => '',

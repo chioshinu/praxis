@@ -984,3 +984,44 @@ display: block;
     content: '-';
     padding: 0 0 0 4px;
 }
+/* Team page*/
+#accordion .section-wrapper.ui-accordion-content{
+    border: none;
+}
+#accordion .section-wrapper ul{
+    clear: both;
+    overflow: hidden;
+    display: block;
+}
+#accordion .section-wrapper ul li.doctor-middle{
+    overflow: hidden;
+    display: block;
+    float: left;
+    margin: 0 0 15px 25px;
+    padding: 0;
+    border: 1px solid #BBBBBE;
+
+    /*max-height: 216px;*/
+    /*min-height: 216px;*/
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+#accordion .section-wrapper ul li.doctor-middle a{
+    display: block;
+    border: 1px solid #EEEFEF;
+    width: 144px;
+    height: 204px;
+    margin: 5px;
+}
+#accordion .section-wrapper ul li.doctor-middle a img{
+    display: block;
+    margin: 10px auto 0;
+}
+#accordion .section-wrapper ul li.doctor-middle a span{
+    display: block;
+    color: #000000;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+}
