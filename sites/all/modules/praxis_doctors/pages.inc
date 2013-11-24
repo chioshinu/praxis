@@ -47,11 +47,15 @@ function team_view($type){
 }
 
 function doctor_view($id){
+    global $user;
+    global $language;
     $node = node_load($id);
     if (!$node){
         drupal_not_found();
     }
-    $output = theme('single_doctor_page', array('doctor'=>$node));
+    $nodes = node_load_multiple(array(), array('type' => 'doctor_page', 'status' => 1, 'uid' => $node->uid));
+
+    $output = theme('single_doctor_page', array('doctor'=>$node, 'pages' => $nodes, 'lang' => $language->language, 'user' => $user));
     return $output;
 }
 

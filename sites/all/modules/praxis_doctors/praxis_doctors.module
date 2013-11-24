@@ -13,8 +13,34 @@ function praxis_doctors_user_insert(&$edit, $account, $category) {
         $ewrapper->field_email->set($account->mail);
         $ewrapper->save(true);
         entity_save('node', $bio);
-        drupal_goto('node/'.$bio->nid.'/edit');
+//        user_save($account);
+//        drupal_goto('node/'.$bio->nid.'/edit');
     }
+}
+
+function praxis_doctors_user_login(&$edit, $account){
+//    if ($account->access == "0" and isset($account->roles[4])){
+    if (isset($account->roles[4])){
+        $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'uid' => $account->uid));
+        if (count($nodes)>0)
+        {
+            $node = array_shift($nodes);
+            $edit['redirect'] = 'node/'.$node->nid.'/edit';
+        }
+    }
+}
+
+function praxis_doctors_form_alter(&$form, &$form_state, $form_id){
+    global $user;
+    if ($form_id == 'doctor_biography_node_form' and isset($user->roles[4])){
+        $form['actions']['submit']['#submit'][] = 'praxis_doctor_biografy_form_submit_alter';
+    }
+}
+
+function praxis_doctor_biografy_form_submit_alter($form, &$form_state){
+    global $language;
+    $part = $language->language == 'en' ? '' : '/'.$language->language;
+    $form_state['redirect'] = 'team/doctors/'.$form['nid']['#value'];
 }
 
 function praxis_doctors_menu() {
@@ -150,7 +176,7 @@ function praxis_doctors_theme() {
         ),
         'single_doctor_page' => array(
             'template' => 'single_doctor_page',
-            'variables' => array('doctor' => array(), 'lang' => $language->language),
+            'variables' => array('doctor' => array(), 'pages' => array(), 'lang' => $language->language, 'user' => null),
         ),
     );
 }
