@@ -147,17 +147,14 @@
 
 
 
-
+        <?php if ($messages): ?>
+            <div id="messages"><div class="section clearfix">
+                <?php print $messages; ?>
+           </div></div> <!-- /.section, /#messages -->
+        <?php endif; ?>
 
         <div class="content-pages-wrapper">
             <div class="main_container_inner">
-        
-                <?php if ($messages): ?>
-                    <div id="messages"><div class="section clearfix">
-                            <?php print $messages; ?>
-                        </div></div> <!-- /.section, /#messages -->
-                <?php endif; ?>
-
                 <?php if ($page['featured']): ?>
                     <div id="featured"><div class="section clearfix">
                             <?php print render($page['featured']); ?>
