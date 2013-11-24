@@ -872,7 +872,7 @@ display: block;
     overflow: hidden;
 }
 
-.view-news-page .views-row .views-field-title{
+.view-news-page .views-row .views-field-title-field{
     font: 20px Arial;
     color: #39A7B3;
     display: block;
@@ -880,7 +880,7 @@ display: block;
     clear: both;
 }
 
-.view-news-page .views-row .views-field-title a, .view-news-page .views-row .views-field-title a:hover{
+.view-news-page .views-row .views-field-title-field a, .view-news-page .views-row .views-field-title-field a:hover{
     color: #39A7B3;
 }
 
@@ -1106,6 +1106,10 @@ display: block;
     margin: 31px 23px 0 0;
     width: 611px;
 }
+.view-freie-stellen-page .view-content {
+    overflow: hidden;
+    margin: 0 0 15px;
+}
 .view-freie-stellen-page  .views-row {
     overflow: hidden;
     position: relative;
@@ -1134,12 +1138,12 @@ display: block;
     overflow: hidden;
     display: block;
     margin: 0 17px 11px 0;
-    width: 348px;
+    width: 365px;
 }
 .view-freie-stellen-page  .views-row  .views-field-title span a {
     color: #357A9B;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 18px;
 }
 .view-freie-stellen-page  .views-row  .views-field-title span a:hover {
     text-decoration: none;
@@ -1148,7 +1152,6 @@ display: block;
 }
 .view-freie-stellen-page  .views-row  .views-field-created {
     overflow: hidden;
-    width: 208px;
     float: right;
 }
 .view-freie-stellen-page  .views-row  .views-field-created span,
@@ -1163,21 +1166,23 @@ display: block;
 .view-freie-stellen-page  .views-row  .views-field-created span.field-content:after {
     content: ")";
 }
-.view-freie-stellen-page  .views-row .views-field-field-type-of-employment {
-    display: block;
+.view-freie-stellen-page  .views-row .wrap-data {
     overflow: hidden;
-    float: left;
-    /*width: 438px;*/
+    width: 365px;
     font-size: 14px;
     color: #444444;
     line-height: 1.6;
     background-color: #EBEBEB;
 }
-.view-freie-stellen-page  .views-row .views-field-field-type-of-employment .views-label {
+.view-freie-stellen-page  .views-row .wrap-data .views-field-field-type-of-employment .views-label,
+.view-freie-stellen-page  .views-row .wrap-data .views-field .views-label {
     font-weight: bold;
 }
-.view-freie-stellen-page  .views-row .views-field-field-type-of-employment .field-content:after {
+.view-freie-stellen-page  .views-row .wrap-data .views-field-field-type-of-employment .field-content:after {
     content: "|";
     padding: 0 4px 0;
+}
+.view-freie-stellen-page  .views-row .wrap-data  .views-field-field-type-of-employment {
+    float: left;
 }
 
