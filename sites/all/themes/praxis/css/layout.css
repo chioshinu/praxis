@@ -939,9 +939,21 @@ display: block;
 .view-presse-page .view-content .views-row .views-field-body {
     overflow: hidden;
     display: block;
-    margin: 0 0 28px;
+    
 }
-.view-presse-page .view-content .views-row .views-field-body .field-content p {
+.intro-text {
+  overflow: hidden;
+  margin: 0 0 28px;
+}
+.intro-text a.read_more_text {
+  font-size: 13px;
+  color: #0A60AA;
+}
+.intro-text .field-content {
+  overflow: hidden;
+  float: left;
+}
+.intro-text .field-content p {
     overflow: hidden;
     margin: 0;
     line-height: 1.5;

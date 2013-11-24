@@ -41,5 +41,11 @@
     <?php if ($id == "uid"): ?>
         </div>
     <?php endif; ?>
+    <?php if ($id == "body"): ?>
+        <div class="intro-text">
+            <?php print $fields['body']->content; ?> 
+            <a class="read_more_text" href="<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>">weiter lesen...</a>
+        </div>
+    <?php endif ?>
 <?php endforeach; ?>
 <?php //die(); ?>
