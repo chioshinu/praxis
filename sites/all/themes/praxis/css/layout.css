@@ -564,6 +564,7 @@ ul li.expanded {
 .timetable {
   overflow: hidden;
   margin: 0; padding: 0;
+  list-style: none;
 }
 .timetable > li {
   overflow: hidden;
@@ -937,6 +938,13 @@ display: block;
 .view-news-page .views-row .views-field-field-image-news span div ul li{
     float: left;
 }
+/*--------------------< Single news >-----------------------------*/
+.node-news {
+    overflow: hidden;
+    width: 550px;
+    float: left;
+    margin: 31px 84px 0 0;
+}
 /*--------------------< News Page Pagination >--------------------*/
 .item-list {
     overflow: hidden;
@@ -1185,4 +1193,49 @@ display: block;
 .view-freie-stellen-page  .views-row .wrap-data  .views-field-field-type-of-employment {
     float: left;
 }
-
+/*------------------------------< Doctors >-----------------------------------*/
+#accordion {
+    overflow: hidden;
+    float: left;
+    width: 550px;
+    margin: 31px 84px 0 0;
+}
+#accordion h3.ui-state-default {
+    height: 40px;
+    margin: 0 0 3px;
+    padding: 0 14px 0 17px;
+    line-height: 40px;
+    border: 1px solid;
+    border-color: #DEE2E3 #F2F2F0 #CDD1D2 #D7D7D7;
+    box-shadow: 0 0 4px 1px #fff inset;
+    -moz-box-shadow: 0 0 4px 1px #fff inset;
+    -webkit-box-shadow: 0 0 4px 1px #fff inset;
+    -o-box-shadow: 0 0 4px 1px #fff inset;
+    -ms-box-shadow: 0 0 4px 1px #fff inset;
+    color: #383838;
+    background: url("../images/acordeon_vertical_down_arrow.png") no-repeat 520px 18px #EBEBEB;
+}
+#accordion h3.ui-state-active {
+    height: 40px;
+    padding: 0 14px 0 17px;
+    line-height: 40px;
+    outline: none;
+    border: 1px solid;
+    border-color: #DEE2E3 #F2F2F0 #CDD1D2 #D7D7D7;
+    box-shadow: 0 0 4px 1px #fff inset;
+    -moz-box-shadow: 0 0 4px 1px #fff inset;
+    -webkit-box-shadow: 0 0 4px 1px #fff inset;
+    -o-box-shadow: 0 0 4px 1px #fff inset;
+    -ms-box-shadow: 0 0 4px 1px #fff inset;
+    background: url("../images/acordeon_vertical_up_arrow.png") no-repeat 520px 18px #CFE4E7;
+}
+#accordion .ui-accordion-content .doctor-middle a:hover {
+    text-decoration: none;
+    opacity: 0.8;
+    filter:alpha(opacity=80);
+}
+#accordion .ui-accordion-content .doctor-middle a span {
+    padding: 9px 0 0;
+    font-weight: bold;
+    line-height: 1.3;
+}
