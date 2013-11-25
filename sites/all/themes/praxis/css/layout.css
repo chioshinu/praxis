@@ -941,7 +941,7 @@ display: block;
     float: left;
 }
 /*--------------------< Single news >-----------------------------*/
-.node-news {
+.node-news, .node-article {
     overflow: hidden;
     width: 550px;
     float: left;
@@ -1110,6 +1110,9 @@ display: block;
     overflow: hidden;
     width: 100%;
 }
+.ui-icon {
+    display: none;
+}
 /*------------------< Vacancies Page >---------------*/
 .view-freie-stellen-page {
     overflow: hidden;
@@ -1241,3 +1244,4 @@ display: block;
     font-weight: bold;
     line-height: 1.3;
 }
+/*-------------------------< Die Praxis Page >--------------------------*/

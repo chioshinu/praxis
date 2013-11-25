@@ -89,11 +89,11 @@ $pref = $lang != 'en' ? "/".$lang : "";
                 <li><a href="/node/add/doctor-page"><?php print t('Add page'); ?></a></li>
             <?php endif; ?>
         </ul>
-        <?php if ($user->uid == $doctor->uid): ?>
+<!--        --><?php //if ($user->uid == $doctor->uid): ?>
         <ul>
             <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
         </ul>
-        <?php endif; ?>
+<!--        --><?php //endif; ?>
     </div>
     <div class="email"><?php print render($email); ?></div>
 
