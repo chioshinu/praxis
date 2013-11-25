@@ -35,12 +35,26 @@ function praxis_doctors_form_alter(&$form, &$form_state, $form_id){
     if ($form_id == 'doctor_biography_node_form' and isset($user->roles[4])){
         $form['actions']['submit']['#submit'][] = 'praxis_doctor_biografy_form_submit_alter';
     }
+    if ($form_id == 'doctor_page_node_form' and isset($user->roles[4])){
+        $form['actions']['submit']['#submit'][] = 'praxis_doctor_page_form_submit_alter';
+    }
 }
 
 function praxis_doctor_biografy_form_submit_alter($form, &$form_state){
     global $language;
-    $part = $language->language == 'en' ? '' : '/'.$language->language;
+//    $part = $language->language == 'en' ? '' : '/'.$language->language;
     $form_state['redirect'] = 'team/doctors/'.$form['nid']['#value'];
+}
+
+function praxis_doctor_page_form_submit_alter($form, &$form_state){
+    global $language;
+    global $user;
+//    $part = $language->language == 'en' ? '' : '/'.$language->language;
+    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'uid' => $user->uid));
+    if (count($nodes)>0){
+        $node = array_shift($nodes);
+        $form_state['redirect'] = 'team/doctors/'.$node->nid.'/page/'.$form['nid']['#value'];
+    }
 }
 
 function praxis_doctors_menu() {
@@ -65,6 +79,12 @@ function praxis_doctors_menu() {
     $items['team/doctors/%'] = array(
         'page callback' => 'doctor_view',
         'page arguments' => array(2),
+        'access arguments' => array('access content'),
+        'file' => 'pages.inc'
+    );
+    $items['team/doctors/%/page/%'] = array(
+        'page callback' => 'doctor_view_page',
+        'page arguments' => array(2, 4),
         'access arguments' => array('access content'),
         'file' => 'pages.inc'
     );
@@ -176,7 +196,13 @@ function praxis_doctors_theme() {
         ),
         'single_doctor_page' => array(
             'template' => 'single_doctor_page',
-            'variables' => array('doctor' => array(), 'pages' => array(), 'lang' => $language->language, 'user' => null),
+            'variables' => array(
+                'doctor' => array(),
+                'pages' => array(),
+                'lang' => $language->language,
+                'user' => null,
+                'page' => null
+            ),
         ),
     );
 }

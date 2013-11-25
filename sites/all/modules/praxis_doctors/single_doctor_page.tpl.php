@@ -50,6 +50,7 @@ foreach ($items as $item){
     $certifications[] = field_view_value('node', $doctor, 'field_certification', $item, array(), $lang);
 }
 
+$pref = $lang != 'en' ? "/".$lang : "";
 
 ?>
 <div class="doctor">
@@ -64,55 +65,83 @@ foreach ($items as $item){
             <?php endforeach; ?>
         </ul>
         <ul>
-            <li><?php print t('Biography'); ?></li>
-            <?php foreach($pages as $page): ?>
+            <li <?php if (!$page): ?>class="active" <?php endif; ?>>
+                <?php if ($page): ?>
+                    <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>"><?php print t('Biography'); ?></a>
+                <?php else: ?>
+                    <?php print t('Biography'); ?>
+                <?php endif; ?>
+            </li>
+            <?php foreach($pages as $value): ?>
                 <?php
-                    $items = field_get_items('node', $page, 'title_field');
-                    $title = field_view_value('node', $page, 'title_field', $items[0], array(), $lang);
+                    $items = field_get_items('node', $value, 'title_field');
+                    $title = field_view_value('node', $value, 'title_field', $items[0], array(), $lang);
                 ?>
-                <li><a href="/team/doctor/<?php print $doctor->nid; ?>/page/<?php print $page->nid; ?>/"><?php print render($title); ?></a></li>
+                <li <?php if ($page && $page->nid == $value->nid): ?> class="active" <?php endif; ?>>
+                    <?php if ($page && $page->nid == $value->nid): ?>
+                        <?php print render($title); ?>
+                    <?php else: ?>
+                        <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>/page/<?php print $value->nid; ?>/"><?php print render($title); ?></a>
+                    <?php endif; ?>
+                </li>
             <?php endforeach; ?>
+            <?php if (count($pages)<4): ?>
+                <li><a href="/node/add/doctor-page"><?php print t('Add page'); ?></a></li>
+            <?php endif; ?>
         </ul>
+        <?php if ($user->uid == $doctor->uid): ?>
+        <ul>
+            <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
+        </ul>
+        <?php endif; ?>
     </div>
     <div class="email"><?php print render($email); ?></div>
 
     <div class="main-content">
+        <?php if($page): ?>
+            <?php
+            $items = field_get_items('node', $page, 'body');
+            $body = field_view_value('node', $page, 'body', $items[0], array(), $lang);
+            ?>
+            <div class="page-body"><?php print render($body); ?></div>
+        <?php else: ?>
         <div class="description"><?php print render($description); ?></div>
-        <?php if (count($educations)>0): ?>
-            <h3><?php print t("Education"); ?></h3>
-            <ul class="education list">
-                <?php foreach ($educations as $value): ?>
-                    <li><?php print render($value); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
-        <?php if (count($training)>0): ?>
-            <h3><?php print t("Training") ?></h3>
-            <ul class="trainings list">
-                <?php foreach ($training as $value): ?>
-                    <li><?php print render($value); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
-        <?php if (count($certifications)>0): ?>
-            <h3><?php print t("Licensure and Board Certification") ?></h3>
-            <ul class="certifications list">
-                <?php foreach ($certifications as $value): ?>
-                    <li><?php print render($value); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
-        <?php if (count($honors)>0): ?>
-            <h3><?php print t("Honors") ?></h3>
-            <ul class="honors list">
-                <?php foreach ($honors as $value): ?>
-                    <li><?php print render($value); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        <?php endif; ?>
-        <?php if (count($honors)>0): ?>
-            <h3><?php print t("Selected Publications") ?></h3>
-            <a href="<?php print render($press); ?>"><?php print t('Click Here') ?></a>
+            <?php if (count($educations)>0): ?>
+                <h3><?php print t("Education"); ?></h3>
+                <ul class="education list">
+                    <?php foreach ($educations as $value): ?>
+                        <li><?php print render($value); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <?php if (count($training)>0): ?>
+                <h3><?php print t("Training") ?></h3>
+                <ul class="trainings list">
+                    <?php foreach ($training as $value): ?>
+                        <li><?php print render($value); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <?php if (count($certifications)>0): ?>
+                <h3><?php print t("Licensure and Board Certification") ?></h3>
+                <ul class="certifications list">
+                    <?php foreach ($certifications as $value): ?>
+                        <li><?php print render($value); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <?php if (count($honors)>0): ?>
+                <h3><?php print t("Honors") ?></h3>
+                <ul class="honors list">
+                    <?php foreach ($honors as $value): ?>
+                        <li><?php print render($value); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+            <?php if (count($honors)>0): ?>
+                <h3><?php print t("Selected Publications") ?></h3>
+                <a href="<?php print render($press); ?>"><?php print t('Click Here') ?></a>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
 

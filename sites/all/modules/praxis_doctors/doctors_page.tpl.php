@@ -1,8 +1,3 @@
-<?php ?>
-<!--<pre>-->
-<!--    --><?php //print_r($data[0][0]); ?>
-<!--</pre>-->
-
 <div id="accordion">
     <?php foreach ($data as $key => $doctors): ?>
         <h3><?php echo $terms[$key]; ?></h3>
