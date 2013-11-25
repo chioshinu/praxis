@@ -40,6 +40,9 @@ function praxis_process_html(&$variables) {
  * Override or insert variables into the page template.
  */
 function praxis_process_page(&$variables) {
+
+
+
   // Hook into color.module.
   if (module_exists('color')) {
     _color_page_alter($variables);
@@ -117,6 +120,7 @@ function praxis_process_maintenance_page(&$variables) {
 function praxis_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
     $variables['classes_array'][] = 'node-full';
+    $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->type;
   }
 }
 
