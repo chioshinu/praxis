@@ -291,7 +291,7 @@ ul.menu > li {
 }
 ul.menu > li  a {
   display: inline-block;
-  padding: 0 30px;
+  padding: 0 15px;
   line-height: 37px;
   font-size: 16px; 
   font-family: Arial, sans-serif;
@@ -310,27 +310,31 @@ ul.menu > li  a {
 }
 #main-menu .menu >li.expanded ul.menu {
   opacity: 0;
-  /*position: absolute;
+  position: absolute;
   top: 37px;
-  left: 0;*/
+  left: 0;
+  overflow: visible;
+  width: 400px;
 }
 #main-menu .menu >li.expanded:hover ul.menu {
   opacity: 1;
+  z-index: 30;
 }
 #main-menu .menu >li.expanded ul.menu li {
+  display: block;
   float: left;
   height: 32px;
   background-color:#EAEAEA;
 }
 #main-menu .menu >li.expanded ul.menu li a {
   line-height: 32px;
-  padding: 0 40px;
+  padding: 0 15px;
   font-size: 16px; 
   font-family: Arial, sans-serif;
   color: #464545; 
 }
 #main-menu .menu >li.expanded ul.menu li a:hover,
-#main-menu .menu >li.expanded ul.menu li.active a {
+#main-menu .menu >li.expanded ul.menu li a.active {
   background-color: #39A8B4;
   color:#fff;
   font-weight: bolder;
