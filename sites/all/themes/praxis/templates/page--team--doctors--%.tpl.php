@@ -153,7 +153,7 @@
                 </div></div> <!-- /.section, /#messages -->
         <?php endif; ?>
 
-        <div class="content-pages-wrapper">
+        <div class="content-single-doctors-wrapper">
             <div class="main_container_inner">
                 <?php if ($page['featured']): ?>
                     <div id="featured"><div class="section clearfix">
@@ -201,7 +201,7 @@
                             </div></div> <!-- /.section, /#content -->
 
                         <?php if ($page['sidebar_second']): ?>
-                            <div id="sidebar-second" class="column sidebar"><div class="section">
+                            <div id="sidebar-second" class="column sidebar single-doctors-sidebar"><div class="section">
                                     <?php print render($page['sidebar_second']); ?>
                                 </div></div> <!-- /.section, /#sidebar-second -->
                         <?php endif; ?>

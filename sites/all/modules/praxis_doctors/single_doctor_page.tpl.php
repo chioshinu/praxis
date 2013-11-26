@@ -55,45 +55,49 @@ $pref = $lang != 'en' ? "/".$lang : "";
 ?>
 <div class="doctor">
     <div class="wrap">
-        <?php print theme('image_style', $image); ?>
-        <h2 class="name"><?php print render($name); ?></h2>
-        <div class="degree"><?php print render($degree) ?></div>
-        <div class="position"><?php print render($position) ?></div>
-        <ul class="hospitals">
-            <?php foreach ($hospitals as $hospital): ?>
-                <li><?php print render($hospital); ?></li>
-            <?php endforeach; ?>
-        </ul>
-        <ul>
-            <li <?php if (!$page): ?>class="active" <?php endif; ?>>
-                <?php if ($page): ?>
-                    <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>"><?php print t('Biography'); ?></a>
-                <?php else: ?>
-                    <?php print t('Biography'); ?>
-                <?php endif; ?>
-            </li>
-            <?php foreach($pages as $value): ?>
-                <?php
-                    $items = field_get_items('node', $value, 'title_field');
-                    $title = field_view_value('node', $value, 'title_field', $items[0], array(), $lang);
-                ?>
-                <li <?php if ($page && $page->nid == $value->nid): ?> class="active" <?php endif; ?>>
-                    <?php if ($page && $page->nid == $value->nid): ?>
-                        <?php print render($title); ?>
+        <div class="doctors-links-block">
+            <ul class="links">
+                <li <?php if (!$page): ?>class="active" <?php endif; ?>>
+                    <?php if ($page): ?>
+                        <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>"><?php print t('Biography'); ?></a>
                     <?php else: ?>
-                        <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>/page/<?php print $value->nid; ?>/"><?php print render($title); ?></a>
+                        <?php print t('Biography'); ?>
                     <?php endif; ?>
                 </li>
-            <?php endforeach; ?>
-            <?php if (count($pages)<4): ?>
-                <li><a href="/node/add/doctor-page"><?php print t('Add page'); ?></a></li>
-            <?php endif; ?>
-        </ul>
-<!--        --><?php //if ($user->uid == $doctor->uid): ?>
-        <ul>
-            <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
-        </ul>
-<!--        --><?php //endif; ?>
+                <?php foreach($pages as $value): ?>
+                    <?php
+                    $items = field_get_items('node', $value, 'title_field');
+                    $title = field_view_value('node', $value, 'title_field', $items[0], array(), $lang);
+                    ?>
+                    <li <?php if ($page && $page->nid == $value->nid): ?> class="active" <?php endif; ?>>
+                        <?php if ($page && $page->nid == $value->nid): ?>
+                            <?php print render($title); ?>
+                        <?php else: ?>
+                            <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>/page/<?php print $value->nid; ?>/"><?php print render($title); ?></a>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+                <?php if (count($pages)<4): ?>
+                    <li><a href="/node/add/doctor-page"><?php print t('Add page'); ?></a></li>
+                <?php endif; ?>
+                <!--        --><?php //if ($user->uid == $doctor->uid): ?>
+                    <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
+                <!--        --><?php //endif; ?>
+            </ul>
+
+        </div>
+        <div class="doctor-img-wrap"><?php print theme('image_style', $image); ?></div>
+        <div class="brief-info">
+            <h2 class="name"><?php print render($name); ?></h2>
+            <div class="degree"><?php print render($degree) ?></div>
+            <div class="position"><?php print render($position) ?></div>
+            <ul class="hospitals">
+                <?php foreach ($hospitals as $hospital): ?>
+                    <li><?php print render($hospital); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
     </div>
     <div class="email"><?php print render($email); ?></div>
 
