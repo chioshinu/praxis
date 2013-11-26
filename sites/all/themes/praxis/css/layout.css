@@ -834,6 +834,9 @@ display: block;
   position: relative;
   height: 309px;
 }
+.news-head.downloads-head {
+  background-color: #fff;
+}
 .news-head img {
   display: block;
 }
@@ -849,6 +852,9 @@ display: block;
   opacity: 0.75;
   font-size: 32px;
   color: #fff; 
+}
+.news-head h2.downloads-title {
+    background-color: #0F59BD;
 }
 .landing div.section div#main-wrapper div#main div.body-inner div.region #block-system-main {
     overflow: hidden;
@@ -1425,4 +1431,31 @@ display: block;
     text-decoration: none;
     opacity: 0.8;
     filter:alpha(opacity=80);
+}
+/*--------------------------< Downloads Page >----------------------------*/
+.view-download-page {
+    margin: 31px 84px 0 0;
+}
+.view-download-page .views-row .views-field-title  span a {
+    display: block;
+    margin: 0 0 25px;
+    padding: 0 0 10px;
+    color: #39A7B3;
+    font-size: 16px;
+    border-bottom: 1px solid #CCC;
+    line-height: normal;
+    text-transform: capitalize;
+}
+.view-download-page .views-row .views-field-title  span a:hover {
+    text-decoration: none;
+    opacity: 0.8;
+    filter:alpha(opacity=80);
+}
+.view-download-page .views-row .file {
+    display: block;
+    font-size: 14px;
+    color: #272727;
+    margin: 0 0 22px;
+    float: left;
+    width: 272px;
 }
