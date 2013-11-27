@@ -1,0 +1,325 @@
+<?php
+
+/**
+ * @file
+ * ems.module
+ */
+
+// 50 items per page.
+define('TOTAL_ITEMS_PER_PAGE', 50);
+
+// Admin uri links.
+define('ADMIN_CONTENT_DOCTOR_MANAGE_URI', 'admin/content/doctor/manage/');
+define('ADMIN_CONTENT_DOCTOR_URI', 'admin/content/doctors');
+
+/**
+ * Implements hook_entity_info().
+ */
+function ems_entity_info() {
+    $ems_entity_info['doctor'] = array(
+        'label' => t('Doctor'),
+        'label callback' => 'doctor_label_callback',
+        'entity class' => 'Doctor',
+        'controller class' => 'DoctorController',
+        'base table' => 'doctor',
+//        'uri callback' => 'doctor_uri',
+        'fieldable' => FALSE,
+        'entity keys' => array(
+            'id' => 'did',
+        ),
+        'uri callback' => 'entity_class_uri',
+        'load hook' => 'doctor_load',
+        'static cache' => TRUE,
+
+        'module' => 'ems',
+        'access callback' => 'doctor_access_callback',
+
+    );
+
+    return $ems_entity_info;
+}
+
+function ems_mail ($key, &$message, $params) {
+    switch ($key) {
+        case 'register':
+            // Set headers etc
+
+            $message['subject'] = t('New EMS registration');
+            $message['body'][] = "You have new EMS registration";
+            break;
+    }
+}
+
+function ems_get_users_by_rolename($rolename){
+    $query = new EntityFieldQuery;
+    $query->entityCondition('entity_type', 'user');
+    $query->addTag('rolequery');
+    $query->addMetaData('rolename', $rolename);
+
+    return $query->execute();
+}
+
+function ems_query_rolequery_alter(QueryAlterableInterface $query) {
+    $rolename = $query->getMetaData('rolename');
+
+    $role_subquery = db_select("role", "role");
+    $role_subquery->condition('role.name', $rolename, '=');
+    $role_subquery->join('users_roles', "users_to_include", "role.rid = users_to_include.rid");
+    $role_subquery->fields('users_to_include', array('uid' => 'uid'));
+    $role_subquery->where('users_to_include.uid = users.uid');
+    $query->exists($role_subquery);
+}
+
+/**
+ * Implements hook_menu().
+ */
+function ems_menu() {
+    $items = array();
+
+    $items['ems/register'] = array(
+        'title' => 'Register',
+        'page callback' => 'register',
+        'file' => 'includes/pages.inc',
+        'access arguments' => array('access content'),
+    );
+
+    $items['admin/content/doctors'] = array(
+        'title' => "Doctors",
+        'path' => 'admin/content/doctor',
+        'file' => 'includes/doctor.admin.inc',
+        'page callback' => 'doctors_page',
+        'access arguments' => array('access content'),
+        'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    );
+
+    $items['admin/content/doctors/%/edit'] = array(
+        'title' => 'Edit',
+        'page callback' => 'doctor_edit_page',
+        'page arguments' => array(3),
+        'access arguments' => array('access content'),
+        'type' => MENU_LOCAL_TASK,
+        'weight' => 0,
+        'file' => 'includes/doctor.admin.inc',
+    );
+
+    $items['doctor/%ems'] = array(
+        'title' => 'ems',
+        'page callback' => 'ems_view_entity',
+        'page arguments' => array(1),
+        'access callback' => 'ems_access_menu_callback',
+        'access arguments' => array('view', 1),
+    );
+
+    $items['ems/locate'] = array(
+        'page callback' => 'ems_locate_callback',
+        'access arguments' => array('access content'),
+    );
+
+    return $items;
+}
+
+/**
+ * Help function api data.
+ */
+//function ems_locate_callback() {
+//    $params = drupal_get_query_parameters();
+//
+//    if (isset($params['state'])) {
+//        $conditions = $params['state'];
+//        $result = ems_entity_query($conditions);
+//        $data = ems_load_multiple($result);
+//        drupal_json_output($data);
+//    }
+//    elseif (isset($params['party']) && isset($params['chamber'])) {
+//        $chamber = array('title' => $params['chamber']);
+//        $party = array('party' => $params['party']);
+//        $conditions = array_merge($party, $chamber);
+//        $result = ems_entity_query($conditions);
+//        $data = ems_load_multiple($result);
+//        drupal_json_output($data);
+//    }
+//
+//}
+
+/**
+ * Implements hook_permission().
+ */
+function ems_permission() {
+    return array(
+        'administer ems entities' => array(
+            'title' => t('Administer ems Entities'),
+            'description' => t('Allows a user to administer lawmaker entities'),
+        ),
+        'view ems entities' => array(
+            'title' => t('View ems Entity'),
+            'description' => t('Allows a user to view the ems entities.'),
+        ),
+        'create ems entities' => array(
+            'title' => t('Create ems Entities'),
+            'description' => t('Allows a user to create ems entities.'),
+        ),
+        'edit ems entities' => array(
+            'title' => t('Edit ems Entities'),
+            'description' => t('Allows a user to edit ems entities.'),
+        ),
+        'delete ems entities' => array(
+            'title' => t('Delete ems Entities'),
+            'description' => t('Allows a user to delete ems entities.'),
+        ),
+        'use ems bulk operations' => array(
+            'title' => t('Do bulk operations on ems entities'),
+            'description' => t('Allows a user to do bulk operations.'),
+        ),
+    );
+}
+
+/**
+ * Check access permission for ems Entity UI.
+ */
+function ems_access_menu_callback($op, $ems = NULL, $account = NULL) {
+    switch ($op) {
+        case 'view':
+            return user_access('view ems entities', $account);
+
+        case 'create':
+            return user_access('create ems entities', $account);
+
+        case 'update':
+            return user_access('edit ems entities', $account);
+
+        case 'delete':
+            return user_access('delete ems entities', $account);
+    }
+
+    return FALSE;
+}
+
+/**
+ * ems access callback.
+ */
+function doctor_access_callback($op, $profile = NULL, $account = NULL) {
+//    if (user_is_anonymous() && !user_access('administer ems entities')) {
+    return user_access('administer ems entities', $account);
+//    }
+//    else {
+//        return TRUE;
+//    }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ems_theme() {
+    return array(
+
+    );
+}
+
+/**
+ * Helper function for custom queries.
+ */
+function ems_entity_query($conditions = array()) {
+
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'ems');
+
+    // Apply conditions.
+    foreach ($conditions as $key => $value) {
+        $query->propertyCondition($key, $value);
+    }
+
+    $result = $query->execute();
+
+    if (isset($result['ems'])) {
+        $ems = array_keys($result['ems']);
+    }
+    else {
+        $ems = array();
+    }
+
+    return $ems;
+}
+
+/**
+ * Label callback for ems entities, for menu router, etc.
+ */
+function doctor_label_callback($doctor, $type) {
+    return empty($doctor->first_name) ? 'Untitled Doctor' : $doctor->first_name . " " . $doctor->last_name;
+}
+
+/**
+ * Saves Lawmaker to database.
+ */
+function doctor_save(Doctor $doctor) {
+    return $doctor->save();
+}
+
+/**
+ * View for /ems/<ems_id> page.
+ */
+function ems_view_entity($ems) {
+    $fullname = $ems->firstname . ' ' . $ems->lastname;
+    drupal_set_title($fullname);
+    // Path not entity.
+    $ems_output = theme('ems_full', array('ems' => $ems));
+    return $ems_output;
+}
+
+/**
+ * ems custom entity class.
+ */
+class Doctor extends Entity {
+    /**
+     * Override defaultUri().
+     */
+    protected function defaultUri() {
+        return array('path' => 'doctor/' . $this->identifier());
+    }
+}
+
+/**
+ * Menu autoloader for /ems.
+ */
+function doctor_load($doc_id, $reset = FALSE) {
+    $doctors = doctor_load_multiple(array($doc_id), array(), $reset);
+    return reset($doctors);
+}
+
+/**
+ * Load multiple ems based on certain conditions.
+ */
+function doctor_load_multiple($doc_ids = array(), $conditions = array(), $reset = FALSE) {
+    return entity_load('doctor', $doc_ids, $conditions, $reset);
+}
+
+/**
+ * Deletes a lawmaker.
+ */
+function doctor_delete(Doctor $doctor) {
+    $doctor->delete();
+}
+
+/**
+ * Delete multiple ems.
+ */
+function doctor_delete_multiple(array $doc_ids) {
+    entity_get_controller('doctor')->delete($doc_ids);
+}
+
+/**
+ * Custom controller for the ems entity.
+ */
+class DoctorController extends EntityAPIController {
+
+    /**
+     * Override the save method.
+     */
+    public function save($entity, DatabaseTransaction $transaction = NULL) {
+        if (isset($entity->is_new)) {
+            $entity->created = REQUEST_TIME;
+        }
+
+        $entity->changed = REQUEST_TIME;
+        return parent::save($entity, $transaction);
+    }
+}
