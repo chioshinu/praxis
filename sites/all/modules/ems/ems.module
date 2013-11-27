@@ -6,11 +6,11 @@
  */
 
 // 50 items per page.
-//define('TOTAL_ITEMS_PER_PAGE', 50);
+define('TOTAL_ITEMS_PER_PAGE', 50);
 
 // Admin uri links.
 define('ADMIN_CONTENT_DOCTOR_MANAGE_URI', 'admin/content/doctor/manage/');
-define('ADMIN_CONTENT_DOCTOR_URI', 'admin/content/doctor');
+define('ADMIN_CONTENT_DOCTOR_URI', 'admin/content/doctors');
 
 /**
  * Implements hook_entity_info().
@@ -22,7 +22,7 @@ function ems_entity_info() {
         'entity class' => 'Doctor',
         'controller class' => 'DoctorController',
         'base table' => 'doctor',
-        'uri callback' => 'doctor_uri',
+//        'uri callback' => 'doctor_uri',
         'fieldable' => FALSE,
         'entity keys' => array(
             'id' => 'did',
@@ -30,23 +30,10 @@ function ems_entity_info() {
         'uri callback' => 'entity_class_uri',
         'load hook' => 'doctor_load',
         'static cache' => TRUE,
-        'admin ui' => array(
-            'path' => 'ems/doctors',
-            'controller class' => 'DoctorUIController',
-            'file' => 'includes/doctor.admin.inc',
-        ),
+
         'module' => 'ems',
         'access callback' => 'doctor_access_callback',
-//        'bundles' => array(
-//            'ems' => array(
-//                'label' => 'Doctor',
-//                'admin' => array(
-//                    'path' => 'admin/structure/ems/manage',
-//                    'access arguments' => array('administer doctor'),
-//                ),
-//            ),
-//        ),
-        'views controller class' => 'EntityDefaultViewsController',
+
     );
 
     return $ems_entity_info;
@@ -94,6 +81,25 @@ function ems_menu() {
         'page callback' => 'register',
         'file' => 'includes/pages.inc',
         'access arguments' => array('access content'),
+    );
+
+    $items['admin/content/doctors'] = array(
+        'title' => "Doctors",
+        'path' => 'admin/content/doctor',
+        'file' => 'includes/doctor.admin.inc',
+        'page callback' => 'doctors_page',
+        'access arguments' => array('access content'),
+        'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    );
+
+    $items['admin/content/doctors/%/edit'] = array(
+        'title' => 'Edit',
+        'page callback' => 'doctor_edit_page',
+        'page arguments' => array(3),
+        'access arguments' => array('access content'),
+        'type' => MENU_LOCAL_TASK,
+        'weight' => 0,
+        'file' => 'includes/doctor.admin.inc',
     );
 
     $items['doctor/%ems'] = array(
@@ -191,13 +197,13 @@ function ems_access_menu_callback($op, $ems = NULL, $account = NULL) {
 /**
  * ems access callback.
  */
-function doctor_access_callback() {
-    if (user_is_anonymous() && !user_access('administer ems entities')) {
-        return FALSE;
-    }
-    else {
-        return TRUE;
-    }
+function doctor_access_callback($op, $profile = NULL, $account = NULL) {
+//    if (user_is_anonymous() && !user_access('administer ems entities')) {
+    return user_access('administer ems entities', $account);
+//    }
+//    else {
+//        return TRUE;
+//    }
 }
 
 /**
@@ -316,127 +322,4 @@ class DoctorController extends EntityAPIController {
         $entity->changed = REQUEST_TIME;
         return parent::save($entity, $transaction);
     }
-}
-
-/**
- * Custom controller for the administrator UI.
- */
-class DoctorUIController extends EntityDefaultUIController {
-
-
-
-    /**
-     * Admin form for searching and doing bulk operations.
-     */
-    public function overviewForm($form, &$form_state) {
-        $form['pager'] = array('#theme' => 'pager');
-
-        $header = array(
-            'did' => array('data' => t('ID'), 'field' => 'did'),
-            'title' => array('data' => t('Titel'), 'field' => 'title'),
-            'first_name' => array('data' => t('Vorname'), 'field' => 'first_name'),
-            'last_name' => array('data' => t('Nachname'), 'field' => 'last_name'),
-            'practice' => array('data' => t('Praxis / med. Institut'), 'field' => 'practice'),
-            'address' => array('data' => t('Strasse'), 'field' => 'address'),
-            'zip' => array('data' => t('PLZ / Ort'), 'field' => 'zip'),
-            'phone' => array('data' => t('Tel'), 'field' => 'phone'),
-            'mobile' => array('data' => t('Mobile'), 'field' => 'mobile'),
-            'web' => array('data' => t('Web'), 'field' => 'web'),
-            'email' => array('data' => t('Email'), 'field' => 'email'),
-            'status' => array('data' => t('Status'), 'field' => 'status'),
-            'operations' =>  t('Operations'),
-        );
-
-        $options = array();
-//        $search_term = !empty($_GET['search']) ? $_GET['search'] : NULL;
-
-        $query = new EntityFieldQuery();
-        $query
-            ->entityCondition('entity_type', 'doctor');
-
-//        if (!empty($search_term)) {
-//            $query->propertyCondition('last_name', '%' . $search_term . '%', 'like');
-//        }
-        // Check for sort order and sort key.
-        if (!empty($_GET['sort']) && !empty($_GET['order'])) {
-            $sort = strtoupper($_GET['sort']);
-            $order = strtolower($_GET['order']);
-            $order = str_replace(' ', '_', $order);
-            if ($order != 'operations') {
-                $query->propertyOrderBy($order, $sort);
-            }
-        }
-
-        $query->pager(TOTAL_ITEMS_PER_PAGE);
-
-        $result = $query->execute();
-        $ems_results = !empty($result['doctor']) ? $result['doctor'] : array();
-        $ems_array = !empty($ems_results) ? doctor_load_multiple(array_keys($ems_results)) : array();
-
-        $status = array('Pending', 'Approved', 'Declined');
-
-        foreach ($ems_array as $doc_id => $doctor) {
-            $options['doctor_id-' . $doc_id] = array(
-                'did' => l($doctor->did, 'ems/' . $doctor->did),
-                'title' => $doctor->title,
-                'first_name' => $doctor->first_name,
-                'last_name' => $doctor->last_name,
-                'practice' => $doctor->practice,
-                'address' =>$doctor->address,
-                'zip' => $doctor->zip,
-                'phone' => $doctor->phone,
-                'email' => $doctor->email,
-                'mobile' => $doctor->mobile,
-                'web' => $doctor->web,
-                'status' => $status[$doctor->status],
-
-                'operations' =>
-                    l(t('Edit'), ADMIN_CONTENT_LAMWAKERS_MANAGE_URI . $doc_id, array('query' => array('destination' => ADMIN_CONTENT_DOCTOR_URI))) . ' ' .
-                    l(t('Delete'), ADMIN_CONTENT_LAMWAKERS_MANAGE_URI . $doc_id . '/delete', array('attributes' => array('class' => array('ems-delete-' . $doctor->did), ), 'query' => array('destination' => ADMIN_CONTENT_DOCTOR_URI))),
-            );
-        }
-
-//        $form['search'] = array(
-//            '#type' => 'fieldset',
-//            '#title' => t('Basic Search'),
-//            '#collapsible' => TRUE,
-//            '#collapsed' => !empty($search_term) ? FALSE : TRUE,
-//        );
-//
-//        $form['search']['search_text'] = array(
-//            '#type' => 'textfield',
-//            '#title' => t('Search Term'),
-//            '#default_value' => !empty($search_term) ? $search_term : '',
-//        );
-//
-//        $form['search']['search_submit'] = array(
-//            '#type' => 'submit',
-//            '#value' => t('Search'),
-//        );
-
-
-
-        $form['entities'] = array(
-            '#type' => 'tableselect',
-            '#header' => $header,
-            '#options' => $options,
-            '#attributes' => array('class' => array('entity-sort-table')),
-            '#empty' => t('There are no ems.'),
-        );
-
-        return $form;
-    }
-
-    /**
-     * Form Submit method.
-     */
-    public function overviewFormSubmit($form, &$form_state) {
-//        $values = $form_state['input'];
-//
-//
-//        if (!empty($values['search_text'])) {
-//            drupal_goto('admin/content/doctor', array('query' => array('search' => $values['search_text'])));
-//        }
-    }
-
 }

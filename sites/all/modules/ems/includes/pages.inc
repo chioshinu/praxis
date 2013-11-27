@@ -109,6 +109,27 @@ function doctor_register_form($form, &$form_state, $doctor = NULL) {
  * Implements hook_form_validate().
  */
 function doctor_register_form_validate($form, &$form_state) {
+    $values = $form_state['values'];
+
+    //check email
+    if (!valid_email_address($values['email'])){
+        form_set_error('email', 'Not valid email address');
+    }
+    else{
+        $query = new EntityFieldQuery();
+        $query
+            ->entityCondition('entity_type', 'doctor');
+        $query->propertyCondition('email', $values['email'], '=');
+        $doctors = $query->execute();
+        $query = new EntityFieldQuery();
+        $query
+            ->entityCondition('entity_type', 'user');
+        $query->propertyCondition('mail', $values['email'], '=');
+        $users = $query->execute();
+        if (count($doctors) + count($users) > 0){
+            form_set_error('email', 'This email already used');
+        }
+    }
 }
 
 /**
