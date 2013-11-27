@@ -78,7 +78,7 @@
  * @see template_process()
  */
 ?>
-<!--<h1>Hellllo!!!!!!!</h1>-->
+<h1>Hellllo!!!!!!!</h1>
 <div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
     <?php print render($title_prefix); ?>
