@@ -132,7 +132,7 @@
         <div class="nav-wrap">
             <div class="nav">
                 <div class="notfall">
-                    <a href="#">
+                    <a href="/notfall">
                         <span>notfall</span>
                     </a>
                 </div>
