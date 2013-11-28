@@ -144,6 +144,9 @@ function doctor_register_form_validate($form, &$form_state) {
     if (count($doctors) + count($users) > 0){
         form_set_error('title', 'This title already used');
     }
+    if (strlen($values['phone'])>11){
+        form_set_error('phone', 'Tel value too long (max 11 characters)');
+    }
 }
 
 /**
@@ -170,15 +173,27 @@ function doctor_register_form_submit($form, &$form_state) {
 //    $form_state['redirect'] = 'lawmakers/' . $lawmakers->lawmakers_id;
 }
 
-function ems_service_form($form, &$form_state){
+function ems_service_form($form, &$form_state, $doctor){
     $form = array();
-    $form['start'] = array(
+    $form['did'] = array(
         '#type' => 'hidden',
-        '#default_value' => ''
+        '#default_value' => $doctor->did
+    );
+    $form['start'] = array(
+        '#title' => t('From'),
+        '#type' => 'textfield',
+        '#default_value' => '',
+        '#required' => TRUE,
+        '#maxlength' => 255,
+        '#attributes' =>array('class' => array('date'))
     );
     $form['end'] = array(
-        '#type' => 'hidden',
-        '#default_value' => ''
+        '#title' => t('To'),
+        '#type' => 'textfield',
+        '#default_value' => '',
+        '#required' => TRUE,
+        '#maxlength' => 255,
+        '#attributes' =>array('class' => array('date'))
     );
     $form['actions'] = array(
         '#type' => 'actions',
@@ -189,6 +204,33 @@ function ems_service_form($form, &$form_state){
     return $form;
 }
 
+function ems_service_form_validate($form, &$form_state){
+    $values = $form_state['values'];
+
+    $start = new DateTime($values['start']);
+    $end = new DateTime($values['end']);
+    if ($start > $end){
+        form_set_error('start', 'Start date must be less than end date');
+    }
+
+}
+
+function ems_service_form_submit($form, &$form_state){
+    $values = $form_state['values'];
+    $service = new Service($values, 'service');
+    $service->save();
+    $doctor = doctor_load($service->did);
+    $users = ems_get_users_by_rolename('administrator');
+    foreach($users['user'] as $item){
+        $user = user_load($item->uid);
+        drupal_mail('ems', 'service_create', $user->mail, 'en', array('service' => $service, 'doctor'=> $doctor));
+    }
+    $form_state['redirect'] = 'ems/services';
+
+    drupal_set_message("Your data was send and you will be notified on the status change of your submission");
+
+}
+
 function ems_user_page(){
     global $user;
     $query = new EntityFieldQuery();
@@ -196,13 +238,25 @@ function ems_user_page(){
         ->entityCondition('entity_type', 'doctor');
     $query->propertyCondition('uid', $user->uid, '=');
     $doctors = $query->execute();
-    $form = drupal_get_form('ems_service_form');
+    $item = array_shift($doctors['doctor']);
+    $doctor = doctor_load($item->did);
+    $form = drupal_get_form('ems_service_form', $doctor);
     $query = new EntityFieldQuery();
     $query
         ->entityCondition('entity_type', 'service');
-    $query->propertyCondition('did', $doctors[0]->uid, '=');
+    $query->propertyCondition('did', $doctor->did, '=');
     $query->propertyOrderBy('start', 'DESC');
-    $services = $query->execute();
-    $output = theme('ems_user_page', array('doctor'=>$doctors[0], 'form' => $form, $services=>$services));
+    $res = $query->execute();
+    $sids = array_keys($res['service']);
+    $services = service_load_multiple($sids);
+
+
+    drupal_add_js('/misc/ui/jquery.ui.core.min.js');
+    drupal_add_js('/misc/ui/jquery.ui.widget.min.js');
+    drupal_add_js('/misc/ui/jquery.ui.datepicker.min.js');
+    drupal_add_css('/misc/ui/jquery.ui.core.css');
+    drupal_add_css('/misc/ui/jquery.ui.datepicker.css');
+    $output = theme('ems_user_page', array('doctor'=>$doctor, 'form' => $form, 'services' => $services));
     return $output;
 }
+
