@@ -10,7 +10,7 @@ define('TOTAL_ITEMS_PER_PAGE', 50);
 
 // Admin uri links.
 define('ADMIN_CONTENT_DOCTOR_MANAGE_URI', 'admin/content/doctor/manage/');
-define('ADMIN_CONTENT_DOCTOR_URI', 'admin/content/doctors');
+define('ADMIN_CONTENT_DOCTOR_URI', 'admin/content/doctor');
 
 /**
  * Implements hook_entity_info().
@@ -34,6 +34,22 @@ function ems_entity_info() {
         'module' => 'ems',
         'access callback' => 'doctor_access_callback',
 
+    );
+
+    $ems_entity_info['service'] = array(
+        'label' => t('Service'),
+        'entity class' => 'Service',
+        'controller class' => 'ServiceController',
+        'base table' => 'service',
+        'fieldable' => FALSE,
+        'entity keys' => array(
+            'id' => 'sid',
+        ),
+        'uri callback' => 'entity_class_uri',
+        'load hook' => 'service_load',
+        'static cache' => TRUE,
+        'module' => 'ems',
+        'access callback' => 'service_access_callback',
     );
 
     return $ems_entity_info;
@@ -102,44 +118,20 @@ function ems_menu() {
         'file' => 'includes/doctor.admin.inc',
     );
 
-    $items['doctor/%ems'] = array(
-        'title' => 'ems',
-        'page callback' => 'ems_view_entity',
-        'page arguments' => array(1),
-        'access callback' => 'ems_access_menu_callback',
-        'access arguments' => array('view', 1),
-    );
-
-    $items['ems/locate'] = array(
-        'page callback' => 'ems_locate_callback',
-        'access arguments' => array('access content'),
+    $items['ems/services'] = array(
+        'title' => 'Services',
+        'page callback' => 'ems_user_page',
+        'access callback' => 'user_service_access',
+        'file' => 'includes/pages.inc',
     );
 
     return $items;
 }
 
-/**
- * Help function api data.
- */
-//function ems_locate_callback() {
-//    $params = drupal_get_query_parameters();
-//
-//    if (isset($params['state'])) {
-//        $conditions = $params['state'];
-//        $result = ems_entity_query($conditions);
-//        $data = ems_load_multiple($result);
-//        drupal_json_output($data);
-//    }
-//    elseif (isset($params['party']) && isset($params['chamber'])) {
-//        $chamber = array('title' => $params['chamber']);
-//        $party = array('party' => $params['party']);
-//        $conditions = array_merge($party, $chamber);
-//        $result = ems_entity_query($conditions);
-//        $data = ems_load_multiple($result);
-//        drupal_json_output($data);
-//    }
-//
-//}
+function user_service_access($op, $comment) {
+    global $user;
+    return isset($user->roles[5]);
+}
 
 /**
  * Implements hook_permission().
@@ -198,12 +190,11 @@ function ems_access_menu_callback($op, $ems = NULL, $account = NULL) {
  * ems access callback.
  */
 function doctor_access_callback($op, $profile = NULL, $account = NULL) {
-//    if (user_is_anonymous() && !user_access('administer ems entities')) {
     return user_access('administer ems entities', $account);
-//    }
-//    else {
-//        return TRUE;
-//    }
+}
+
+function service_access_callback($op, $profile = NULL, $account = NULL) {
+    return user_access('administer ems entities', $account);
 }
 
 /**
@@ -211,7 +202,10 @@ function doctor_access_callback($op, $profile = NULL, $account = NULL) {
  */
 function ems_theme() {
     return array(
-
+        'ems_user_page' => array(
+            'template' => 'ems_user_page',
+            'variables' => array('doctor' => array(), 'form'=> array(), 'services'=>array() ),
+        ),
     );
 }
 
@@ -307,9 +301,79 @@ function doctor_delete_multiple(array $doc_ids) {
 }
 
 /**
- * Custom controller for the ems entity.
+ * Custom controller for the ems Doctor.
  */
 class DoctorController extends EntityAPIController {
+
+    /**
+     * Override the save method.
+     */
+    public function save($entity, DatabaseTransaction $transaction = NULL) {
+        if (isset($entity->is_new)) {
+            $entity->created = REQUEST_TIME;
+        }
+
+        $entity->changed = REQUEST_TIME;
+        return parent::save($entity, $transaction);
+    }
+}
+
+
+/********************************************** */
+/*********** Service entity  ********************/
+/********************************************** */
+
+/**
+ * Saves Service to database.
+ */
+function service_save(Service $service) {
+    return $service->save();
+}
+
+/**
+ * ems custom entity class.
+ */
+class Service extends Entity {
+    /**
+     * Override defaultUri().
+     */
+    protected function defaultUri() {
+        return array('path' => 'service/' . $this->identifier());
+    }
+}
+
+/**
+ * Menu autoloader for /ems.
+ */
+function service_load($s_id, $reset = FALSE) {
+    $services = service_load_multiple(array($s_id), array(), $reset);
+    return reset($services);
+}
+
+/**
+ * Load multiple ems based on certain conditions.
+ */
+function service_load_multiple($s_ids = array(), $conditions = array(), $reset = FALSE) {
+    return entity_load('service', $s_ids, $conditions, $reset);
+}
+
+/**
+ * Deletes a lawmaker.
+ */
+function service_delete(Service $service) {
+    $service->delete();
+}
+
+/**
+ * Delete multiple ems.
+ */
+function service_delete_multiple(array $s_ids) {
+    entity_get_controller('service')->delete($s_ids);
+}
+/**
+ * Custom controller for the ems Service.
+ */
+class ServiceController extends EntityAPIController {
 
     /**
      * Override the save method.
