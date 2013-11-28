@@ -1533,3 +1533,11 @@ display: block;
     float: left;
     width: 272px;
 }
+/*----------------------------< Articles >----------------------------*/
+.node-article .field-name-body .field-items .field-item p {
+    overflow: hidden;
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #323232;
+}
