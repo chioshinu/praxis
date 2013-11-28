@@ -125,10 +125,43 @@ function doctor_form($form, &$form_state, $doctor = NULL) {
  */
 function doctor_form_validate($form, &$form_state) {
     $values = $form_state['values'];
-
+    $doctor = doctor_load($values['did']);
     //check email
     if (!valid_email_address($values['email'])){
         form_set_error('email', 'Not valid email address');
+    }
+    else{
+        $query = new EntityFieldQuery();
+        $query
+            ->entityCondition('entity_type', 'doctor');
+        $query->propertyCondition('email', $values['email'], '=');
+        $query->propertyCondition('did',$values['did'],'<>');
+        $doctors = $query->execute();
+        $query = new EntityFieldQuery();
+        $query
+            ->entityCondition('entity_type', 'user');
+        $query->propertyCondition('mail', $values['email'], '=');
+        $query->propertyCondition('uid', $doctor->uid, '<>');
+        $users = $query->execute();
+        if (count($doctors) + count($users) > 0){
+            form_set_error('email', 'This email already used');
+        }
+    }
+    //check title
+    $query = new EntityFieldQuery();
+    $query
+        ->entityCondition('entity_type', 'doctor');
+    $query->propertyCondition('title', $values['title'], '=');
+    $query->propertyCondition('did',$values['did'],'<>');
+    $doctors = $query->execute();
+    $query = new EntityFieldQuery();
+    $query
+        ->entityCondition('entity_type', 'user');
+    $query->propertyCondition('name', $values['title'], '=');
+    $query->propertyCondition('uid', $doctor->uid, '<>');
+    $users = $query->execute();
+    if (count($doctors) + count($users) > 0){
+        form_set_error('title', 'This title already used');
     }
 }
 
@@ -142,9 +175,44 @@ function doctor_form_submit($form, &$form_state) {
     $doctor = doctor_load($values['did']);
     if ((!isset($doctor->uid) || !$doctor->uid) && $doctor->status == 1){
         //create user and send email for confirmation
+        $password = user_password(8);
+
+        //set up the user fields
+        $fields = array(
+            'name' => $doctor->title,
+            'mail' => $doctor->email,
+            'pass' => $password,
+            'status' => 1,
+            'init' => $doctor->email,
+            'roles' => array(
+                DRUPAL_AUTHENTICATED_RID => 'authenticated user',
+                5 => 'ems_doctor'
+            ),
+        );
+
+        //the first parameter is left blank so a new user is created
+        $account = user_save('', $fields);
+
+        // If you want to send the welcome email, use the following code
+
+        // Manually set the password so it appears in the e-mail.
+        $account->password = $fields['pass'];
+        $doctor->uid = $account->uid;
+        $doctor->save();
+
+        // Send the e-mail through the user module.
+        drupal_mail('user', 'register_no_approval_required', $account->mail, NULL, array('account' => $account), variable_get('site_mail', 'no-reply@praxis.com'));
 
     }
-    drupal_set_message("You request successfully stored and wait to Admin overview");
+    if ($doctor->uid){
+        if ($doctor->status != 1){
+            user_save($doctor->uid, array('status' => 0));
+        }
+        else{
+            user_save($doctor->uid, array('status' => 1));
+        }
+    }
+    drupal_set_message("Doctor was successfully updated");
     $form_state['redirect'] = ADMIN_CONTENT_DOCTOR_URI;
 }
 

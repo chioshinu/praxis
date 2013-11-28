@@ -90,5 +90,32 @@ function ems_schema(){
 //        )
     );
 
+    $schema['service'] = array(
+        'description' => 'EMS Service table',
+        'fields' => array(
+            'sid' => array(
+                'type' => 'serial',
+                'not null' => TRUE
+            ),
+            'start' => array(
+                'type' => 'char',
+                'length' => '20',
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'end' => array(
+                'type' => 'char',
+                'length' => '20',
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'did' => array(
+                'type' => 'int',
+                'size' => 'big',
+            )
+        ),
+        'primary key' => array('sid'),
+    );
+
     return $schema;
 }

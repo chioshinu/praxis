@@ -130,6 +130,20 @@ function doctor_register_form_validate($form, &$form_state) {
             form_set_error('email', 'This email already used');
         }
     }
+
+    $query = new EntityFieldQuery();
+    $query
+        ->entityCondition('entity_type', 'doctor');
+    $query->propertyCondition('title', $values['title'], '=');
+    $doctors = $query->execute();
+    $query = new EntityFieldQuery();
+    $query
+        ->entityCondition('entity_type', 'user');
+    $query->propertyCondition('name', $values['title'], '=');
+    $users = $query->execute();
+    if (count($doctors) + count($users) > 0){
+        form_set_error('title', 'This title already used');
+    }
 }
 
 /**
@@ -154,4 +168,41 @@ function doctor_register_form_submit($form, &$form_state) {
     drupal_set_message("You request successfully stored and wait to Admin overview");
     // $form_state['redirect'] = 'admin/content/lawmakers';
 //    $form_state['redirect'] = 'lawmakers/' . $lawmakers->lawmakers_id;
+}
+
+function ems_service_form($form, &$form_state){
+    $form = array();
+    $form['start'] = array(
+        '#type' => 'hidden',
+        '#default_value' => ''
+    );
+    $form['end'] = array(
+        '#type' => 'hidden',
+        '#default_value' => ''
+    );
+    $form['actions'] = array(
+        '#type' => 'actions',
+        'submit' => array(
+            '#type' => 'submit',
+            '#value' => t('Submit'),
+        ));
+    return $form;
+}
+
+function ems_user_page(){
+    global $user;
+    $query = new EntityFieldQuery();
+    $query
+        ->entityCondition('entity_type', 'doctor');
+    $query->propertyCondition('uid', $user->uid, '=');
+    $doctors = $query->execute();
+    $form = drupal_get_form('ems_service_form');
+    $query = new EntityFieldQuery();
+    $query
+        ->entityCondition('entity_type', 'service');
+    $query->propertyCondition('did', $doctors[0]->uid, '=');
+    $query->propertyOrderBy('start', 'DESC');
+    $services = $query->execute();
+    $output = theme('ems_user_page', array('doctor'=>$doctors[0], 'form' => $form, $services=>$services));
+    return $output;
 }

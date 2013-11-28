@@ -42,7 +42,10 @@ function praxis_process_html(&$variables) {
 function praxis_process_page(&$variables) {
 
 
-
+  if (isset($variables['node']))
+  {
+      $variables['theme_hook_suggestions'][] = "page__node__".$variables['node']->type;
+  }
   // Hook into color.module.
   if (module_exists('color')) {
     _color_page_alter($variables);
