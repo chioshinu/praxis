@@ -314,7 +314,7 @@ ul.menu > li  a {
   top: 37px;
   left: 0;
   overflow: visible;
-  width: 400px;
+  width: 600px;
 }
 #main-menu .menu >li.expanded:hover ul.menu {
   opacity: 1;
@@ -1205,14 +1205,79 @@ display: block;
     float: left;
 }
 /*----------------------------< Vacancies Single Page >----------------------------*/
-
-
-
-
-
-
-
-
+.jobs-single-main {
+    overflow: hidden;
+    margin: 31px 114px 0 0;
+    float: left;
+    width: 520px;
+}
+.jobs-single-main .field-name-title-field .field-items .field-item {
+    overflow: hidden;
+    margin: 0 0 20px;
+    color: #005A7E;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: normal;
+}
+.jobs-single-main .field-name-field-type-of-employment {
+    float: left;
+}
+.jobs-single-main .field-name-field-type-of-employment,
+.jobs-single-main .field-name-field-start-job {
+    overflow: hidden;
+    margin: 0 0 15px;
+    color: #353535;
+    font-size: 14px;
+    line-height: normal;
+}
+.jobs-single-main .field-name-field-type-of-employment .field-items :after {
+    content: "|";
+    padding: 0 4px;
+}
+.jobs-single-main .field-name-field-last-date,
+.jobs-single-main .posted-ago {
+    margin: 0 0 10px;
+}
+.jobs-single-main .field-name-field-salary {
+    margin: 0 0 30px;
+}
+.jobs-single-main .field-name-field-last-date,
+.jobs-single-main .field-name-field-salary,
+.jobs-single-main .posted-ago,
+.jobs-single-main .posted-ago em {
+    font-size: 14px;
+    line-height: normal;
+    color: #272727;
+}
+.jobs-single-main .field-name-field-last-date .field-label,
+.jobs-single-main .field-name-field-salary .field-label {
+    font-weight: normal;
+}
+.jobs-single-main .field-type-text-with-summary {
+  overflow: hidden;
+  margin: 0 0 20px;
+}
+.jobs-single-main .field-type-text-with-summary .field-items .field-items p {
+  overflow: hidden;
+  margin: 0 0 30px;
+  color: #272727;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.jobs-single-main .posted-ago em {
+   font-style: normal;
+}
+.field-name-field-email-job .field-items .field-item a {
+   display: block;
+   width: 235px;
+   height: 58px;
+   text-indent: -9999px;
+   background: url("../images/mail_to_btn.png") no-repeat;
+}
+.field-name-field-email-job .field-items .field-item a:hover {
+    opacity: 0.8;
+    filter:alpha(opacity=80);
+}
 /*------------------------------< Doctors >-----------------------------------*/
 #accordion {
     overflow: hidden;

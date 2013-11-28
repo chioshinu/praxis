@@ -78,8 +78,7 @@
  * @see template_process()
  */
 ?>
-<h1>Hellllo!!!!!!!</h1>
-<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+<div id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> jobs-single-main"<?php print $attributes; ?>>
 
     <?php print render($title_prefix); ?>
     <?php if (!$page): ?>
@@ -101,8 +100,16 @@
         // We hide the comments and links now so that we can render them later.
         hide($content['comments']);
         hide($content['links']);
-        print render($content);
+//        print render($content);
         ?>
+        <?php print render($content['title_field']); ?>
+        <?php print render($content['field_type_of_employment']); ?>
+        <?php print render($content['field_start_job']); ?>
+        <div class="posted-ago">(Job Posted: <?php print t('%time ago', array('%time' => format_interval(time() - $created))); ?>)</div>
+        <?php print render($content['field_last_date']); ?>
+        <?php print render($content['field_salary']); ?>
+        <?php print render($content['body']); ?>
+        <?php print render($content['field_email_job']); ?>
     </div>
 
     <?php
@@ -113,13 +120,13 @@
     }
     // Only display the wrapper div if there are links.
     $links = render($content['links']);
-    if ($links):
-        ?>
-        <div class="link-wrapper">
-            <?php print $links; ?>
-        </div>
-    <?php endif; ?>
-
-    <?php print render($content['comments']); ?>
+//    if ($links):
+//        ?>
+<!--        <div class="link-wrapper">-->
+<!--            --><?php //print $links; ?>
+<!--        </div>-->
+<!--    --><?php //endif; ?>
+<!---->
+<!--    --><?php //print render($content['comments']); ?>
 
 </div>
