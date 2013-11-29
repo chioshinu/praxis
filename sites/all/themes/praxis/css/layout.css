@@ -256,6 +256,7 @@ body {
   height: 71px;
   margin: 11px 0 0 10px;
   background: url(../images/notfall_cirkle.png) no-repeat;
+  outline: none;
 }
 .notfall a:hover {
   transform:rotate(360deg);
@@ -265,6 +266,7 @@ body {
   -ms-transform:rotate(360deg);
   transition: all 1s ease-in-out 0.5s;
   scale:1;
+  outline: none;
 }
 .notfall a span {
   display: block;
@@ -301,7 +303,6 @@ ul.menu > li  a {
 #main-menu .menu >li a.active {
   background-color: #39A8B4;
   color:#fff;
-  font-weight: bolder;
   text-decoration: none;
 }
 #main-menu .menu >li.expanded {
@@ -309,7 +310,7 @@ ul.menu > li  a {
   position: relative;
 }
 #main-menu .menu >li.expanded ul.menu {
-  opacity: 0;
+  display: none;
   position: absolute;
   top: 37px;
   left: 0;
@@ -317,7 +318,7 @@ ul.menu > li  a {
   width: 600px;
 }
 #main-menu .menu >li.expanded:hover ul.menu {
-  opacity: 1;
+  display: block;
   z-index: 30;
 }
 #main-menu .menu >li.expanded ul.menu li {
@@ -337,7 +338,6 @@ ul.menu > li  a {
 #main-menu .menu >li.expanded ul.menu li a.active {
   background-color: #39A8B4;
   color:#fff;
-  font-weight: bolder;
   text-decoration: none;
 }
 /*--------------------------------------------------------------*/
@@ -365,7 +365,8 @@ ul.menu > li  a {
   width: 100%;
   background: url(../images/content_wrapper_bg.png) repeat-x;
 }
-.content-pages-wrapper {
+.content-pages-wrapper,
+.content-article-wrapper {
   overflow: hidden;
   width: 100%;
   background: url(../images/pages_top_bg.png) repeat-x;
@@ -829,7 +830,7 @@ display: block;
     font-size: 13px;
 }
 /*---------------------------------------------------------*/
-.news-head {
+.news-head, .login-top-block {
   overflow: hidden;
   position: relative;
   height: 309px;
@@ -837,10 +838,13 @@ display: block;
 .news-head.downloads-head {
   background-color: #fff;
 }
-.news-head img {
+.news-head img, .login-top-block img {
+  overflow: hidden;
   display: block;
+  width: 960px;
+  height: 307px;
 }
-.news-head h2 {
+.news-head h2, .login-top-block h2 {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -848,13 +852,24 @@ display: block;
   margin: 0;
   padding: 0 0 0 30px;
   line-height: 60px;
-  background-color: #0b0b0b;
-  opacity: 0.75;
+  background-color: rgba(11,11,11, 0.8);
   font-size: 32px;
   color: #fff; 
 }
+.login-top-block h2.brown {
+    background-color: rgba(154,148,123, 0.5);
+}
+.news-head h2.yellow {
+    background-color: rgba(225,181,120, 0.5);
+}
 .news-head h2.downloads-title {
-    background-color: #0F59BD;
+    background-color: rgba(15,89,189, 0.5);
+}
+.news-head h2.grey {
+    background-color: rgba(11,11,11, 0.5);
+}
+.news-head h2.red {
+    background-color: rgba(183,88,90, 0.8);
 }
 .landing div.section div#main-wrapper div#main div.body-inner div.region #block-system-main {
     overflow: hidden;
@@ -1325,7 +1340,7 @@ display: block;
     line-height: 1.3;
 }
 /*-------------------------< Doctor Single Page >--------------------------*/
-.content-single-doctors-wrapper {
+.content-single-doctors-wrapper, .content-login-wrapper {
     overflow: hidden;
     width: 100%;
     background: url(../images/single_doctor_wrapper_bg.png) repeat-x;
@@ -1454,7 +1469,8 @@ display: block;
     overflow: hidden;
     position: relative;
 }
-.single-doctors-sidebar {
+.single-doctors-sidebar
+{
     position: absolute!important;
     right: 0;
     top: 345px;
@@ -1532,4 +1548,198 @@ display: block;
     margin: 0 0 22px;
     float: left;
     width: 272px;
+}
+/*----------------------------< Articles >----------------------------*/
+.praxis-article .node-article .field-name-body .field-items .field-item p {
+    overflow: hidden;
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #323232;
+}
+/*----------------------------< Notfall >----------------------------*/
+#notfall-wrap {
+    overflow: hidden;
+}
+.notfall-intro {
+    overflow: hidden;
+    font-size: 17px;
+    color: #272727;
+    line-height: 1.3;
+    margin: 0 0 20px;
+}
+#notfall-wrap div {
+    overflow: hidden;
+}
+.notfall-title {
+    display: block;
+    height: 31px;
+    margin: 0 0 15px;
+    line-height: 31px;
+    padding: 0 30px;
+    background-color: #868686;
+    color: #fff;
+    font-size: 19px;
+}
+#notfall-wrap div ul {
+    overflow: hidden;
+    margin: 0 0 45px;
+    padding: 0 0 0 17px;
+    background: url("../images/notfall_list_bg.png") repeat-y 0 0;
+    list-style: none;
+}
+.phone-list.first {
+    margin: 0 0 20px;
+}
+#notfall-wrap div ul > li {
+    overflow: hidden;
+    padding: 9px 5px 9px 14px;
+}
+#notfall-wrap div ul > li.odd {
+    background-color: #F4F4F4;
+}
+#notfall-wrap div ul > li p.first-column {
+    margin: 0 43px 0 0;
+    float: left;
+    font-size: 19px;
+    line-height: normal;
+    color: #272727;
+    width: 330px;
+}
+#notfall-wrap div ul > li span {
+  color: #FF3B00;
+  font-size: 19px;
+  font-weight: bold;
+  display: block;
+  width: 140px;
+}
+#notfall-wrap div ul > li p {
+  margin: 0;
+}
+#notfall-wrap div ul > li span em {
+  display: block;
+  color: #272727;
+  font-style: normal;
+  font-weight: normal;
+}
+/*--------------------< Login >---------------------*/
+.content-login-wrapper {
+    overflow: hidden;
+    width: 100%;
+    background: url(../images/login_wrap_bg.png) repeat-x;
+}
+#login-wrapper {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 960px;
+}
+#login-wrapper .body-inner {
+  width: 500px;
+  overflow: hidden;
+  margin: 0 134px 0 0;
+  float: left;
+}
+#login-wrapper .body-inner h1 {
+  margin: 12px 0 10px;
+  color: #000;
+}
+#login-aside {
+  overflow: hidden;
+  width: 326px;
+}
+#login-aside .stuff-ocupation {
+  margin: 12px 0 10px;
+  padding: 20px 10px 16px 18px;
+  background-color: #F2F9FA;
+  border: 2px solid;
+  border-color: #C4DAD9 #C4DAD9 #C4DAD9 #C4DAD9;
+}
+#login-aside .stuff-ocupation h3 {
+    font-size: 20px;
+    color: #0A817F;
+}
+#login-aside .stuff-ocupation .ocupation-list li {
+    overflow: hidden;
+    padding: 0 0 0 11px;
+    list-style: none;
+    background: url(../images/sidebar-right-dot.png) no-repeat left center;
+}
+#login-aside .stuff-ocupation .ocupation-list li a {
+  color: #585858; 
+}
+
+#login-aside .sidebar-right-inner {
+  float: right;
+}
+#login-wrapper .body-inner #user-pass,
+#login-wrapper .body-inner #user-register-form,
+#login-wrapper .body-inner #user-login {
+  margin: 30px 0 0;
+}
+#login-wrapper .body-inner #user-register-form .form-item {
+  width: 435px;
+}
+#login-wrapper .body-inner #user-pass .form-item,
+#login-wrapper .body-inner #user-register-form .form-item,
+#login-wrapper .body-inner #user-login .form-item {
+  margin: 0 20px 23px 0;
+}
+#login-wrapper .body-inner #user-login .form-item {
+  float: left;
+  width: 380px; 
+}
+#login-wrapper .body-inner #user-register-form label {
+  width: 126px;
+}
+#login-wrapper .body-inner #user-pass label,
+#login-wrapper .body-inner #user-register-form label,
+#login-wrapper .body-inner #user-login label {
+  float: left;
+  padding: 0 0 0;
+  font-size: 16px;
+  color: #636363;
+  margin: 0 18px 0 0;
+  line-height: 29px;
+}
+#login-wrapper .body-inner #user-pass label {
+  font-size: 14px;
+  margin: 0 8px 0 0;
+}
+#login-wrapper .body-inner #user-pass input.form-text,
+#login-wrapper .body-inner #user-register-form input.form-text,
+#login-wrapper .body-inner #user-login input.form-text  {
+  width: 253px;
+  height: 29px;
+  margin: 0;
+  padding: 0 8px;
+  border:2px solid #A7A7A7;
+  background-color: #FAFAFA;
+  box-shadow: 0 0 4px 1px #E2E2E2 inset;
+  -moz-box-shadow: 0 0 4px 1px #E2E2E2 inset;
+  -webkit-box-shadow: 0 0 4px 1px #E2E2E2 inset;
+  -o-box-shadow: 0 0 4px 1px #E2E2E2 inset;
+  -khtml-box-shadow: 0 0 4px 1px #E2E2E2 inset;
+}
+#login-wrapper .body-inner #user-register-form .description,
+#login-wrapper .body-inner #user-login .description {
+  display: none;
+}
+#login-wrapper .body-inner #user-pass .form-actions,
+#login-wrapper .body-inner #user-register-form .form-actions{
+  margin: 0;
+}
+#login-wrapper .body-inner #user-login .form-actions {
+  margin: 30px 0 0;
+}
+#login-wrapper .body-inner #user-pass .form-actions,
+#login-wrapper .body-inner #user-register-form .form-actions,
+#login-wrapper .body-inner #user-login .form-actions {
+  overflow: hidden;  
+  padding: 0;
+}
+#login-wrapper .body-inner #user-pass .form-actions input.form-submit {
+  margin: 0 0 0 207px;
+}
+#login-wrapper .body-inner #user-register-form .form-actions input.form-submit {
+  margin: 0 0 0 144px;
 }

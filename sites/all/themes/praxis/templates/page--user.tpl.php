@@ -85,6 +85,7 @@
  * @see html.tpl.php
  */
 ?>
+
 <div id="page-wrapper"><div id="page">
 
         <div id="header-wrap">
@@ -103,7 +104,7 @@
                     </ul>
                     <div class="telephone">
                         <p >+41 (0) 55 555 05 05</p>
-                        `        <span>&nbsp; </span>
+                `        <span>&nbsp; </span>
                     </div>
                 </div>
                 <h1 class="logo">
@@ -144,100 +145,68 @@
             </div>
         </div>
 
-
-
         <?php if ($messages): ?>
             <div id="messages"><div class="section clearfix">
-                    <?php print $messages; ?>
-                </div></div> <!-- /.section, /#messages -->
+                <?php print $messages; ?>
+            </div></div> <!-- /.section, /#messages -->
         <?php endif; ?>
 
-        <div class="content-single-doctors-wrapper">
-            <div class="main_container_inner">
-                <?php if ($page['featured']): ?>
-                    <div id="featured"><div class="section clearfix">
-                            <?php print render($page['featured']); ?>
-                        </div></div> <!-- /.section, /#featured -->
-                <?php endif; ?>
 
-                <?php if ($page['sidebar_first']): ?>
-                    <div id="sidebar-first" class="column sidebar-right"><div class="section">
-                            <?php print render($page['sidebar_first']); ?>
-                        </div></div> <!-- /.section, /#sidebar-first -->
-                <?php endif; ?>
-
-                <div id="content" class="column"><div class="section">
-                        <div id="main" class="">
-
-                            <?php if ($breadcrumb): ?>
-                                <div id="breadcrumb"><?php print $breadcrumb; ?></div>
+    <div class="content-login-wrapper">
+        <div class="main_container_inner">
+            <div id="login-wrapper">
+                        <?php if ($breadcrumb): ?>
+                            <div id="breadcrumb"><?php print $breadcrumb; ?></div>
+                            <?php endif; ?>
+                            <div class="login-top-block">
+                                <img src="http://praxis.home/sites/default/files/login_img.png" alt="login" />
+                                <h2 class="brown">Log in</h2>
+                            </div>
+                        <div class="body-inner">
+                            <a id="main-content"></a>
+                            <?php print render($title_prefix); ?>
+                            <?php if ($title): ?>
+                                <h1 class="title" id="page-title">
+                                    <?php print $title; ?>
+                                </h1>
+                            <?php endif; ?>
+                            <?php print render($title_suffix); ?>
+                            <?php if ($tabs): ?>
+                                <div class="tabs">
+                                    <?php print render($tabs); ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php print render($page['help']); ?>
+                            <?php if ($action_links): ?>
+                                <ul class="action-links">
+                                    <?php print render($action_links); ?>
+                                </ul>
                             <?php endif; ?>
 
-                            <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-                            <div class="body-inner">
-                                <a id="main-content"></a>
-                                <!-- <?php print render($title_prefix); ?>
-                                    <?php if ($title): ?>
-                                        <h1 class="title" id="page-title">
-                                            <?php print $title; ?>
-                                        </h1>
-                                    <?php endif; ?>-->
-                                <?php print render($title_suffix); ?>
-                                <?php if ($tabs): ?>
-                                    <div class="tabs">
-                                        <?php print render($tabs); ?>
-                                    </div>
-                                <?php endif; ?>
-                                <?php print render($page['help']); ?>
-                                <?php if ($action_links): ?>
-                                    <ul class="action-links">
-                                        <?php print render($action_links); ?>
-                                    </ul>
-                                <?php endif; ?>
-                                <?php print render($page['content']); ?>
-                                <?php print $feed_icons; ?>
+                            <?php print render($page['content']); ?>
+                            <?php print $feed_icons; ?>
 
-                            </div></div> <!-- /.section, /#content -->
+                        </div><!-- /.section, /#content -->
 
-                        <?php if ($page['sidebar_second']): ?>
-                            <div id="sidebar-second" class="column sidebar single-doctors-sidebar"><div class="section">
-                                    <?php print render($page['sidebar_second']); ?>
-                                </div></div> <!-- /.section, /#sidebar-second -->
-                        <?php endif; ?>
-                    </div>
+                    <?php if ($page['sidebar_second']): ?>
+                        <div id="login-aside" class="column sidebar"><div class="section">
+                                <?php print render($page['sidebar_second']); ?>
+                            </div></div> <!-- /.section, /#sidebar-second -->
+                    <?php endif; ?>
+                </div>
 
-                </div></div> <!-- /#main, /#main-wrapper -->
-
-            <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
-                <div id="triptych-wrapper"><div id="triptych" class="clearfix">
-                        <?php print render($page['triptych_first']); ?>
-                        <?php print render($page['triptych_middle']); ?>
-                        <?php print render($page['triptych_last']); ?>
-                    </div></div> <!-- /#triptych, /#triptych-wrapper -->
-            <?php endif; ?>
+                   
         </div>
-    </div>
+    </div> 
+        <div id="footer-wrapper">            
+            <div class="footer-block">
+                <p class="copyright">Design by JZdesign</p>
+                <?php if ($page['footer']): ?>
+                    <div id="footer">
+                        <?php print render($page['footer']); ?>
+                    </div> <!-- /#footer -->
+                <?php endif; ?>                
+            </div>
+        </div> <!-- /.section, /#footer-wrapper -->
 
-    <div id="footer-wrapper">
-
-
-        <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
-            <div id="footer-columns">
-                <?php print render($page['footer_firstcolumn']); ?>
-                <?php print render($page['footer_secondcolumn']); ?>
-                <?php print render($page['footer_thirdcolumn']); ?>
-                <?php print render($page['footer_fourthcolumn']); ?>
-            </div> <!-- /#footer-columns -->
-        <?php endif; ?>
-        <div class="footer-block">
-            <p class="copyright">Design by JZdesign</p>
-            <?php if ($page['footer']): ?>
-                <div id="footer">
-                    <?php print render($page['footer']); ?>
-                </div> <!-- /#footer -->
-            <?php endif; ?>
-        </div>
-    </div> <!-- /.section, /#footer-wrapper -->
-
-</div></div> <!-- /#page, /#page-wrapper -->
-
+    </div></div> <!-- /#page, /#page-wrapper -->
