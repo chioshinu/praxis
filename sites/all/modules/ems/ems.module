@@ -111,7 +111,7 @@ function ems_menu() {
     );
 
     $items['admin/content/doctors'] = array(
-        'title' => "Doctors",
+        'title' => "Notfall Doctors",
         'path' => 'admin/content/doctors',
         'file' => 'includes/doctor.admin.inc',
         'page callback' => 'doctors_page',
@@ -120,7 +120,7 @@ function ems_menu() {
     );
 
     $items['admin/content/services'] = array(
-        'title' => "EMS Services",
+        'title' => "Notfall Services",
         'path' => 'admin/content/services',
         'file' => 'includes/service.admin.inc',
         'page callback' => 'services_page',

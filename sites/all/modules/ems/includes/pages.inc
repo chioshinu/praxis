@@ -2,6 +2,7 @@
 
 function register(){
     $form = drupal_get_form('doctor_register_form');
+    drupal_set_title('Notfall Registration');
     return render($form);
 }
 
@@ -249,6 +250,8 @@ function ems_user_page(){
     $res = $query->execute();
     $sids = array_keys($res['service']);
     $services = service_load_multiple($sids);
+
+    drupal_set_title('Notfall Services');
 
 
     drupal_add_js('/misc/ui/jquery.ui.core.min.js');
