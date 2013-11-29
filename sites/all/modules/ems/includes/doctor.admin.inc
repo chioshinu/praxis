@@ -272,8 +272,8 @@ function doctors_overview($form, &$form_state, $arg=null){
 
     foreach ($ems_array as $doc_id => $doctor) {
         $options['doctor_id-' . $doc_id] = array(
-            'did' => l($doctor->did, 'ems/' . $doctor->did),
-            'title' => $doctor->title,
+            'did' => $doctor->did,
+            'title' => l($doctor->title, ADMIN_CONTENT_DOCTOR_URI . "/" . $doctor->did),
             'first_name' => $doctor->first_name,
             'last_name' => $doctor->last_name,
             'practice' => $doctor->practice,
@@ -287,7 +287,7 @@ function doctors_overview($form, &$form_state, $arg=null){
 
             'operations' =>
                 l(t('Edit'), ADMIN_CONTENT_DOCTOR_URI . "/" . $doc_id . "/edit") . ' ' .
-                l(t('Delete'), ADMIN_CONTENT_LAMWAKERS_MANAGE_URI . $doc_id . '/delete', array('attributes' => array('class' => array('ems-delete-' . $doctor->did), ), 'query' => array('destination' => ADMIN_CONTENT_DOCTOR_URI))),
+                l(t('Delete'), ADMIN_CONTENT_DOCTOR_MANAGE_URI . $doc_id . '/delete', array('attributes' => array('class' => array('ems-delete-' . $doctor->did), ), 'query' => array('destination' => ADMIN_CONTENT_DOCTOR_URI))),
         );
     }
 
@@ -296,7 +296,7 @@ function doctors_overview($form, &$form_state, $arg=null){
         '#header' => $header,
         '#options' => $options,
         '#attributes' => array('class' => array('entity-sort-table')),
-        '#empty' => t('There are no ems.'),
+        '#empty' => t('There are no doctors.'),
     );
 
     return $form;

@@ -109,6 +109,12 @@ function ems_schema(){
                 'not null' => TRUE,
                 'default' => '',
             ),
+            'status' => array(
+                'type' => 'int',
+                'size' => 'tiny',
+                'not null' => TRUE,
+                'default' => 0,
+            ),
             'did' => array(
                 'type' => 'int',
                 'size' => 'big',

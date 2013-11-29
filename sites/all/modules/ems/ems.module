@@ -10,7 +10,14 @@ define('TOTAL_ITEMS_PER_PAGE', 50);
 
 // Admin uri links.
 define('ADMIN_CONTENT_DOCTOR_MANAGE_URI', 'admin/content/doctor/manage/');
-define('ADMIN_CONTENT_DOCTOR_URI', 'admin/content/doctor');
+define('ADMIN_CONTENT_DOCTOR_URI', 'admin/content/doctors');
+
+function ems_user_login(&$edit, $account){
+//    if ($account->access == "0" and isset($account->roles[4])){
+    if (isset($account->roles[5])){
+        $edit['redirect'] = 'ems/services';
+    }
+}
 
 /**
  * Implements hook_entity_info().
@@ -63,6 +70,10 @@ function ems_mail ($key, &$message, $params) {
             $message['subject'] = t('New EMS registration');
             $message['body'][] = "You have new EMS registration";
             break;
+        case 'service_create':
+            $message['subject'] = t('New EMS service');
+            $message['body'][] = "Doctor {$params['doctor']->first_name} {$params['doctor']->last_name} request new service from {$params['service']->start} to {$params['service']->start}";
+            break;
     }
 }
 
@@ -101,11 +112,30 @@ function ems_menu() {
 
     $items['admin/content/doctors'] = array(
         'title' => "Doctors",
-        'path' => 'admin/content/doctor',
+        'path' => 'admin/content/doctors',
         'file' => 'includes/doctor.admin.inc',
         'page callback' => 'doctors_page',
         'access arguments' => array('access content'),
         'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    );
+
+    $items['admin/content/services'] = array(
+        'title' => "EMS Services",
+        'path' => 'admin/content/services',
+        'file' => 'includes/service.admin.inc',
+        'page callback' => 'services_page',
+        'access arguments' => array('access content'),
+        'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    );
+
+    $items['admin/content/doctors/%'] = array(
+        'title' => 'Edit',
+        'page callback' => 'doctor_services_page',
+        'page arguments' => array(3),
+        'access arguments' => array('access content'),
+        'type' => MENU_LOCAL_TASK,
+        'weight' => 0,
+        'file' => 'includes/service.admin.inc',
     );
 
     $items['admin/content/doctors/%/edit'] = array(
@@ -118,9 +148,18 @@ function ems_menu() {
         'file' => 'includes/doctor.admin.inc',
     );
 
+    $items['ems/ajax/service/status'] = array(
+        'file' => 'includes/ajax.inc',
+        'page callback' => 'service_status',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+        'delivery callback' => 'ajax_deliver'
+    );
+
     $items['ems/services'] = array(
         'title' => 'Services',
         'page callback' => 'ems_user_page',
+        'access arguments' => array('access content'),
         'access callback' => 'user_service_access',
         'file' => 'includes/pages.inc',
     );
@@ -128,7 +167,7 @@ function ems_menu() {
     return $items;
 }
 
-function user_service_access($op, $comment) {
+function user_service_access() {
     global $user;
     return isset($user->roles[5]);
 }
@@ -158,9 +197,9 @@ function ems_permission() {
             'title' => t('Delete ems Entities'),
             'description' => t('Allows a user to delete ems entities.'),
         ),
-        'use ems bulk operations' => array(
-            'title' => t('Do bulk operations on ems entities'),
-            'description' => t('Allows a user to do bulk operations.'),
+        'change ems status' => array(
+            'title' => t('Delete ems Entities'),
+            'description' => t('Allows a user to delete ems entities.'),
         ),
     );
 }
@@ -205,6 +244,18 @@ function ems_theme() {
         'ems_user_page' => array(
             'template' => 'ems_user_page',
             'variables' => array('doctor' => array(), 'form'=> array(), 'services'=>array() ),
+        ),
+        'ems_doctor_services_page' => array(
+            'template' => 'ems_doctor_services_page',
+            'variables' => array('doctor' => array(), 'services'=>array() ),
+        ),
+        'services' => array(
+            'template' => 'services',
+            'variables' => array('form' => array()),
+        ),
+        'status_part' => array(
+            'template' => 'status_part',
+            'variables' => array('status' => null, 'id' => null, 'statuses'=>array(), 'class' => 'status-change' ),
         ),
     );
 }
@@ -386,4 +437,21 @@ class ServiceController extends EntityAPIController {
         $entity->changed = REQUEST_TIME;
         return parent::save($entity, $transaction);
     }
+}
+
+function rangeToString( $from,  $to){
+    $from = explode(',', date('d,F,Y', strtotime($from)));
+    $to = explode(',', date('d,F,Y', strtotime($to)));
+    if ($from[2] == $from[2]){
+        if ($from[1] == $to[1]){
+            $str = "{$from[1]} {$from[0]} - {$to[0]}, {$from[2]}";
+        }
+        else{
+            $str = "{$from[1]} {$from[0]} - {$to[1]} {$to[0]}, {$from[2]}";
+        }
+    }
+    else{
+        $str = "{$from[1]} {$from[0]} {$from[2]} - {$to[1]} {$to[0]} {$to[2]}";
+    }
+    return $str;
 }
