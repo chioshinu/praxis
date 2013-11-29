@@ -310,7 +310,7 @@ ul.menu > li  a {
   position: relative;
 }
 #main-menu .menu >li.expanded ul.menu {
-  opacity: 0;
+  display: none;
   position: absolute;
   top: 37px;
   left: 0;
@@ -318,7 +318,7 @@ ul.menu > li  a {
   width: 600px;
 }
 #main-menu .menu >li.expanded:hover ul.menu {
-  opacity: 1;
+  display: block;
   z-index: 30;
 }
 #main-menu .menu >li.expanded ul.menu li {
