@@ -961,8 +961,9 @@ ul.links {
   border-bottom: 1px solid #ffffff;
 }
 .tabs ul.primary li a {
-  color: #000;
-  background-color: #ededed;
+  color: #fff;
+  border-color: #39A8B4;
+  background-color: #39A7B3;
   height: 1.8em;
   line-height: 1.9;
   display: block;
@@ -970,7 +971,6 @@ ul.links {
   float: left; /* not LTR */
   padding: 0 10px 3px;
   margin: 0;
-  text-shadow: 0 1px 0 #fff;
   -khtml-border-radius-topleft: 6px;
   -moz-border-radius-topleft: 6px;
   -webkit-border-top-left-radius: 6px;
@@ -982,6 +982,8 @@ ul.links {
 }
 .tabs ul.primary li.active a {
   background-color: #ffffff;
+  border-color: #CACACA;
+  color: #000;
 }
 .tabs ul.secondary {
   border-bottom: none;
@@ -1076,29 +1078,24 @@ div.password-confirm {
 
 input.form-submit,
 a.button {
-  background: #fff url(../images/buttons.png) 0 0 repeat-x;
-  border: 1px solid #e4e4e4;
-  border-bottom: 1px solid #b4b4b4;
-  border-left-color: #d2d2d2;
-  border-right-color: #d2d2d2;
-  color: #3a3a3a;
+  background-color: #39A8B4;
+  color: #FFF;
   cursor: pointer;
-  font-size: 0.929em;
+  font-size: 16px;
   font-weight: normal;
   text-align: center;
-  margin-bottom: 1em;
+  margin: 56px 0 0;
   margin-right: 0.6em; /* LTR */
-  padding: 4px 17px;
-  -khtml-border-radius: 15px;
-  -moz-border-radius: 20px;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  padding: 0 22px;
+  height: 33px;
+  line-height: 33px;
+  border:none;  
 }
 a.button:link,
 a.button:visited,
 a.button:hover,
 a.button:focus,
-a.button:active {
+a.button:active, {
   text-decoration: none;
   color: #5a5a5a;
 }
@@ -1227,7 +1224,10 @@ select.form-select {
 }
 input.form-submit:hover,
 input.form-submit:focus {
-  background: #dedede;
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.8;
+  background-color: #39A8B4;
 }
 .password-suggestions ul li {
   margin-left: 1.2em; /* LTR */
@@ -1638,7 +1638,9 @@ div.admin-panel .description {
   background-color: #ddd;
 }
 
-
+.notfall-pages div div .content{
+    padding: 30px 0 0 0;
+}
 
 
 

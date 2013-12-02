@@ -85,7 +85,6 @@
  * @see html.tpl.php
  */
 ?>
-<div style="width: 100%; height: 50px; background-color: #0066ff;"></div>
 <div id="page-wrapper"><div id="page">
 
         <div id="header-wrap">
@@ -133,7 +132,7 @@
         <div class="nav-wrap">
             <div class="nav">
                 <div class="notfall">
-                    <a href="#">
+                    <a href="/notfall">
                         <span>notfall</span>
                     </a>
                 </div>
