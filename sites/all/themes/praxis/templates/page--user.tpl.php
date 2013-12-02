@@ -159,7 +159,7 @@
                             <div id="breadcrumb"><?php print $breadcrumb; ?></div>
                             <?php endif; ?>
                             <div class="login-top-block">
-                                <img src="http://praxis.home/sites/default/files/login_img.png" alt="login" />
+                                <img src="/sites/default/files/login_img.png" alt="login" />
                                 <h2 class="brown">Log in</h2>
                             </div>
                         <div class="body-inner">
