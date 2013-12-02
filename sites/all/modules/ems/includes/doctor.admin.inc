@@ -285,9 +285,7 @@ function doctors_overview($form, &$form_state, $arg=null){
             'web' => $doctor->web,
             'status' => $status[$doctor->status],
 
-            'operations' =>
-                l(t('Edit'), ADMIN_CONTENT_DOCTOR_URI . "/" . $doc_id . "/edit") . ' ' .
-                l(t('Delete'), ADMIN_CONTENT_DOCTOR_MANAGE_URI . $doc_id . '/delete', array('attributes' => array('class' => array('ems-delete-' . $doctor->did), ), 'query' => array('destination' => ADMIN_CONTENT_DOCTOR_URI))),
+            'operations' => l(t('Edit'), ADMIN_CONTENT_DOCTOR_URI . "/" . $doc_id . "/edit"),
         );
     }
 
