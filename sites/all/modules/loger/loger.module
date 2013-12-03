@@ -67,7 +67,7 @@ function log_block_contents($delta){
     $query->fields('u', array('name'));
     $query->fields('nt', array('name'));
     $query->range(0, 10);
-    $query->orderBy('l.date', 'ASC');
+    $query->orderBy('l.date', 'DESC');
     $res = $query->execute();
     $items = array();
     for($i = 0; $i<$res->rowCount(); $i++){
@@ -120,7 +120,7 @@ function log_page_form($form, &$form_state){
     $query->fields('l');
     $query->fields('u', array('name'));
     $query->fields('nt', array('name'));
-    $query->orderBy('l.date', 'ASC');
+    $query->orderBy('l.date', 'DESC');
     $query->extend('PagerDefault')->limit(50);
     $res = $query->execute()->fetchAllAssoc('lid');
     $logs = array();
