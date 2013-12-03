@@ -1,0 +1,50 @@
+<?php
+
+function loger_schema(){
+    $schema = array();
+
+    $schema['log_table'] = array(
+        'description' => 'Logger table',
+        'fields' => array(
+            'lid' => array(
+                'type' => 'serial',
+                'not null' => TRUE
+            ),
+            'action' => array(
+                'type' => 'varchar',
+                'length' => '255',
+                'not null' => TRUE,
+                'default' => 'create',
+            ),
+            'type' => array(
+                'type' => 'varchar',
+                'length' => '255',
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'title' => array(
+                'type' => 'varchar',
+                'length' => '255',
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'date' => array(
+                'type' => 'char',
+                'length' => 19,
+                'not null' => TRUE,
+                'default' => ''
+            ),
+            'uid' => array(
+                'type' => 'int',
+                'size' => 'big',
+            ),
+            'nid' => array(
+                'type' => 'int',
+                'size' => 'big',
+            )
+        ),
+        'primary key' => array('lid'),
+    );
+
+    return $schema;
+}
