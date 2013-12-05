@@ -59,6 +59,7 @@ function praxis_doctor_page_form_submit_alter($form, &$form_state){
 
 function praxis_doctors_menu() {
     $items['team/doctors'] = array(
+        'title' => t('Doctors'),
         'page callback' => 'team_view',
         'page arguments' => array(1),
         'access arguments' => array('access content'),
@@ -77,6 +78,8 @@ function praxis_doctors_menu() {
         'file' => 'pages.inc'
     );
     $items['team/doctors/%'] = array(
+        'title callback' => 'single_doctor_title',
+        'title arguments' => array(2),
         'page callback' => 'doctor_view',
         'page arguments' => array(2),
         'access arguments' => array('access content'),
@@ -89,6 +92,14 @@ function praxis_doctors_menu() {
         'file' => 'pages.inc'
     );
     return $items;
+}
+
+function single_doctor_title($id){
+    global $language;
+    $doctor = node_load($id);
+    $items = field_get_items('node', $doctor, 'title_field');
+    $name = field_view_value('node', $doctor, 'title_field', $items[0], array(), $language->language);
+    return $name['#markup'];
 }
 
 function praxis_doctors_user_update(&$edit, $account, $category) {

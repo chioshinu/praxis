@@ -66,8 +66,8 @@ $pref = $lang != 'en' ? "/".$lang : "";
                 </li>
                 <?php foreach($pages as $value): ?>
                     <?php
-                    $items = field_get_items('node', $value, 'title_field');
-                    $title = field_view_value('node', $value, 'title_field', $items[0], array(), $lang);
+                    $items = field_get_items('node', $value, 'field_button_title');
+                    $title = field_view_value('node', $value, 'field_button_title', $items[0], array(), $lang);
                     ?>
                     <li <?php if ($page && $page->nid == $value->nid): ?> class="active" <?php endif; ?>>
                         <?php if ($page && $page->nid == $value->nid): ?>
