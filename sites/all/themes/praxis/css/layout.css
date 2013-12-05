@@ -813,7 +813,8 @@ display: block;
 #sidebar-second .stuff-ocupation,
 .sidebar-right-inner .scadhule-block,
 .sidebar-right-inner .praxis-contact,
-.sidebar-right-inner .subscribe {
+.sidebar-right-inner .subscribe, 
+.block-loger {
     overflow: hidden;
     background-color: #F2F9FA;
     border-top: 1px solid #C4DAD9;
@@ -825,6 +826,10 @@ display: block;
 .sidebar-right-inner .praxis-contact,
 .sidebar-right-inner .subscribe {
     margin: 0 0 10px;
+    padding: 20px 10px 16px 18px;
+}
+.block-loger {
+    margin: 31px 0 10px;
     padding: 20px 10px 16px 18px;
 }
 .sidebar-right-inner .subscribe {
@@ -841,11 +846,14 @@ display: block;
 }
 #sidebar-second .stuff-ocupation {
     padding: 20px 15px 16px 18px;
-    margin: 31px 0 10px;
+    margin: 0 0 10px;
 }
-#sidebar-second .stuff-ocupation h3 {
+#sidebar-second .stuff-ocupation h3,
+.block-loger h2 {
+    margin: 0;
     font-size: 20px;
     color: #0A817F;
+    border: none;
 }
 #sidebar-second .stuff-ocupation .ocupation-list {
     overflow: hidden;
