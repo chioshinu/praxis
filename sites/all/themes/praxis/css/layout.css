@@ -910,6 +910,9 @@ display: block;
 .news-head h2.red {
     background-color: rgba(183,88,90, 0.8);
 }
+.news-head h2.green {
+    background-color: rgba(97,108,31, 0.5);
+}
 .landing div.section div#main-wrapper div#main div.body-inner div.region #block-system-main {
     overflow: hidden;
     width: 640px;
@@ -1001,7 +1004,7 @@ display: block;
     float: left;
 }
 /*--------------------< Single news >-----------------------------*/
-.node-news, .node-article {
+.node-news, .node-article, .node-anreise {
     overflow: hidden;
     width: 550px;
     float: left;
@@ -1678,6 +1681,11 @@ display: block;
   margin: 0 134px 0 0;
   float: left;
 }
+.logger-page {
+  overflow: hidden;
+  width: 960px;
+  margin: 31px auto 0;
+}
 #login-wrapper .body-inner h1 {
   margin: 12px 0 10px;
   color: #000;
@@ -1781,4 +1789,59 @@ display: block;
 }
 #login-wrapper .body-inner #user-register-form .form-actions input.form-submit {
   margin: 0 0 0 144px;
+}
+/*----------------------------< Anreise Page >-------------------------------*/
+.node-anreise .field-items .field-item {
+    overflow: hidden;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0 0 30px;
+    line-height: normal;
+}
+.node-anreise .field-items .field-item p {
+    overflow: hidden;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #272727;
+    font-weight: normal;
+}
+.geolocation-map {
+    margin: 0;
+}
+/*---------------------------< Logger Block >------------------------------*/
+.block-loger h2 {
+    margin: 0 0 20px;
+}
+.loger-list {
+    overflow: hidden;
+    padding: 0;
+    list-style: none;
+}
+.loger-list > li {
+    overflow: hidden;
+    margin: 0 0 25px;
+}
+.loger-list > li h4 {
+    overflow: hidden;
+    margin: 0 0 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.loger-list > li span {
+    overflow: hidden;
+    float: left;
+    padding: 0 5px 0 0;
+}
+.loger-list > li .date,
+.loger-list > li .user {
+    overflow: hidden;
+    font-style: italic;
+}
+#block-loger-loger-block .content .link-more {
+    display: block;
+    margin: 0 20px 0 0;
+    font-size: 16px;
+    text-align: right;
+    color: #0A817F;
 }

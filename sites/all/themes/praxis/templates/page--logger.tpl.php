@@ -166,7 +166,7 @@
                         <?php endif; ?>
 
                     </div>
-                    <div class="body-inner notfall-pages">
+                    <div class="logger-page">
                         <a id="main-content"></a>
                         <?php print render($title_prefix); ?>
 
