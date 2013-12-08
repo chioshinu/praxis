@@ -104,29 +104,16 @@
                     </ul>
                     <div class="telephone">
                         <p >+41 (0) 55 555 05 05</p>
-                `        <span>&nbsp; </span>
+                        <span>&nbsp; </span>
                     </div>
                 </div>
                 <h1 class="logo">
                     <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
                 </h1>
+                
+                <!-- <a href="/user" class="login-link">login</a> -->
                 <?php print render($page['header']); ?>
-                <?php if ($secondary_menu): ?>
-                    <div id="secondary-menu" class="navigation">
-                        <?php print theme('links__system_secondary_menu', array(
-                            'links' => $secondary_menu,
-                            'attributes' => array(
-                                'id' => 'secondary-menu-links',
-                                'class' => array('links', 'inline', 'clearfix'),
-                            ),
-                            'heading' => array(
-                                'text' => t('Secondary menu'),
-                                'level' => 'h2',
-                                'class' => array('element-invisible'),
-                            ),
-                        )); ?>
-                    </div> <!-- /#secondary-menu -->
-                <?php endif; ?>
+               
             </div>
         </div> <!-- /.section, /#header -->
 

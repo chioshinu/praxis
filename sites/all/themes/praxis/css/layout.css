@@ -15,6 +15,7 @@ body {
 }
 #header {
   height: 137px;
+  position: relative;
 }
 .region region-content {
   overflow: hidden;
@@ -33,8 +34,10 @@ body {
   position: relative;
 }
 .region-header {
-  float: right; /* LTR */
-  margin: 0 5px 10px;
+  position: absolute;
+  top: 0;
+  right: 388px;
+  margin: 0;
 }
 .with-secondary-menu .region-header {
   margin-top: 3em;
@@ -120,6 +123,34 @@ body {
   height: 72px;
   text-indent: -9999px;
   background: url(../images/logo.png) no-repeat;
+}
+.language-switcher-locale-url {
+
+}
+.login-link {
+  position: absolute;
+  top: 0;
+  right: 278px; 
+  display: inline-block;
+  height: 34px;
+  padding: 0 26px;
+  line-height: 34px;
+  background-color: #464646;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  -webkit-border-radius: 0 0 4px 4px;
+  -o-border-radius: 0 0 4px 4px;
+  -ms-border-radius: 0 0 4px 4px;
+  /*border-right: 1px solid #D1D1D1;
+  border-left: 1px solid #D1D1D1;*/
+}
+.login-link:hover {
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.8;
+  filter:alpha(opacity=80);
 }
 .header-right-block {
   overflow: hidden;
@@ -782,7 +813,8 @@ display: block;
 #sidebar-second .stuff-ocupation,
 .sidebar-right-inner .scadhule-block,
 .sidebar-right-inner .praxis-contact,
-.sidebar-right-inner .subscribe {
+.sidebar-right-inner .subscribe, 
+.block-loger {
     overflow: hidden;
     background-color: #F2F9FA;
     border-top: 1px solid #C4DAD9;
@@ -794,6 +826,10 @@ display: block;
 .sidebar-right-inner .praxis-contact,
 .sidebar-right-inner .subscribe {
     margin: 0 0 10px;
+    padding: 20px 10px 16px 18px;
+}
+.block-loger {
+    margin: 31px 0 10px;
     padding: 20px 10px 16px 18px;
 }
 .sidebar-right-inner .subscribe {
@@ -810,11 +846,14 @@ display: block;
 }
 #sidebar-second .stuff-ocupation {
     padding: 20px 15px 16px 18px;
-    margin: 31px 0 10px;
+    margin: 0 0 10px;
 }
-#sidebar-second .stuff-ocupation h3 {
+#sidebar-second .stuff-ocupation h3,
+.block-loger h2 {
+    margin: 0;
     font-size: 20px;
     color: #0A817F;
+    border: none;
 }
 #sidebar-second .stuff-ocupation .ocupation-list {
     overflow: hidden;
@@ -870,6 +909,9 @@ display: block;
 }
 .news-head h2.red {
     background-color: rgba(183,88,90, 0.8);
+}
+.news-head h2.green {
+    background-color: rgba(97,108,31, 0.5);
 }
 .landing div.section div#main-wrapper div#main div.body-inner div.region #block-system-main {
     overflow: hidden;
@@ -962,7 +1004,7 @@ display: block;
     float: left;
 }
 /*--------------------< Single news >-----------------------------*/
-.node-news, .node-article {
+.node-news, .node-article, .node-anreise {
     overflow: hidden;
     width: 550px;
     float: left;
@@ -1639,6 +1681,11 @@ display: block;
   margin: 0 134px 0 0;
   float: left;
 }
+.logger-page {
+  overflow: hidden;
+  width: 960px;
+  margin: 31px auto 0;
+}
 #login-wrapper .body-inner h1 {
   margin: 12px 0 10px;
   color: #000;
@@ -1742,4 +1789,59 @@ display: block;
 }
 #login-wrapper .body-inner #user-register-form .form-actions input.form-submit {
   margin: 0 0 0 144px;
+}
+/*----------------------------< Anreise Page >-------------------------------*/
+.node-anreise .field-items .field-item {
+    overflow: hidden;
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0 0 30px;
+    line-height: normal;
+}
+.node-anreise .field-items .field-item p {
+    overflow: hidden;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #272727;
+    font-weight: normal;
+}
+.geolocation-map {
+    margin: 0;
+}
+/*---------------------------< Logger Block >------------------------------*/
+.block-loger h2 {
+    margin: 0 0 20px;
+}
+.loger-list {
+    overflow: hidden;
+    padding: 0;
+    list-style: none;
+}
+.loger-list > li {
+    overflow: hidden;
+    margin: 0 0 25px;
+}
+.loger-list > li h4 {
+    overflow: hidden;
+    margin: 0 0 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.loger-list > li span {
+    overflow: hidden;
+    float: left;
+    padding: 0 5px 0 0;
+}
+.loger-list > li .date,
+.loger-list > li .user {
+    overflow: hidden;
+    font-style: italic;
+}
+#block-loger-loger-block .content .link-more {
+    display: block;
+    margin: 0 20px 0 0;
+    font-size: 16px;
+    text-align: right;
+    color: #0A817F;
 }

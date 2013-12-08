@@ -104,12 +104,13 @@
                     </ul>
                     <div class="telephone">
                         <p >+41 (0) 55 555 05 05</p>
-                `        <span>&nbsp; </span>
+                        <span>&nbsp; </span>
                     </div>
                 </div>
                 <h1 class="logo">
                     <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
                 </h1>
+                <a href="/user" class="login-link">login</a>
                 <?php print render($page['header']); ?>
                 <?php if ($secondary_menu): ?>
                     <div id="secondary-menu" class="navigation">
