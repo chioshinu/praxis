@@ -32,9 +32,11 @@
 
 <?php print $fields['body']->content; ?>
 <?php if (count($row->field_field_file)>0): ?>
-    <a href="<?php print $row->field_field_file[0]['raw']['url']; ?>" class="more">More</a>
+    <a href="<?php print str_replace('public:/', '/sites/default/files', $row->field_field_file[0]['raw']['uri']); ?>" class="more">More</a>
 <?php else: ?>
-    <a href="<?php print $row->field_field_link[0]['raw']['value']; ?>" class="more">More</a>
+    <?php if (count($row->field_field_link)>0): ?>
+        <a href="<?php print $row->field_field_link[0]['raw']['value']; ?>" class="more">More</a>
+    <?php endif; ?>
 <?php endif; ?>
 <div class="date-author">
     <?php print $fields['created']->content; ?>
