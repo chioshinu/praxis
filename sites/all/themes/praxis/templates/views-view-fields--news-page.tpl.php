@@ -39,9 +39,9 @@
             <a class="tw" href="https://twitter.com/share?url=<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>" target="_blank"></a>
         </div>
     <?php endif ?>
-    <?php if ($id == "body"): ?>
-        <a class="load_more" href="<?php echo url('node/' . $row->nid, array('absolute' => true)); ?>">More ...</a>
-    <?php endif ?>
+<!--    --><?php //if ($id == "body"): ?>
+<!--        <a class="load_more" href="--><?php //echo url('node/' . $row->nid, array('absolute' => true)); ?><!--">More ...</a>-->
+<!--    --><?php //endif ?>
 
 <?php endforeach; ?>
 <?php //die(); ?>
