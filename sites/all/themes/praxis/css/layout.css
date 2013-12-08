@@ -648,7 +648,7 @@ ul.menu > li  a {
 }
 #block-praxis-doctors-home-doctors {
   overflow:hidden;
-  margin: 0 0 9px;
+  margin: 8px 0 9px;
   border: 4px solid #E6E6E6;
   border-radius: 4px 4px 4px 4px;
   -moz-border-radius: 4px 4px 4px 4px;
@@ -730,9 +730,20 @@ a.slidesjs-next {
   margin: 0 18px 7px 6px;
   background: url(../images/errow_rounded_bg_next.png) no-repeat;
 }
-.views_slideshow_cycle_main {
+.views-slideshow-cycle-main-frame-row, .skin-default {
   overflow: hidden;
+  width: 643px;
+  height: 318px;
+  margin: 0;
 }
+
+.view.view-home-slideshow {
+    overflow: hidden;
+    margin: 0;
+    width: 643px;
+    height: 318px;
+}
+
 /*-------------------------------------------------------------*/
 .footer-block {
   overflow: hidden;
