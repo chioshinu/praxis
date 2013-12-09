@@ -226,3 +226,10 @@
         </div> <!-- /.section, /#footer-wrapper -->
 
     </div></div> <!-- /#page, /#page-wrapper -->
+<script type="text/javascript" src="js/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('.ocupation-list').mCustomScrollbar();
+    });
+</script>
+
