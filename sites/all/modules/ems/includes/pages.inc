@@ -205,6 +205,44 @@ function ems_service_form($form, &$form_state, $doctor){
     return $form;
 }
 
+function ems_service_admin_form($form, &$form_state, $doctor){
+    $form = array();
+    $form['did'] = array(
+        '#type' => 'hidden',
+        '#default_value' => $doctor->did
+    );
+    $form['start'] = array(
+        '#title' => t('From'),
+        '#type' => 'textfield',
+        '#default_value' => '',
+        '#required' => TRUE,
+        '#maxlength' => 255,
+        '#attributes' =>array('class' => array('date'))
+    );
+    $form['end'] = array(
+        '#title' => t('To'),
+        '#type' => 'textfield',
+        '#default_value' => '',
+        '#required' => TRUE,
+        '#maxlength' => 255,
+        '#attributes' =>array('class' => array('date'))
+    );
+    $form['description'] = array(
+        '#title' => t('Description'),
+        '#type' => 'textfield',
+        '#default_value' => '',
+        '#required' => TRUE,
+        '#maxlength' => 500,
+    );
+    $form['actions'] = array(
+        '#type' => 'actions',
+        'submit' => array(
+            '#type' => 'submit',
+            '#value' => t('Submit'),
+        ));
+    return $form;
+}
+
 function ems_service_form_validate($form, &$form_state){
     $values = $form_state['values'];
 

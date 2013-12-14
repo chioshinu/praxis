@@ -38,6 +38,9 @@ function praxis_doctors_form_alter(&$form, &$form_state, $form_id){
     if ($form_id == 'doctor_page_node_form' and isset($user->roles[4])){
         $form['actions']['submit']['#submit'][] = 'praxis_doctor_page_form_submit_alter';
     }
+    if ($form_id == 'news_node_form'){
+        $form['actions']['submit']['#submit'][] = 'praxis_doctor_news_form_submit_alter';
+    }
 }
 
 function praxis_doctor_biografy_form_submit_alter($form, &$form_state){
@@ -55,6 +58,10 @@ function praxis_doctor_page_form_submit_alter($form, &$form_state){
         $node = array_shift($nodes);
         $form_state['redirect'] = 'team/doctors/'.$node->nid.'/page/'.$form['nid']['#value'];
     }
+}
+
+function praxis_doctor_news_form_submit_alter($form, &$form_state){
+    $form_state['redirect'] = 'admin/content';
 }
 
 function praxis_doctors_menu() {

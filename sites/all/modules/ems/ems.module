@@ -148,6 +148,16 @@ function ems_menu() {
         'file' => 'includes/doctor.admin.inc',
     );
 
+    $items['admin/content/service/%/edit'] = array(
+        'title' => 'Edit',
+        'page callback' => 'service_edit_page',
+        'page arguments' => array(3),
+        'access arguments' => array('access content'),
+        'type' => MENU_LOCAL_TASK,
+        'weight' => 0,
+        'file' => 'includes/service.admin.inc',
+    );
+
     $items['ems/ajax/service/status'] = array(
         'file' => 'includes/ajax.inc',
         'page callback' => 'service_status',
@@ -257,6 +267,10 @@ function ems_theme() {
             'template' => 'status_part',
             'variables' => array('status' => null, 'id' => null, 'statuses'=>array(), 'class' => 'status-change' ),
         ),
+        'edit_service' => array(
+            'template' => 'edit_service',
+            'variables' => array('form' => array(), 'doctor' => array(), 'service' => array() ),
+        )
     );
 }
 

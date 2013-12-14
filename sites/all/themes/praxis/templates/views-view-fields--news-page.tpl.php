@@ -25,6 +25,7 @@
  */
 ?>
 <?php foreach ($fields as $id => $field): ?>
+    <?php if ($id != 'field_attachment'): ?>
     <?php if (!empty($field->separator)): ?>
         <?php print $field->separator; ?>
     <?php endif; ?>
@@ -42,6 +43,10 @@
 <!--    --><?php //if ($id == "body"): ?>
 <!--        <a class="load_more" href="--><?php //echo url('node/' . $row->nid, array('absolute' => true)); ?><!--">More ...</a>-->
 <!--    --><?php //endif ?>
+    <?php else: ?>
+        <?php if (isset($row->field_field_attachment[0])): ?>
+            <a href="<?php print $row->field_field_attachment[0]['rendered']['#markup']; ?>"><?php print t('Download Attachment'); ?></a>
+        <?php endif; ?>
+    <?php endif; ?>
 
 <?php endforeach; ?>
-<?php //die(); ?>

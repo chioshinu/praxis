@@ -4,6 +4,7 @@
     <tr>
         <th>Submitted Emergency services</th>
         <th>Status</th>
+        <th>Description</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,7 @@
                     <?php print $status[$value->status]; ?>
                 <?php endif; ?>
             </td>
+            <td><?php print $status[$value->description]; ?></td>
         </tr>
     <?php endforeach; ?>
     </tbody>

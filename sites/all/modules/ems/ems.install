@@ -115,6 +115,12 @@ function ems_schema(){
                 'not null' => TRUE,
                 'default' => 0,
             ),
+            'description' => array(
+                'type' => 'varchar',
+                'length' => '500',
+                'not null' => TRUE,
+                'default' => '',
+            ),
             'did' => array(
                 'type' => 'int',
                 'size' => 'big',
