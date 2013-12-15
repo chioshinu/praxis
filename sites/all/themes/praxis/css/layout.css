@@ -73,9 +73,12 @@ body {
   width: 960px;
   float: none;
 }
-#sidebar-first,
+#sidebar-first {
+
+}
 #sidebar-second {
-  
+  overflow: hidden;
+  width: 326px;
 }
 #main-wrapper {
   min-height: 300px;
@@ -860,6 +863,7 @@ display: block;
     padding: 20px 10px 16px 18px;
 }
 .block-loger {
+    width: ;
     margin: 31px 0 10px;
     padding: 20px 10px 16px 18px;
 }
