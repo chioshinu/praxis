@@ -110,8 +110,13 @@
                 <h1 class="logo">
                     <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
                 </h1>
-                
-                <!-- <a href="/user" class="login-link">login</a> -->
+
+
+                <?php global $user; if ($logged_in==true): ?>
+                 <a href="/user/logout" class="login-link">logout</a>
+                <?php else: ?>
+                <a href="/user" class="login-link">login</a>
+                <?php endif; ?>
                 <?php print render($page['header']); ?>
                
             </div>

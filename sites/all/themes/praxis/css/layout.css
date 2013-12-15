@@ -232,8 +232,9 @@ body {
 }
 .language-switcher-locale-url {
   overflow: hidden;
-  margin: 13px 0 0;
+  margin: 15px 0 0 !important;
 }
+
 .language-switcher-locale-url > li {
   overflow: hidden;
   float: left;
