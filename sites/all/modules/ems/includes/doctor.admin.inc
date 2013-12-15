@@ -186,7 +186,7 @@ function doctor_form_submit($form, &$form_state) {
             'init' => $doctor->email,
             'roles' => array(
                 DRUPAL_AUTHENTICATED_RID => 'authenticated user',
-                5 => 'ems_doctor'
+                5 => 'Notfal doctor'
             ),
         );
 

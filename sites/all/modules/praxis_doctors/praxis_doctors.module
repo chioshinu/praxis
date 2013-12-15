@@ -206,7 +206,13 @@ function praxis_doctors_theme() {
         ),
         'doctors_page' => array(
             'template' => 'doctors_page',
-            'variables' => array('data' => array(), 'terms' => array(), 'lang' => $language->language),
+            'variables' => array(
+                'data' => array(),
+                'terms' => array(),
+                'image_field' => '',
+                'is_staff' => false,
+                'lang' => $language->language
+            ),
         ),
         'specialization_block' => array(
             'template' => 'specialization_block',

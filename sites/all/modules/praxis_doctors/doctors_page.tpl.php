@@ -5,11 +5,27 @@
             <ul>
                 <?php foreach($doctors as $doctor): ?>
                     <li class="doctor-middle">
-                        <a href="<?php if ($lang != 'en'): ?>/<?php print $lang; ?><?php endif ?>/team/doctors/<?php print $doctor->nid ?>">
+                        <?php
+
+                        if ($is_staff){
+                            $url = "#doc-{$doctor->nid}";
+                            $js = 'onClick="return false;"';
+                        }
+                        else{
+                            $pref = $lang != 'en' ? $lang."/" : '';
+                            $url = "/{$pref}team/doctors/{$doctor->nid}";
+                            $js = '';
+                        }
+
+                        ?>
+                        <a id="doc-<?php print $doctor->nid; ?>"
+                           href="<?php print $url; ?>" <?php print $js; ?> >
                             <?php
+                            $i_f = $doctor->$image_field;
+
                             $image = array(
                                 'style_name' => 'team_doctor',
-                                'path' => isset($doctor->field_ph['und']) ? $doctor->field_ph['und'][0]['uri'] : '',
+                                'path' => isset($i_f['und']) ? $i_f['und'][0]['uri'] : '',
                                 'width' => '',
                                 'height' => '',
 
