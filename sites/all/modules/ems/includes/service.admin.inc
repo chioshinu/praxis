@@ -7,27 +7,6 @@ function service_form($form, &$form_state, $service = NULL){
         '#type' => 'hidden',
         '#default_value' => isset($service->did) ? $service->did : '',
     );
-
-    $form['did'] = array(
-        '#type' => 'hidden',
-        '#default_value' => $service->did
-    );
-    $form['start'] = array(
-        '#title' => t('From'),
-        '#type' => 'textfield',
-        '#default_value' => isset($service->start) ? $service->start : '',
-        '#required' => TRUE,
-        '#maxlength' => 255,
-        '#attributes' =>array('class' => array('date'))
-    );
-    $form['end'] = array(
-        '#title' => t('To'),
-        '#type' => 'textfield',
-        '#default_value' => isset($service->end) ? $service->end : '',
-        '#required' => TRUE,
-        '#maxlength' => 255,
-        '#attributes' =>array('class' => array('date'))
-    );
     $form['status'] = array(
         '#title' => t('Status'),
         '#type' => 'select',
@@ -39,6 +18,13 @@ function service_form($form, &$form_state, $service = NULL){
             2 => t('Declined')
         ),
     );
+    $form['description'] = array(
+        '#title' => t('Description'),
+        '#type' => 'textfield',
+        '#default_value' => isset($service->description) ? $service->description : '',
+        '#required' => TRUE,
+        '#maxlength' => 500,
+    );
     $form['actions'] = array(
         '#type' => 'actions',
         'submit' => array(
@@ -46,6 +32,28 @@ function service_form($form, &$form_state, $service = NULL){
             '#value' => t('Submit'),
         ));
     return $form;
+}
+
+/**
+ * Implements hook_form_submit().
+ */
+function service_form_submit($form, &$form_state) {
+    $values = $form_state['values'];
+    $service = new Service($values, 'service');
+    $service->save();
+
+
+    //$form_state['redirect'] = ADMIN_CONTENT_DOCTOR_URI;
+}
+
+function service_edit_page($id){
+    $service = service_load($id);
+    $doctor = doctor_load($service->did);
+
+    drupal_set_title(t('Edit Service'), PASS_THROUGH);
+
+    $form = drupal_get_form('service_form', $service);
+    return theme('edit_service', array('form' => $form, 'doctor' => $doctor, 'service' => $service));
 }
 
 function doctor_services_page($did){
@@ -80,6 +88,8 @@ function services_overview($form, &$form_state, $arg=null){
         'doctor' => t('Doctor'),
         'start' => array('data' => t('Date'), 'field' => 'start'),
         'status' => array('data' => t('Status'), 'field' => 'status'),
+        'description' => t('Comment'),
+        'action' => t('Actions')
     );
 
     $options = array();
@@ -114,24 +124,17 @@ function services_overview($form, &$form_state, $arg=null){
     foreach ($ems_array as $s_id => $service) {
         $doctor = doctor_load($service->did);
 
-        if (user_access('change ems status')){
-            $status = theme('status_part', array(
-                'status' => $service->status,
-                'id' => $service->sid,
-                'statuses' => $statuses,
-                'class' => 'status-change'
-            ));
-        }
-        else{
-            $status = $statuses[$service->status];
-        }
+
 
         $options['service_id-' . $s_id] = array(
             'sid' => $service->sid,
             'doctor' => $doctor->first_name . " " . $doctor->last_name,
             'start' => rangeToString($service->start, $service->end),
-            'status' => $status
+            'status' => $statuses[$service->status],
+            'description' => $service->description,
+            'action' => user_access('change ems status') ? l('Edit', 'admin/content/service/'.$s_id.'/edit') : ""
         );
+
     }
 
     $form['entities'] = array(

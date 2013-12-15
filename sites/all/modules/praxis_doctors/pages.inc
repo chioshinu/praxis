@@ -9,7 +9,7 @@ function team_view($type){
     );
 
     $terms = taxonomy_get_tree(2, 0, null, true);
-    $arr = array();
+    $arr = array('' => 'Uncategorized');
     foreach($terms as $value){
         $term = i18n_taxonomy_term_get_translation($value, $language->language);
 
@@ -23,15 +23,21 @@ function team_view($type){
     $i =0;
     foreach ($nodes as $node){
         if($node->field_type['und'][0]['value'] == $types[$type]){
-            $term = taxonomy_term_load($node->field_secialization['und'][0]['tid']);
-            $translation = i18n_taxonomy_term_get_translation($term, $language->language);
-            if (!isset($res[$translation->tid])){
+            if (isset($node->field_secialization['und'])){
+                $term = taxonomy_term_load($node->field_secialization['und'][0]['tid']);
+                $translation = i18n_taxonomy_term_get_translation($term, $language->language);
+                if (!isset($res[$translation->tid])){
 
 //                $res[] = array();
-                $js[slug($arr[$translation->tid])] = $i;
-                $i++;
+                    $js[slug($arr[$translation->tid])] = $i;
+                    $i++;
+                }
+                $res[$translation->tid][] = $node;
             }
-            $res[$translation->tid][] = $node;
+            else{
+                $res[''][] = $node;
+            }
+
         }
 
     }

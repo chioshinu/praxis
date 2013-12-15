@@ -9,6 +9,7 @@
         <tr>
             <th>Submitted Emergency services</th>
             <th>Status</th>
+            <th>Comment</th>
         </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
             <tr>
                 <td><?php print rangeToString($service->start, $service->end); ?></td>
                 <td><?php print $status[$service->status]; ?></td>
+                <td><?php print $service->description; ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
