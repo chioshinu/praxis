@@ -115,7 +115,7 @@ function ems_menu() {
         'path' => 'admin/content/doctors',
         'file' => 'includes/doctor.admin.inc',
         'page callback' => 'doctors_page',
-        'access arguments' => array('access content'),
+        'access arguments' => array('access content ems'),
         'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
     );
 
@@ -124,7 +124,7 @@ function ems_menu() {
         'path' => 'admin/content/services',
         'file' => 'includes/service.admin.inc',
         'page callback' => 'services_page',
-        'access arguments' => array('access content'),
+        'access arguments' => array('access content ems'),
         'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
     );
 
@@ -153,7 +153,7 @@ function ems_menu() {
         'page callback' => 'service_edit_page',
         'page arguments' => array(3),
         'access arguments' => array('access content'),
-        'type' => MENU_LOCAL_TASK,
+        'type' => MENU_CALLBACK,
         'weight' => 0,
         'file' => 'includes/service.admin.inc',
     );

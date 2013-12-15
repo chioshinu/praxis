@@ -17,12 +17,18 @@ function team_view($type){
     }
     $js = array();
 
-    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
+    if ($type == 'staff'){
+        $nodes = node_load_multiple(array(), array('type' => 'team_staff', 'status' => 1));
+    }
+    else{
+        $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
+    }
+
 //    drupal_debug($nodes[0]);
     $res = array();
     $i =0;
     foreach ($nodes as $node){
-        if($node->field_type['und'][0]['value'] == $types[$type]){
+        if ($type == 'staff'){
             if (isset($node->field_secialization['und'])){
                 $term = taxonomy_term_load($node->field_secialization['und'][0]['tid']);
                 $translation = i18n_taxonomy_term_get_translation($term, $language->language);
@@ -37,8 +43,27 @@ function team_view($type){
             else{
                 $res[''][] = $node;
             }
-
         }
+        else{
+            if($node->field_type['und'][0]['value'] == $types[$type]){
+                if (isset($node->field_secialization['und'])){
+                    $term = taxonomy_term_load($node->field_secialization['und'][0]['tid']);
+                    $translation = i18n_taxonomy_term_get_translation($term, $language->language);
+                    if (!isset($res[$translation->tid])){
+
+//                $res[] = array();
+                        $js[slug($arr[$translation->tid])] = $i;
+                        $i++;
+                    }
+                    $res[$translation->tid][] = $node;
+                }
+                else{
+                    $res[''][] = $node;
+                }
+
+            }
+        }
+
 
     }
 
@@ -48,7 +73,12 @@ function team_view($type){
     drupal_add_js('/misc/ui/jquery.ui.accordion.min.js');
     drupal_add_css('/misc/ui/jquery.ui.core.css');
     drupal_add_css('/misc/ui/jquery.ui.accordion.css');
-    $output = theme('doctors_page', array('data' => $res, 'terms' => $arr, 'lang' => $language->language));
+    $output = theme('doctors_page', array(
+        'data' => $res,
+        'terms' => $arr,
+        'image_field' => $type == 'staff' ? 'field_photo' : 'field_ph',
+        'is_staff' => $type == 'staff' ? true : false,
+        'lang' => $language->language));
     return $output;
 }
 
@@ -61,7 +91,12 @@ function doctor_view($id){
     }
     $nodes = node_load_multiple(array(), array('type' => 'doctor_page', 'status' => 1, 'uid' => $node->uid));
 
-    $output = theme('single_doctor_page', array('doctor'=>$node, 'pages' => $nodes, 'lang' => $language->language, 'user' => $user));
+    $output = theme('single_doctor_page', array(
+        'doctor'=>$node,
+        'pages' => $nodes,
+        'lang' => $language->language,
+        'user' => $user
+    ));
     return $output;
 }
 
