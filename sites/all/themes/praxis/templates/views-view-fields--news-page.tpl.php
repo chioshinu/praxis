@@ -45,8 +45,16 @@
 <!--    --><?php //endif ?>
     <?php else: ?>
         <?php if (isset($row->field_field_attachment[0])): ?>
-            <a href="<?php print $row->field_field_attachment[0]['rendered']['#markup']; ?>"><?php print t('Download Attachment'); ?></a>
+            <a href="<?php print $row->field_field_attachment[0]['rendered']['#markup']; ?>" class="news-attachment"><?php print t('Download Attachment'); ?></a>
         <?php endif; ?>
     <?php endif; ?>
 
 <?php endforeach; ?>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery(.expanded a).click(function(){
+                jQuery(.expanded ul).css("display","block").addClass("current");
+            }
+        )
+    });
+</script>

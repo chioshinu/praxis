@@ -148,7 +148,7 @@
                         <div id="breadcrumb"><?php print $breadcrumb; ?></div>
                     <?php endif; ?>
                     <div class="login-top-block">
-                        <img src="http://praxis.home/sites/all/themes/praxis/images/notfall_img.png" alt="login" />
+                        <img src="/sites/all/themes/praxis/images/notfall_img.png" alt="login" />
                         <?php if ($title): ?>
                             <h2 class="brown"><?php print $title; ?></h2>
                         <?php endif; ?>
