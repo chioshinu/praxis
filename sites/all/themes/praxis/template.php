@@ -141,7 +141,13 @@ function praxis_preprocess_block(&$variables) {
  * Implements theme_menu_tree().
  */
 function praxis_menu_tree($variables) {
-  return '<ul class="menu clearfix">' . $variables['tree'] . '</ul>';
+    if (strpos($variables['tree'],'active') !== false){
+        $class = 'active';
+    }
+    else{
+        $class = '';
+    }
+  return '<ul class="menu clearfix '. $class .'">' . $variables['tree'] . '</ul>';
 }
 
 /**
@@ -166,4 +172,19 @@ function praxis_field__taxonomy_term_reference($variables) {
   $output = '<div class="' . $variables['classes'] . (!in_array('clearfix', $variables['classes_array']) ? ' clearfix' : '') . '"' . $variables['attributes'] .'>' . $output . '</div>';
 
   return $output;
+}
+
+function praxis_menu_link($variables){
+//    return theme_menu_link($variables);
+    $element = $variables['element'];
+    $sub_menu = '';
+
+    $element['#attributes']['class'][] = 'depth-' . $element['#original_link']['depth'];
+
+    if ($element['#below']) {
+        $sub_menu = drupal_render($element['#below']);
+    }
+    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+
 }

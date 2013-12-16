@@ -52,8 +52,8 @@
 <?php endforeach; ?>
 <script type="text/javascript">
     jQuery(document).ready(function(){
-        jQuery(.expanded a).click(function(){
-                jQuery(.expanded ul).css("display","block").addClass("current");
+        jQuery('.expanded a').click(function(){
+                jQuery('.expanded ul').css("display","block").addClass("current");
             }
         )
     });
