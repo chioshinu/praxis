@@ -117,13 +117,13 @@ body {
 #header .logo {
   overflow: hidden;
   width: 289px;
-  height: 72px;
-  margin: 35px 0 0; 
+  margin: 0;
 }
 #header .logo a {
   display: block;
   width: 289px;
   height: 72px;
+  margin: 35px 0 0;
   text-indent: -9999px;
   background: url(../images/logo.png) no-repeat;
 }
@@ -192,7 +192,7 @@ body {
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
-    .social-media > li.like a {background-image:url(../images/fb_like@2x.png);
+    .social-media > li.like a {background-image:url(../images/like-button@2x.jpg);
         -moz-background-size:58px 25px;
         -ie-background-size:58px 25px;
         -o-background-size:58px 25px;
@@ -206,7 +206,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
-    .social-media > li.tw a {background-image:url(../images/twitter@2x.png);
+    .social-media > li.tw a {background-image:url(../images/twitter_button@2x.jpg);
         -moz-background-size:80px 25px;
         -ie-background-size:80px 25px;
         -o-background-size:80px 25px;
@@ -220,7 +220,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
-    .social-media > li.fb a {background-image:url(../images/fb@2x.png);
+    .social-media > li.fb a {background-image:url(../images/Find-us-on-facebook_logo@2x.gif);
         -moz-background-size:82px 25px;
         -ie-background-size:82px 25px;
         -o-background-size:82px 25px;
@@ -303,7 +303,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
-    .language-switcher-locale-url > li.de a {background-image:url(../images/de@2x.png);
+    .language-switcher-locale-url > li.de a {background-image:url(../images/german-flag@2x.png);
         -moz-background-size:31px 19px;
         -ie-background-size:31px 19px;
         -o-background-size:31px 19px;
@@ -321,7 +321,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 only screen and (-o-min-device-pixel-ratio: 3/2),
 only screen and (min--moz-device-pixel-ratio: 1.5),
 only screen and (min-device-pixel-ratio: 1.5) {
-    .language-switcher-locale-url > li.en a {background-image:url(../images/en@2x.png);
+    .language-switcher-locale-url > li.en a {background-image:url(../images/england_flag@2x.png);
         -moz-background-size:31px 19px;
         -ie-background-size:31px 19px;
         -o-background-size:31px 19px;
@@ -616,6 +616,22 @@ ul.menu > li  a {
   float: left;
   background: url(../images/clock.png) no-repeat;
 }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+    .scadhule-title span {background-image:url(../images/clock@2x.jpg);
+        -moz-background-size:64px 55px;
+        -ie-background-size:64px 55px;
+        -o-background-size:64px 55px;
+        -webkit-background-size:64px 55px;
+        background-size:64px 55px;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+}
+
 .scadhule-block p {
   overflow: hidden;
   margin: 27px 0 0;
@@ -956,9 +972,13 @@ display: block;
     margin: 0 0 10px;
     padding: 20px 10px 16px 18px;
 }
+.region-sidebar-second {
+    overflow: hidden;
+    margin: 31px 0 10px;
+}
 .block-loger {
 
-    margin: 31px 0 10px;
+    margin: 0 0 10px;
     padding: 20px 10px 16px 18px;
 }
 .sidebar-right-inner .subscribe {
@@ -1024,7 +1044,7 @@ display: block;
 }
 .view-display-id-page {
     float: left;
-    margin: 31px 84px 0 0!important;
+    margin: 31px 84px 0 0;
     overflow: hidden;
     width: 550px;
 }
@@ -1063,7 +1083,7 @@ display: block;
   overflow: hidden;
   display: block;
   width: 960px;
-  height: 307px;
+  height: 309px;
 }
 .news-head h2, .login-top-block h2 {
   position: absolute;
