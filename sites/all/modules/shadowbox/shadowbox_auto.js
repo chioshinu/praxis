@@ -18,9 +18,9 @@ Drupal.behaviors.shadowbox = {
         }
       });
     }
-    $('.views-field-field-image-news .field-content .item-list ul li a').each(function(){
-        $(this).attr('rel', 'shadowbox');
-    });
+//    $('.views-field-field-image-news .field-content .item-list ul li a').each(function(){
+//        $(this).attr('rel', 'shadowbox');
+//    });
     Shadowbox.clearCache();
     Shadowbox.setup();
   }
