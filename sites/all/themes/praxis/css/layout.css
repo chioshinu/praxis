@@ -659,12 +659,17 @@ only screen and (min-device-pixel-ratio: 1.5) {
   overflow: hidden;
 }
 .praxis-info .praxis-contact p,
-.praxis-info .praxis-contact a {
+.praxis-info .praxis-contact a,
+.praxis-contact p,
+.praxis-contact a {
   margin: 0;
   font-size: 10px;
   line-height: 1.5;
   color: #231F20;
   text-decoration: none;
+}
+.praxis-contact a:hover {
+  color: #231F20;
 }
 .links-listing-block {
   overflow: hidden;
@@ -686,6 +691,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
   line-height: 57px;
   background: url(../images/links_list_sprite.png) no-repeat;
   text-indent: -9999px;
+}
+.links-listing > li a:hover {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    zoom: 1;
 }
 .links-listing > li.equam a {
   width: 56px;
@@ -1006,7 +1016,8 @@ display: block;
 }
 #sidebar-second .stuff-ocupation h3,
 .block-loger h2,
-#block-views-internal-block-1 h2 {
+#block-views-internal-block-1 h2,
+.praxis-contact h3 {
     margin: 0;
     font-size: 20px;
     font-weight: bold;
@@ -2159,8 +2170,45 @@ a.news-attachment {
     line-height: normal;
 }
 .adressen-inner .adressen-asside {
-    position: relative;
-    top: 0;
-    left: 633px;
+    /*position: relative;*/
+    /*top: 0;*/
+    /*left: 633px;*/
+    float: right;
     margin: -603px 0 0;
+}
+/*--------------------------< Accordion Block>-------------------------*/
+.accordion-block {
+    overflow: hidden;
+}
+.accordion-block h3 {
+    font-size: 20px;
+}
+#accordion.accordion-block .section-wrapper ul {
+    overflow: hidden;
+    margin: 0 14px 8px;
+}
+.accordion-block .ui-accordion-content ul > li {
+    overflow: hidden;
+    margin: 20px 0 20px;
+    height: 22px;
+    line-height: 22px;
+}
+.accordion-block .ui-accordion-content ul > li .title {
+    width: 195px;
+    font-weight: bold;
+}
+.accordion-block .ui-accordion-content ul > li .delimiter {
+    padding: 0 12px 0 0;
+}
+.accordion-block .ui-accordion-content ul > li .email {
+    width: 300px;
+    overflow: hidden;
+}
+.accordion-block .ui-accordion-content ul > li .title,
+.accordion-block .ui-accordion-content ul > li .delimiter,
+.accordion-block .ui-accordion-content ul > li .email {
+    display: block;
+    float: left;
+    font-size: 16px;
+    color: #272727;
 }

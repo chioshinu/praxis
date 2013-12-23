@@ -1,4 +1,4 @@
-<div id="accordion">
+<div id="accordion" class="accordion-block">
     <?php foreach ($data as $key => $doctors): ?>
         <h3><?php echo $terms[$key]; ?></h3>
         <div class="section-wrapper">
