@@ -99,7 +99,7 @@ $pref = $lang != 'en' ? "/".$lang : "";
         </div>
 
     </div>
-    <div class="email"><?php print render($email); ?></div>
+    <div class="email"><a href="mailto:<?php print render($email); ?>"><?php print render($email); ?></a></div>
 
     <div class="main-content">
         <?php if($page): ?>

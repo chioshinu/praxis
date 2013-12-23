@@ -128,6 +128,9 @@ function praxis_doctors_block_info() {
     $blocks['home_specializations'] = array(
         'info' => t('Home page Specialties Block')
     );
+    $blocks['address_block'] = array(
+        'info' => t('Address Block with accordeon')
+    );
     return $blocks;
 }
 
@@ -153,6 +156,9 @@ function praxis_doctors_block_view($delta = '') {
             break;
         case 'home_specializations':
             $block['content'] = praxis_doctors_block_specializations();
+            break;
+        case 'address_block':
+            $block['content'] = praxis_doctors_block_address();
             break;
     }
     return $block;
@@ -228,8 +234,68 @@ function praxis_doctors_theme() {
                 'page' => null
             ),
         ),
+        'address_block' => array(
+            'template' => 'address_block',
+            'variables' => array(
+                'data' => array(),
+                'terms' => array(),
+                'lang' => $language->language
+            )
+        )
     );
 }
+
+function praxis_doctors_block_address(){
+    global $language;
+
+
+    $terms = taxonomy_get_tree(5, 0, null, true);
+    $arr = array('' => 'Uncategorized');
+    foreach($terms as $value){
+        $term = i18n_taxonomy_term_get_translation($value, $language->language);
+
+        $arr[$term->tid] = $term->name;
+    }
+    $js = array();
+
+
+    $nodes = node_load_multiple(array(), array('type' => 'adressen_page', 'status' => 1));
+
+
+//    drupal_debug($nodes[0]);
+    $res = array();
+    $i =0;
+    foreach ($nodes as $node){
+        if (count($node->field_categories)>0){
+            $category = '';
+            $category = array_values($node->field_categories)[0];
+            $term = taxonomy_term_load($category[0]['tid']);
+            $translation = i18n_taxonomy_term_get_translation($term, $language->language);
+            if (!isset($res[$translation->tid])){
+
+                $js[slug($arr[$translation->tid])] = $i;
+                $i++;
+            }
+            $res[$translation->tid][] = $node;
+        }
+        else{
+            $res[''][] = $node;
+        }
+    }
+
+    drupal_add_js(array('ids' => $js), 'setting');
+    drupal_add_js('/misc/ui/jquery.ui.core.min.js');
+    drupal_add_js('/misc/ui/jquery.ui.widget.min.js');
+    drupal_add_js('/misc/ui/jquery.ui.accordion.min.js');
+    drupal_add_css('/misc/ui/jquery.ui.core.css');
+    drupal_add_css('/misc/ui/jquery.ui.accordion.css');
+    $output = theme('address_block', array(
+        'data' => $res,
+        'terms' => $arr,
+        'lang' => $language->language));
+    return $output;
+}
+
 
 function slug($str){
     return str_replace(' ', '_',str_replace('/', '', strtolower($str)));
