@@ -142,7 +142,7 @@
                 </div></div> <!-- /.section, /#messages -->
         <?php endif; ?>
 
-        <div class="content-pages-wrapper" style="background-color: red;">
+        <div class="content-pages-wrapper">
             <div class="main_container_inner">
                 <?php if ($page['featured']): ?>
                     <div id="featured"><div class="section clearfix">
@@ -164,7 +164,7 @@
                             <?php endif; ?>
 
                             <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-                            <div class="body-inner">
+                            <div class="adressen-inner">
                                 <a id="main-content"></a>
                                 <!-- <?php print render($title_prefix); ?>
                                     <?php if ($title): ?>
@@ -185,26 +185,19 @@
                                     </ul>
                                 <?php endif; ?>
                                 <?php print render($page['content']); ?>
+                                <?php if ($page['sidebar_second']): ?>
+                                    <div id="sidebar-second" class="column sidebar adressen-asside"><div class="section">
+                                            <?php print render($page['sidebar_second']); ?>
+                                        </div></div> <!-- /.section, /#sidebar-second -->
+                                <?php endif; ?>
                                 <?php print $feed_icons; ?>
 
                             </div></div> <!-- /.section, /#content -->
 
-                        <?php if ($page['sidebar_second']): ?>
-                            <div id="sidebar-second" class="column sidebar"><div class="section">
-                                    <?php print render($page['sidebar_second']); ?>
-                                </div></div> <!-- /.section, /#sidebar-second -->
-                        <?php endif; ?>
+
                     </div>
 
                 </div></div> <!-- /#main, /#main-wrapper -->
-
-            <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
-                <div id="triptych-wrapper"><div id="triptych" class="clearfix">
-                        <?php print render($page['triptych_first']); ?>
-                        <?php print render($page['triptych_middle']); ?>
-                        <?php print render($page['triptych_last']); ?>
-                    </div></div> <!-- /#triptych, /#triptych-wrapper -->
-            <?php endif; ?>
         </div>
     </div>
 
