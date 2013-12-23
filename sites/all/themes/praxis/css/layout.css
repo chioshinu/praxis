@@ -2186,6 +2186,7 @@ a.news-attachment {
 #accordion.accordion-block .section-wrapper ul {
     overflow: hidden;
     margin: 0 14px 8px;
+    list-style: none;
 }
 .accordion-block .ui-accordion-content ul > li {
     overflow: hidden;
