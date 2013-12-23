@@ -268,7 +268,8 @@ function praxis_doctors_block_address(){
     foreach ($nodes as $node){
         if (count($node->field_categories)>0){
             $category = '';
-            $category = array_values($node->field_categories)[0];
+            $category = array_values($node->field_categories);
+            $category = $category[0];
             $term = taxonomy_term_load($category[0]['tid']);
             $translation = i18n_taxonomy_term_get_translation($term, $language->language);
             if (!isset($res[$translation->tid])){
