@@ -10,15 +10,17 @@
                         if ($is_staff){
                             $url = "#doc-{$doctor->nid}";
                             $js = 'onClick="return false;"';
+                            $tag = "div";
                         }
                         else{
                             $pref = $lang != 'en' ? $lang."/" : '';
                             $url = "/{$pref}team/doctors/{$doctor->nid}";
                             $js = '';
+                            $tag = "a";
                         }
 
                         ?>
-                        <a id="doc-<?php print $doctor->nid; ?>"
+                        <<?php print $tag; ?> id="doc-<?php print $doctor->nid; ?>"
                            href="<?php print $url; ?>" <?php print $js; ?> >
                             <?php
                             $i_f = $doctor->$image_field;
@@ -36,7 +38,7 @@
                             ?>
                             <?php print theme('image_style', $image); ?>
                             <span><?php print render($name); ?></span>
-                        </a>
+                        </<?php print $tag; ?>>
                     </li>
                 <?php endforeach; ?>
             </ul>
