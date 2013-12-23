@@ -103,7 +103,7 @@
                         </li>
                     </ul>
                     <div class="telephone">
-                        <p >+41 (0) 55 555 05 05</p>
+                        <p>+41 (0) 55 555 05 05</p>
                         <span>&nbsp; </span>
                     </div>
                 </div>

@@ -99,7 +99,7 @@
                             <a href="#">Twitter</a>
                         </li>
                         <li class="like">
-         a                   <a href="#">Like</a>
+                           <a href="#">Like</a>
                         </li>
                     </ul>
                     <div class="telephone">
