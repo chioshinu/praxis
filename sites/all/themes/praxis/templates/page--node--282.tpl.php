@@ -99,7 +99,7 @@
                             <a href="#">Twitter</a>
                         </li>
                         <li class="like">
-         a                   <a href="#">Like</a>
+                            a                   <a href="#">Like</a>
                         </li>
                     </ul>
                     <div class="telephone">
@@ -138,18 +138,18 @@
 
         <?php if ($messages): ?>
             <div id="messages"><div class="section clearfix">
-                <?php print $messages; ?>
-           </div></div> <!-- /.section, /#messages -->
+                    <?php print $messages; ?>
+                </div></div> <!-- /.section, /#messages -->
         <?php endif; ?>
 
-        <div class="content-pages-wrapper">
+        <div class="content-pages-wrapper" style="background-color: red;">
             <div class="main_container_inner">
                 <?php if ($page['featured']): ?>
                     <div id="featured"><div class="section clearfix">
                             <?php print render($page['featured']); ?>
                         </div></div> <!-- /.section, /#featured -->
                 <?php endif; ?>
-                
+
                 <?php if ($page['sidebar_first']): ?>
                     <div id="sidebar-first" class="column sidebar-right"><div class="section">
                             <?php print render($page['sidebar_first']); ?>
@@ -158,76 +158,76 @@
 
                 <div id="content" class="column"><div class="section">
                         <div id="main" class="">
-                                
-                                <?php if ($breadcrumb): ?>
-                                    <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-                                <?php endif; ?>
 
-                                <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-                                <div class="body-inner">
-                                    <a id="main-content"></a>
-                                    <!-- <?php print render($title_prefix); ?>
+                            <?php if ($breadcrumb): ?>
+                                <div id="breadcrumb"><?php print $breadcrumb; ?></div>
+                            <?php endif; ?>
+
+                            <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
+                            <div class="body-inner">
+                                <a id="main-content"></a>
+                                <!-- <?php print render($title_prefix); ?>
                                     <?php if ($title): ?>
                                         <h1 class="title" id="page-title">
                                             <?php print $title; ?>
                                         </h1>
                                     <?php endif; ?>-->
-                                    <?php print render($title_suffix); ?>
-                                    <?php if ($tabs): ?>
-                                        <div class="tabs">
-                                            <?php print render($tabs); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <?php print render($page['help']); ?>
-                                    <?php if ($action_links): ?>
-                                        <ul class="action-links">
-                                            <?php print render($action_links); ?>
-                                        </ul>
-                                    <?php endif; ?>
-                                    <?php print render($page['content']); ?>
-                                    <?php print $feed_icons; ?>
+                                <?php print render($title_suffix); ?>
+                                <?php if ($tabs): ?>
+                                    <div class="tabs">
+                                        <?php print render($tabs); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php print render($page['help']); ?>
+                                <?php if ($action_links): ?>
+                                    <ul class="action-links">
+                                        <?php print render($action_links); ?>
+                                    </ul>
+                                <?php endif; ?>
+                                <?php print render($page['content']); ?>
+                                <?php print $feed_icons; ?>
 
-                                </div></div> <!-- /.section, /#content -->
+                            </div></div> <!-- /.section, /#content -->
 
-                            <?php if ($page['sidebar_second']): ?>
-                                <div id="sidebar-second" class="column sidebar"><div class="section">
-                                        <?php print render($page['sidebar_second']); ?>
-                                    </div></div> <!-- /.section, /#sidebar-second -->
-                            <?php endif; ?>
-                        </div>
+                        <?php if ($page['sidebar_second']): ?>
+                            <div id="sidebar-second" class="column sidebar"><div class="section">
+                                    <?php print render($page['sidebar_second']); ?>
+                                </div></div> <!-- /.section, /#sidebar-second -->
+                        <?php endif; ?>
+                    </div>
 
-                    </div></div> <!-- /#main, /#main-wrapper -->
+                </div></div> <!-- /#main, /#main-wrapper -->
 
-                <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
-                    <div id="triptych-wrapper"><div id="triptych" class="clearfix">
-                            <?php print render($page['triptych_first']); ?>
-                            <?php print render($page['triptych_middle']); ?>
-                            <?php print render($page['triptych_last']); ?>
-                        </div></div> <!-- /#triptych, /#triptych-wrapper -->
-                <?php endif; ?>
-            </div>    
-        </div>
-
-        <div id="footer-wrapper">
-
-
-            <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
-                <div id="footer-columns">
-                    <?php print render($page['footer_firstcolumn']); ?>
-                    <?php print render($page['footer_secondcolumn']); ?>
-                    <?php print render($page['footer_thirdcolumn']); ?>
-                    <?php print render($page['footer_fourthcolumn']); ?>
-                </div> <!-- /#footer-columns -->
+            <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
+                <div id="triptych-wrapper"><div id="triptych" class="clearfix">
+                        <?php print render($page['triptych_first']); ?>
+                        <?php print render($page['triptych_middle']); ?>
+                        <?php print render($page['triptych_last']); ?>
+                    </div></div> <!-- /#triptych, /#triptych-wrapper -->
             <?php endif; ?>
-            <div class="footer-block">
-                <p class="copyright">Design by JZdesign</p>
-                <?php if ($page['footer']): ?>
-                    <div id="footer">
-                        <?php print render($page['footer']); ?>
-                    </div> <!-- /#footer -->
-                <?php endif; ?>
-            </div>
-        </div> <!-- /.section, /#footer-wrapper -->
+        </div>
+    </div>
 
-    </div></div> <!-- /#page, /#page-wrapper -->
+    <div id="footer-wrapper">
+
+
+        <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
+            <div id="footer-columns">
+                <?php print render($page['footer_firstcolumn']); ?>
+                <?php print render($page['footer_secondcolumn']); ?>
+                <?php print render($page['footer_thirdcolumn']); ?>
+                <?php print render($page['footer_fourthcolumn']); ?>
+            </div> <!-- /#footer-columns -->
+        <?php endif; ?>
+        <div class="footer-block">
+            <p class="copyright">Design by JZdesign</p>
+            <?php if ($page['footer']): ?>
+                <div id="footer">
+                    <?php print render($page['footer']); ?>
+                </div> <!-- /#footer -->
+            <?php endif; ?>
+        </div>
+    </div> <!-- /.section, /#footer-wrapper -->
+
+</div></div> <!-- /#page, /#page-wrapper -->
 

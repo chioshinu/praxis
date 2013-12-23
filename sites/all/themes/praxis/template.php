@@ -124,6 +124,7 @@ function praxis_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
     $variables['classes_array'][] = 'node-full';
     $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->type;
+      $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->nid;
   }
 }
 
