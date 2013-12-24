@@ -144,7 +144,13 @@ $pref = $lang != 'en' ? "/".$lang : "";
             <?php endif; ?>
             <?php if (count($honors)>0): ?>
                 <h3><?php print t("Selected Publications") ?></h3>
-                <a href="<?php print render($press); ?>"><?php print t('Click Here') ?></a>
+                <?php
+                $press = render($press);
+                if (strpos($press, 'http') === false){
+                    $press = "http://" . $press;
+                }
+                ?>
+                <a href="<?php print $press; ?>" target="_blank"><?php print t('Click Here') ?></a>
             <?php endif; ?>
         <?php endif; ?>
     </div>

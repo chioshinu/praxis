@@ -190,3 +190,16 @@ function praxis_menu_link($variables){
     return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 
 }
+
+function praxis_theme(&$existing, $type, $theme, $path) {
+    $hooks['user_login'] = array(
+        'template' => 'templates/user_login',
+        'render element' => 'form',
+        // other theme registration code...
+    );
+    return $hooks;
+}
+function praxis_preprocess_user_login(&$variables) {
+
+    //$variables['rendered'] = drupal_render_children($variables['form']);
+}
