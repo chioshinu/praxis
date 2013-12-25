@@ -13,8 +13,6 @@ function praxis_doctors_user_insert(&$edit, $account, $category) {
         $ewrapper->field_email->set($account->mail);
         $ewrapper->save(true);
         entity_save('node', $bio);
-//        user_save($account);
-//        drupal_goto('node/'.$bio->nid.'/edit');
     }
 }
 
@@ -27,6 +25,12 @@ function praxis_doctors_user_login(&$edit, $account){
             $node = array_shift($nodes);
             $edit['redirect'] = 'node/'.$node->nid.'/edit';
         }
+        else{
+            $edit['redirect'] = '/';
+        }
+    }
+    elseif(!isset($account->roles[5])){
+        $edit['redirect'] = '/';
     }
 }
 
@@ -40,6 +44,9 @@ function praxis_doctors_form_alter(&$form, &$form_state, $form_id){
     }
     if ($form_id == 'news_node_form'){
         $form['actions']['submit']['#submit'][] = 'praxis_doctor_news_form_submit_alter';
+    }
+    if ($form_id == 'user_register_form') {
+        $form['account']['notify']['#default_value'] = TRUE;
     }
 }
 

@@ -77,12 +77,12 @@ $pref = $lang != 'en' ? "/".$lang : "";
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
-                <?php if (count($pages)<4): ?>
+                <?php if (($user->uid == $doctor->uid) && count($pages)<4): ?>
                     <li><a href="/node/add/doctor-page"><?php print t('Add page'); ?></a></li>
                 <?php endif; ?>
-                <!--        --><?php //if ($user->uid == $doctor->uid): ?>
+                <?php if ($user->uid == $doctor->uid): ?>
                     <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
-                <!--        --><?php //endif; ?>
+                <?php endif; ?>
             </ul>
 
         </div>
@@ -144,7 +144,13 @@ $pref = $lang != 'en' ? "/".$lang : "";
             <?php endif; ?>
             <?php if (count($honors)>0): ?>
                 <h3><?php print t("Selected Publications") ?></h3>
-                <a href="<?php print render($press); ?>"><?php print t('Click Here') ?></a>
+                <?php
+                $press = render($press);
+                if (strpos($press, 'http') === false){
+                    $press = "http://" . $press;
+                }
+                ?>
+                <a href="<?php print $press; ?>" target="_blank"><?php print t('Click Here') ?></a>
             <?php endif; ?>
         <?php endif; ?>
     </div>

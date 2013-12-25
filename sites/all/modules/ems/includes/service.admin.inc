@@ -5,7 +5,7 @@ function service_form($form, &$form_state, $service = NULL){
 
     $form['sid'] = array(
         '#type' => 'hidden',
-        '#default_value' => isset($service->did) ? $service->did : '',
+        '#default_value' => isset($service->sid) ? $service->sid : '',
     );
     $form['status'] = array(
         '#title' => t('Status'),
@@ -43,7 +43,7 @@ function service_form_submit($form, &$form_state) {
     $service->save();
 
 
-    //$form_state['redirect'] = ADMIN_CONTENT_DOCTOR_URI;
+    $form_state['redirect'] = 'admin/content/services';
 }
 
 function service_edit_page($id){
@@ -122,13 +122,23 @@ function services_overview($form, &$form_state, $arg=null){
     $statuses = array('Pending', 'Approved', 'Declined');
 
     foreach ($ems_array as $s_id => $service) {
-        $doctor = doctor_load($service->did);
-
+        if (is_integer($service->did)){
+            $doctor = doctor_load($service->did);
+            if ($doctor){
+                $doctor_text = $doctor->first_name . " " . $doctor->last_name;
+            }
+            else{
+                $doctor_text = '';
+            }
+        }
+        else{
+            $doctor_text = '';
+        }
 
 
         $options['service_id-' . $s_id] = array(
             'sid' => $service->sid,
-            'doctor' => $doctor->first_name . " " . $doctor->last_name,
+            'doctor' => $doctor_text,
             'start' => rangeToString($service->start, $service->end),
             'status' => $statuses[$service->status],
             'description' => $service->description,
@@ -145,7 +155,7 @@ function services_overview($form, &$form_state, $arg=null){
         '#empty' => t('There are no services.'),
     );
 
-    drupal_add_js("/sites/all/modules/ems/js/change_status.js");
+//    drupal_add_js("/sites/all/modules/ems/js/change_status.js");
 
     return $form;
 }

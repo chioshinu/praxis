@@ -175,11 +175,11 @@
                                 </h1>
                             <?php endif; ?>
                             <?php print render($title_suffix); ?>
-                            <?php if ($tabs): ?>
-                                <div class="tabs">
-                                    <?php print render($tabs); ?>
-                                </div>
-                            <?php endif; ?>
+<!--                            --><?php //if ($tabs): ?>
+<!--                                <div class="tabs">-->
+<!--                                    --><?php //print render($tabs); ?>
+<!--                                </div>-->
+<!--                            --><?php //endif; ?>
                             <?php print render($page['help']); ?>
                             <?php if ($action_links): ?>
                                 <ul class="action-links">
