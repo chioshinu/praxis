@@ -277,6 +277,9 @@ function ems_user_page(){
         ->entityCondition('entity_type', 'doctor');
     $query->propertyCondition('uid', $user->uid, '=');
     $doctors = $query->execute();
+    if (count($doctors) == 0){
+        drupal_access_denied();
+    }
     $item = array_shift($doctors['doctor']);
     $doctor = doctor_load($item->did);
     $form = drupal_get_form('ems_service_form', $doctor);

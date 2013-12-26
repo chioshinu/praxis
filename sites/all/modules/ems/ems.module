@@ -5,6 +5,7 @@
  * ems.module
  */
 
+variable_set('shortcut_max_slots', 100);
 // 50 items per page.
 define('TOTAL_ITEMS_PER_PAGE', 50);
 
@@ -16,6 +17,33 @@ function ems_user_login(&$edit, $account){
 //    if ($account->access == "0" and isset($account->roles[4])){
     if (isset($account->roles[5])){
         $edit['redirect'] = 'ems/services';
+    }
+}
+
+function ems_user_insert(&$edit, $account, $category) {
+    if (isset($account->roles[5])){
+        $doctor = new Doctor(array(), 'doctor');
+        $doctor->uid = $account->uid;
+        $doctor->title = $account->name;
+        $doctor->email = $account->mail;
+        $doctor->save();
+    }
+}
+
+function ems_user_update(&$edit, $account, $category){
+    if (isset($account->roles[5])){
+        $query = new EntityFieldQuery();
+        $query
+            ->entityCondition('entity_type', 'doctor');
+        $query->propertyCondition('uid', $account->uid, '=');
+        $doctors = $query->execute();
+        if (count($doctors)==0){
+            $doctor = new Doctor(array(), 'doctor');
+            $doctor->uid = $account->uid;
+            $doctor->title = $account->name;
+            $doctor->email = $account->mail;
+            $doctor->save();
+        }
     }
 }
 
@@ -63,6 +91,7 @@ function ems_entity_info() {
 }
 
 function ems_mail ($key, &$message, $params) {
+    global $base_url;
     switch ($key) {
         case 'register':
             // Set headers etc
@@ -72,7 +101,7 @@ function ems_mail ($key, &$message, $params) {
             break;
         case 'service_create':
             $message['subject'] = t('New EMS service');
-            $message['body'][] = "Doctor {$params['doctor']->first_name} {$params['doctor']->last_name} request new service from {$params['service']->start} to {$params['service']->start}";
+            $message['body'][] = "Notfal doctor {$params['doctor']->first_name} {$params['doctor']->last_name} submitted dates: from {$params['service']->start} to {$params['service']->end}.\nFollow the link to conform or decline: {$base_url}admin/content/service/{$params['service']->sid}/edit.";
             break;
     }
 }
