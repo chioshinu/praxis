@@ -85,8 +85,7 @@
  * @see html.tpl.php
  */
 ?>
-
-<div id="page-wrapper"><div id="page">
+<div id="page-wrapper"><div id="page-specialities">
 
         <div id="header-wrap">
             <div id="header">
@@ -142,7 +141,7 @@
                 </div></div> <!-- /.section, /#messages -->
         <?php endif; ?>
 
-        <div class="content-pages-wrapper">
+        <div class="content-specialities-wrapper">
             <div class="main_container_inner">
                 <?php if ($page['featured']): ?>
                     <div id="featured"><div class="section clearfix">
@@ -156,7 +155,7 @@
                         </div></div> <!-- /.section, /#sidebar-first -->
                 <?php endif; ?>
 
-                <div id="content" class="column"><div class="section">
+                <div id="content-specialities-page" class="column"><div class="section">
                         <div id="main" class="">
 
                             <?php if ($breadcrumb): ?>
@@ -173,11 +172,11 @@
                                         </h1>
                                     <?php endif; ?>-->
                                 <?php print render($title_suffix); ?>
-<!--                                --><?php //if ($tabs): ?>
-<!--                                    <div class="tabs">-->
-<!--                                        --><?php //print render($tabs); ?>
-<!--                                    </div>-->
-<!--                                --><?php //endif; ?>
+                                <!--                                --><?php //if ($tabs): ?>
+                                <!--                                    <div class="tabs">-->
+                                <!--                                        --><?php //print render($tabs); ?>
+                                <!--                                    </div>-->
+                                <!--                                --><?php //endif; ?>
                                 <?php print render($page['help']); ?>
                                 <?php if ($action_links): ?>
                                     <ul class="action-links">
@@ -189,36 +188,19 @@
 
                             </div></div> <!-- /.section, /#content -->
 
-                        <?php if ($page['sidebar_second']): ?>
-                            <div id="sidebar-second" class="column sidebar"><div class="section">
-                                    <?php print render($page['sidebar_second']); ?>
-                                </div></div> <!-- /.section, /#sidebar-second -->
-                        <?php endif; ?>
+
                     </div>
 
                 </div></div> <!-- /#main, /#main-wrapper -->
-
-            <?php if ($page['triptych_first'] || $page['triptych_middle'] || $page['triptych_last']): ?>
-                <div id="triptych-wrapper"><div id="triptych" class="clearfix">
-                        <?php print render($page['triptych_first']); ?>
-                        <?php print render($page['triptych_middle']); ?>
-                        <?php print render($page['triptych_last']); ?>
-                    </div></div> <!-- /#triptych, /#triptych-wrapper -->
-            <?php endif; ?>
         </div>
+        <?php if ($page['sidebar_second']): ?>
+            <div id="sidebar-second" class="column sidebar specialities-page-sidebar"><div class="section">
+                    <?php print render($page['sidebar_second']); ?>
+                </div></div> <!-- /.section, /#sidebar-second -->
+        <?php endif; ?>
     </div>
 
     <div id="footer-wrapper">
-
-
-        <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn'] || $page['footer_fourthcolumn']): ?>
-            <div id="footer-columns">
-                <?php print render($page['footer_firstcolumn']); ?>
-                <?php print render($page['footer_secondcolumn']); ?>
-                <?php print render($page['footer_thirdcolumn']); ?>
-                <?php print render($page['footer_fourthcolumn']); ?>
-            </div> <!-- /#footer-columns -->
-        <?php endif; ?>
         <div class="footer-block">
             <p class="copyright">Design by JZdesign</p>
             <?php if ($page['footer']): ?>

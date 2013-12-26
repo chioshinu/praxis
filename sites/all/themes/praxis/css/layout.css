@@ -9,6 +9,9 @@ body,
 body {
   font-size: 13px;
 }
+a {
+    outline: none;
+}
 #page-wrapper {
   min-height: 100%;
   min-width: 960px;
@@ -66,6 +69,7 @@ body {
 .one-sidebar #content {
   
 }
+
 .two-sidebars #content {
   width: 480px;
 }
@@ -74,7 +78,10 @@ body {
   float: none;
 }
 #sidebar-first {
-
+    overflow: hidden;
+}
+#sidebar-first #block-views-specialties-view-block-1 {
+    overflow: hidden;
 }
 #sidebar-second {
   overflow: hidden;
@@ -426,7 +433,7 @@ ul.menu > li  a {
   width: 600px;
 }
 #main-menu .menu >li.expanded:hover ul.menu {
-  
+  display: block;
   z-index: 30;
 }
 #main-menu .menu >li.expanded ul.menu li {
@@ -479,6 +486,7 @@ ul.menu > li  a {
   background: url(../images/content_wrapper_bg.png) repeat-x;
 }
 .content-pages-wrapper,
+.content-specialities-wrapper,
 .content-article-wrapper {
   overflow: hidden;
   width: 100%;
@@ -486,6 +494,7 @@ ul.menu > li  a {
 }
 .main_container_inner {
   overflow: hidden;
+    position: relative;
   width: 960px;
   margin: 0 auto 35px;
 }
@@ -512,31 +521,31 @@ ul.menu > li  a {
   overflow: hidden;
   margin: 0;
 }
-.stuff-ocupation {
+#sidebar-first #block-views-specialties-view-block-1 {
   overflow: hidden;
   width: 290px;
 }
-.stuff-ocupation h3 {
+#sidebar-first #block-views-specialties-view-block-1 h2 {
   font-size: 18px;
   font-weight: bold;
   color: #fff;
   margin: 13px 0 11px;
 }
-.ocupation-list {
+#sidebar-first #block-views-specialties-view-block-1 ul {
   overflow-y: auto;
   margin: 0;
   padding: 0;
   max-height: 211px;
   height: 211px;
 }
-.ocupation-list > li {
+#sidebar-first #block-views-specialties-view-block-1 ul > li {
   display: block;
   overflow: hidden;
   padding: 0 0 0 8px;
   line-height: 14px;
   background: url(../images/list_icon.png) no-repeat center left;
 }
-.ocupation-list > li a {
+#sidebar-first #block-views-specialties-view-block-1 ul > li span a {
     font-size: 12px;
     color: #fff;
 }
@@ -974,7 +983,8 @@ display: block;
 .sidebar-right-inner .praxis-contact,
 .sidebar-right-inner .subscribe, 
 .block-loger,
-#block-views-internal-block-1 {
+#block-views-internal-block-1,
+#block-views-specialties-view-block {
     overflow: hidden;
     background-color: #F2F9FA;
     border-top: 1px solid #C4DAD9;
@@ -985,7 +995,8 @@ display: block;
 .sidebar-right-inner .scadhule-block,
 .sidebar-right-inner .praxis-contact,
 .sidebar-right-inner .subscribe,
-#block-views-internal-block-1 {
+#block-views-internal-block-1,
+#block-views-specialties-view-block {
     margin: 0 0 10px;
     padding: 20px 10px 16px 18px;
 }
@@ -1017,23 +1028,24 @@ display: block;
 #sidebar-second .stuff-ocupation h3,
 .block-loger h2,
 #block-views-internal-block-1 h2,
-.praxis-contact h3 {
+.praxis-contact h3,
+#block-views-specialties-view-block h2 {
     margin: 0;
     font-size: 20px;
     font-weight: bold;
     color: #0A817F;
     border: none;
 }
-#sidebar-second .stuff-ocupation .ocupation-list {
+#sidebar-second #block-views-specialties-view-block ul {
     overflow: hidden;
 }
-#sidebar-second .stuff-ocupation .ocupation-list > li {
+#sidebar-second #block-views-specialties-view-block ul > li {
     overflow: hidden;
     padding: 0 0 0 11px;
     list-style: none;
     background: url(../images/sidebar-right-dot.png) no-repeat left center;
 }
-#sidebar-second .stuff-ocupation .ocupation-list > li a {
+#sidebar-second #block-views-specialties-view-block ul > li span a {
     color: #393939;
     font-size: 13px;
 }
@@ -1092,7 +1104,7 @@ display: block;
 .news-head, .login-top-block {
   overflow: hidden;
   position: relative;
-  height: 309px;
+  height: 311px;
 }
 .news-head.downloads-head {
   background-color: #fff;
@@ -1101,7 +1113,7 @@ display: block;
   overflow: hidden;
   display: block;
   width: 960px;
-  height: 309px;
+  height: 311px;
 }
 .news-head h2, .login-top-block h2 {
   position: absolute;
@@ -1778,8 +1790,7 @@ a.news-attachment {
     overflow: hidden;
     position: relative;
 }
-.single-doctors-sidebar
-{
+.single-doctors-sidebar {
     position: absolute!important;
     right: 0;
     top: 345px;
@@ -1937,6 +1948,9 @@ a.news-attachment {
     width: 100%;
     background: url(../images/login_wrap_bg.png) repeat-x;
 }
+#login-wrapper h1 {
+    display: none;
+}
 #login-wrapper {
   overflow: hidden;
   margin: 0 auto;
@@ -1946,7 +1960,9 @@ a.news-attachment {
   width: 500px;
   overflow: hidden;
   margin: 0 134px 0 0;
+  padding: 0 0 37px;
   float: left;
+  border-bottom: 1px solid #CACACA;
 }
 .logger-page {
   overflow: hidden;
@@ -2212,4 +2228,58 @@ a.news-attachment {
     float: left;
     font-size: 16px;
     color: #272727;
+}
+/*-----------------------------< Specialities Page >---------------------------*/
+.node-specialties-page {
+    overflow: hidden;
+}
+.node-specialties-page .field-name-field-header-image {
+    overflow: hidden;
+    position: relative;
+    width: 960px;
+    height: 329px;
+    z-index: 1;
+}
+.node-specialties-page .field-name-field-header-image img {
+    display: block;
+}
+.node-specialties-page .field-name-title-field {
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+    height: 60px;
+    margin: -79px 0 20px;
+    padding: 0 0 0 30px;
+    line-height: 60px;
+    color: #fff;
+
+    font-size: 32px;
+    background-color: rgba(11, 11, 11, 0.8);
+}
+.node-specialties-page .field-name-body {
+    overflow: hidden;
+    width: 550px;
+    margin-right: auto;
+}
+.node-specialties-page .field-name-body p {
+    overflow: hidden;
+    margin: 0 0 20px;
+    color: #323232;
+    font-size: 16px;
+    line-height: 1.5;
+}
+.specialities-page-sidebar {
+    margin: 538px 0 0;
+    position: absolute !important;
+    overflow: hidden;
+    left: 873px;
+    top: 0;
+}
+.content-specialities-wrapper {
+    overflow: hidden;
+    min-height: 2540px;
+}
+#page-specialities {
+    position: relative;
+    overflow: hidden;
 }
