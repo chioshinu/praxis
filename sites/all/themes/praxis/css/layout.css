@@ -1123,7 +1123,7 @@ display: block;
   margin: 0;
   padding: 0 0 0 30px;
   line-height: 60px;
-  background-color: rgba(11,11,11, 0.8);
+  background-color: rgba(11,11,11, 0.7);
   font-size: 32px;
   color: #fff; 
 }
@@ -1144,6 +1144,9 @@ display: block;
 }
 .news-head h2.green {
     background-color: rgba(97,108,31, 0.5);
+}
+.news-head h2.blue {
+    background-color: rgba(14,106,155, 0.5);
 }
 .landing div.section div#main-wrapper div#main div.body-inner div.region #block-system-main {
     overflow: hidden;
