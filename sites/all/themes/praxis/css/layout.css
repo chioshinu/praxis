@@ -1139,6 +1139,9 @@ display: block;
 .news-head h2.grey {
     background-color: rgba(11,11,11, 0.5);
 }
+.news-head h2.light-grey {
+    background-color: rgba(196,202,200,0.5);
+}
 .news-head h2.red {
     background-color: rgba(183,88,90, 0.8);
 }
@@ -2285,4 +2288,56 @@ a.news-attachment {
 #page-specialities {
     position: relative;
     overflow: hidden;
+}
+/*-------------------------< Sitemap Page >--------------------------*/
+#site-map {
+    overflow: hidden;
+    width: 550px;
+    margin: 31px 83px 0 0;
+    float: left;
+}
+.site-map-box-menu h2 {
+    display: none;
+}
+.site-map-menu {
+    list-style: none;
+    padding: 0 !important;
+    overflow: hidden;
+}
+.site-map-menu > li {
+    overflow: hidden;
+    margin: 0 0 22px;
+    line-height: 28px;
+    padding: 0;
+}
+.site-map-menu > li a {
+    display: block;
+    width: 166px;
+    padding: 0 25px;
+    color: #464646;
+    font-size: 16px;
+    background-color: #AADBE0;
+    font-weight: bold;
+}
+.site-map-menu > li a:hover {
+    text-decoration: none;
+    opacity: 0.7;
+    filter:alpha(opacity=70);
+}
+.site-map-menu > li.expanded .site-map-menu {
+    overflow: hidden;
+    display: block;
+    list-style: none;
+    margin: 7px 0 0 85px !important;
+}
+.site-map-menu > li.expanded .site-map-menu > li {
+    background-color: #fff;
+    margin: 0 0 12px;
+    line-height: normal;
+}
+.site-map-menu > li.expanded .site-map-menu > li a {
+    width: 100%;
+    background-color: #fff;
+    padding: 0;
+    font-weight: normal;
 }

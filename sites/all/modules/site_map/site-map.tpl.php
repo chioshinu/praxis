@@ -21,7 +21,9 @@
  */
 ?>
 
-
+<div class="news-head">
+    <img alt="sitemap" src="/sites/default/files/sitemap_img.png"><h2 class="light-grey">Sitemap</h2>
+</div>
 <div id="site-map">
   <?php if($message): ?>
     <div class="site-map-message">
