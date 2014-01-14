@@ -58,7 +58,7 @@
         <?php endif; ?>
     <?php else: ?>
         <?php if (isset($row->field_field_attachment[0])): ?>
-            <a href="<?php print $row->field_field_attachment[0]['rendered']['#markup']; ?>" class="news-attachment"><?php print t('Download Attachment'); ?></a>
+            <a target="_blank" href="<?php print $row->field_field_attachment[0]['rendered']['#markup']; ?>" class="news-attachment"><?php print t('Download Attachment'); ?></a>
         <?php endif; ?>
     <?php endif; ?>
 
