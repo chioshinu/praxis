@@ -28,7 +28,7 @@
 
 
 <?php //print $fields['title']->content; ?>
-<h3><?php print $row->node_title; ?></h3>
+<h3><?php print $fields['title_field']->content; ?></h3>
 
 <?php print $fields['body']->content; ?>
 <?php if (count($row->field_field_file)>0): ?>
