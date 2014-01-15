@@ -1,4 +1,4 @@
-
+@import url(http://fonts.googleapis.com/css?family=Lato:400italic,300,700);
 /* ---------- Basic Layout Styles ----------- */
 
 html,
@@ -97,6 +97,9 @@ a {
 #breadcrumb {
   margin: 0 15px;
 }
+#breadcrumb h2 {
+    display: none;
+}
 .region-triptych-first,
 .region-triptych-middle,
 .region-triptych-last {
@@ -116,7 +119,9 @@ a {
 #footer {
 
 }
- 
+h2, h3 {
+    font-family: Lato, sans-serif;
+}
 
 /*--------------------------------------------------------------*/
 /*---------------------------< Header >-------------------------*/
@@ -955,20 +960,29 @@ display: block;
 /*----------------------< Breadcrumb >---------------------*/
 .breadcrumb {
   overflow: hidden;
+  height: 37px;
+  line-height: 37px;
   padding: 0;
   color: #fff;
+  font-family: Arial, sans-serif;
 }
 .breadcrumb a {
-  display: inline-block;
-  margin: 13px 0 10px;
+  /*display: inline-block;*/
+  /*margin: 13px 0 10px;*/
+  padding: 0 12px 0 0;
   color: #fff;
   font-size: 12px;
+  font-family: Arial, sans-serif;
+  background: url("../images/breadcrumb_arrow.png") no-repeat right 3px;
 }
 .breadcrumb a:hover {
   color: #fff;
   text-decoration: none;
   opacity: 0.8;
   filter: alpha(opacity=80);
+}
+.breadcrumb .delimiter {
+    display: none;
 }
 /*---------------------------------------------------------*/
 /*-------------------< Sidebar Right >---------------------*/
@@ -1104,7 +1118,7 @@ display: block;
 .news-head, .login-top-block {
   overflow: hidden;
   position: relative;
-  height: 311px;
+  height: 313px;
 }
 .news-head.downloads-head {
   background-color: #fff;
@@ -1113,19 +1127,21 @@ display: block;
   overflow: hidden;
   display: block;
   width: 960px;
-  height: 311px;
+  height: 313px;
 }
 .news-head h2, .login-top-block h2 {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 59px;
   margin: 0;
-  padding: 0 0 0 30px;
-  line-height: 60px;
+  padding: 0 0 0 14px;
+  line-height: 59px;
   background-color: rgba(11,11,11, 0.7);
-  font-size: 32px;
-  color: #fff; 
+  font-size: 27px;
+  color: #fff;
+  font-weight: 700;
 }
 .login-top-block h2.brown {
     background-color: rgba(154,148,123, 0.5);
@@ -1172,16 +1188,18 @@ display: block;
 }
 
 .view-news-page .views-row{
-    margin: 30px 0 30px 0;
+    margin: 30px 0 0;
     overflow: hidden;
 }
 
 .view-news-page .views-row .views-field-title-field{
-    font: 20px Arial;
+    margin: 0 0 5px;
+    font: 23px/normal Lato;
     color: #39A7B3;
     display: block;
     line-height: 29px;
     clear: both;
+    font-weight: 700;
 }
 
 .view-news-page .views-row .views-field-title-field a, .view-news-page .views-row .views-field-title-field a:hover{
@@ -1195,6 +1213,8 @@ display: block;
 .view-news-page .views-row .share{
     display: block;
     float: right;
+    margin: 0 6px 0 0;
+    overflow: hidden;
 }
 
 .view-news-page .views-row .share a{
@@ -1248,11 +1268,11 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 
 .view-news-page .views-row .views-field-body{
-    font: 13px Arial;
+    font: 13px/1.5 Arial;
     color: #272727;
     background: url("../images/news-line.png") no-repeat top right transparent;
-    padding: 10px 0 0 0;
-    margin: 10px 0 0 0;
+    padding: 8px 0 0 0;
+    margin: 13px 0 0 0;
     display: block;
 }
 
@@ -1276,7 +1296,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 a.news-attachment {
     overflow: hidden;
     display: block;
-    margin: 26px 0 35px;
+    margin: 32px 1px 29px;
     color: #0072BC;
     font-size: 13px;
     line-height: normal;
@@ -1852,28 +1872,50 @@ a.news-attachment {
 .view-download-page {
     margin: 31px 84px 0 0;
 }
-.view-download-page .views-row .views-field-title  span a {
+.downloads h3 {
     display: block;
-    margin: 0 0 25px;
-    padding: 0 0 10px;
+    margin: 0 0 20px;
+    padding: 0 0 7px;
     color: #39A7B3;
-    font-size: 16px;
+    font-size: 19px;
     border-bottom: 1px solid #CCC;
     line-height: normal;
     text-transform: capitalize;
+    font-weight: 700;
+    font-family: "Lato", sans-serif;
 }
-.view-download-page .views-row .views-field-title  span a:hover {
-    text-decoration: none;
-    opacity: 0.8;
-    filter:alpha(opacity=80);
+.downloads ul {
+    overflow: hidden;
+    list-style: none;
 }
-.view-download-page .views-row .file {
-    display: block;
-    font-size: 14px;
-    color: #272727;
-    margin: 0 0 22px;
+.downloads ul > li {
+    overflow: hidden;
+    margin: 0 0 15px;
     float: left;
-    width: 272px;
+    width: 50%;
+    height: 15px;
+    line-height: 15px;
+}
+.downloads ul > li a, .downloads ul > li span {
+    color: #282828;
+    white-space: nowrap;
+}
+.downloads ul > li a {
+    display: block;
+    float: left;
+    max-width: 174px;
+    padding: 0 3px 0 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    font-weight: 700;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+}
+.downloads ul > li span {
+    display: block;
+    overflow: hidden;
+    font-size: 13px;
 }
 /*----------------------------< Articles >----------------------------*/
 .praxis-article .node-article .field-name-body .field-items .field-item p {
