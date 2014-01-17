@@ -1192,7 +1192,8 @@ display: block;
     overflow: hidden;
 }
 
-.view-news-page .views-row .views-field-title-field{
+.view-news-page .views-row .views-field-title-field,
+.view-presse-page h3{
     margin: 0 0 5px;
     font: 23px/normal Lato;
     color: #39A7B3;
@@ -1202,7 +1203,8 @@ display: block;
     font-weight: 700;
 }
 
-.view-news-page .views-row .views-field-title-field a, .view-news-page .views-row .views-field-title-field a:hover{
+.view-news-page .views-row .views-field-title-field a, .view-news-page .views-row .views-field-title-field a:hover,
+.view-presse-page h3{
     color: #39A7B3;
 }
 
