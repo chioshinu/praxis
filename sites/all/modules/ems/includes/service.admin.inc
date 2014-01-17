@@ -41,6 +41,10 @@ function service_form_submit($form, &$form_state) {
     $values = $form_state['values'];
     $service = new Service($values, 'service');
     $service->save();
+    if ($service->status != 0){
+        $doctor = doctor_load($service->did);
+        drupal_mail('ems', 'service_approved', $doctor->email, 'en', array('service' => $service));
+    }
 
 
     $form_state['redirect'] = 'admin/content/services';
@@ -122,7 +126,7 @@ function services_overview($form, &$form_state, $arg=null){
     $statuses = array('Pending', 'Approved', 'Declined');
 
     foreach ($ems_array as $s_id => $service) {
-        if (is_integer($service->did)){
+        if ($service->did){
             $doctor = doctor_load($service->did);
             if ($doctor){
                 $doctor_text = $doctor->first_name . " " . $doctor->last_name;

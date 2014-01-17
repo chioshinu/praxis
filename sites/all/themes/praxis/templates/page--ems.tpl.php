@@ -144,9 +144,9 @@
         <div class="content-login-wrapper">
             <div class="main_container_inner">
                 <div id="login-wrapper">
-                    <?php if ($breadcrumb): ?>
-                        <div id="breadcrumb"><?php print $breadcrumb; ?></div>
-                    <?php endif; ?>
+
+                    <div id="fix-breadcrumb"></div>
+
                     <div class="login-top-block">
                         <img src="/sites/all/themes/praxis/images/notfall_img.png" alt="login" />
                         <?php if ($title): ?>

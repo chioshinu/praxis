@@ -186,6 +186,7 @@ function ems_service_form($form, &$form_state, $doctor){
         '#default_value' => '',
         '#required' => TRUE,
         '#maxlength' => 255,
+        '#size' => 40,
         '#attributes' =>array('class' => array('date'))
     );
     $form['end'] = array(
@@ -194,6 +195,7 @@ function ems_service_form($form, &$form_state, $doctor){
         '#default_value' => '',
         '#required' => TRUE,
         '#maxlength' => 255,
+        '#size' => 40,
         '#attributes' =>array('class' => array('date'))
     );
     $form['actions'] = array(
@@ -289,8 +291,14 @@ function ems_user_page(){
     $query->propertyCondition('did', $doctor->did, '=');
     $query->propertyOrderBy('start', 'DESC');
     $res = $query->execute();
-    $sids = array_keys($res['service']);
-    $services = service_load_multiple($sids);
+    if (isset($res['service'])){
+        $sids = array_keys($res['service']);
+        $services = service_load_multiple($sids);
+    }
+    else{
+        $services = array();
+    }
+
 
     drupal_set_title('Notfall Services');
 
