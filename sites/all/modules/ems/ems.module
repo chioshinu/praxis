@@ -101,7 +101,12 @@ function ems_mail ($key, &$message, $params) {
             break;
         case 'service_create':
             $message['subject'] = t('New EMS service');
-            $message['body'][] = "Notfal doctor {$params['doctor']->first_name} {$params['doctor']->last_name} submitted dates: from {$params['service']->start} to {$params['service']->end}.\nFollow the link to conform or decline: {$base_url}admin/content/service/{$params['service']->sid}/edit.";
+            $message['body'][] = "Notfal doctor {$params['doctor']->first_name} {$params['doctor']->last_name} submitted dates: from {$params['service']->start} to {$params['service']->end}.\nFollow the link to conform or decline: {$base_url}/admin/content/service/{$params['service']->sid}/edit.";
+            break;
+        case 'service_approved':
+            $message['subject'] = t('Your EMS service reviewed');
+            $action = $params['service']->status == 1 ? "approved" : "declined";
+            $message['body'][] = "You service (from {$params['service']->start} to {$params['service']->end}) was {$action} with reason: {$params['service']->description}";
             break;
     }
 }
@@ -181,7 +186,7 @@ function ems_menu() {
         'title' => 'Edit',
         'page callback' => 'service_edit_page',
         'page arguments' => array(3),
-        'access arguments' => array('access content'),
+        'access arguments' => array('edit ems entities'),
         'type' => MENU_CALLBACK,
         'weight' => 0,
         'file' => 'includes/service.admin.inc',
