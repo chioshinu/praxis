@@ -24,6 +24,14 @@ function praxis_preprocess_html(&$variables) {
   // Add conditional stylesheets for IE
   drupal_add_css(path_to_theme() . '/css/ie.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'lte IE 7', '!IE' => FALSE), 'preprocess' => FALSE));
   drupal_add_css(path_to_theme() . '/css/ie6.css', array('group' => CSS_THEME, 'browsers' => array('IE' => 'IE 6', '!IE' => FALSE), 'preprocess' => FALSE));
+
+
+    if (count($variables['head_title_array']) > 1){
+        $variables['head_title'] = $variables['head_title_array']['name'] .  " | " . $variables['head_title_array']['title'];
+    }
+
+
+
 }
 
 /**
@@ -124,9 +132,16 @@ function praxis_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
     $variables['classes_array'][] = 'node-full';
     $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->type;
-      $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->nid;
-
+    $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->nid;
   }
+    if ($variables['type'] == 'specialties_page'){
+        if ($blocks = block_get_blocks_by_region('sidebar_second')){
+            $variables['region']['sidebar_second'] = $blocks;
+        }
+        else{
+            $variables['region']['sidebar_second'] = array();
+        }
+    }
 }
 
 /**
@@ -137,6 +152,12 @@ function praxis_preprocess_block(&$variables) {
   if ($variables['block']->region == 'header') {
     $variables['title_attributes_array']['class'][] = 'element-invisible';
   }
+}
+
+function praxis_preprocess_menu_tree(&$variables){
+    if ($variables){
+
+    }
 }
 
 /**
@@ -186,7 +207,16 @@ function praxis_menu_link($variables){
     if ($element['#below']) {
         $sub_menu = drupal_render($element['#below']);
     }
-    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+
+    if (strpos($sub_menu,'active') !== false){
+        $class = 'active';
+    }
+    else{
+        $class = '';
+    }
+    $options = $element['#localized_options'];
+    $options['attributes']['class'][] = $class;
+    $output = l($element['#title'], $element['#href'], $options);
     return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 
 }

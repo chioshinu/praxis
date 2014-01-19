@@ -2307,9 +2307,8 @@ a.news-attachment {
     background-color: rgba(11, 11, 11, 0.8);
 }
 .node-specialties-page .field-name-body {
-    overflow: hidden;
+    float: left;
     width: 550px;
-    margin-right: auto;
 }
 .node-specialties-page .field-name-body p {
     overflow: hidden;
@@ -2319,11 +2318,9 @@ a.news-attachment {
     line-height: 1.5;
 }
 .specialities-page-sidebar {
-    margin: 538px 0 0;
-    position: absolute !important;
-    overflow: hidden;
-    left: 873px;
-    top: 0;
+    float: right;
+    width: 326px;
+
 }
 .content-specialities-wrapper {
     overflow: hidden;

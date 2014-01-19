@@ -172,11 +172,7 @@
                                         </h1>
                                     <?php endif; ?>-->
                                 <?php print render($title_suffix); ?>
-                                <!--                                --><?php //if ($tabs): ?>
-                                <!--                                    <div class="tabs">-->
-                                <!--                                        --><?php //print render($tabs); ?>
-                                <!--                                    </div>-->
-                                <!--                                --><?php //endif; ?>
+
                                 <?php print render($page['help']); ?>
                                 <?php if ($action_links): ?>
                                     <ul class="action-links">
@@ -193,11 +189,11 @@
 
                 </div></div> <!-- /#main, /#main-wrapper -->
         </div>
-        <?php if ($page['sidebar_second']): ?>
-            <div id="sidebar-second" class="column sidebar specialities-page-sidebar"><div class="section">
-                    <?php print render($page['sidebar_second']); ?>
-                </div></div> <!-- /.section, /#sidebar-second -->
-        <?php endif; ?>
+<!--        --><?php //if ($page['sidebar_second']): ?>
+<!--            <div id="sidebar-second" class="column sidebar specialities-page-sidebar"><div class="section">-->
+<!--                    --><?php //print render($page['sidebar_second']); ?>
+<!--                </div></div> <!-- /.section, /#sidebar-second -->
+<!--        --><?php //endif; ?>
     </div>
 
     <div id="footer-wrapper">
