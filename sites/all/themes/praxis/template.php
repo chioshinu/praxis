@@ -233,3 +233,45 @@ function praxis_preprocess_user_login(&$variables) {
 
     //$variables['rendered'] = drupal_render_children($variables['form']);
 }
+
+function praxis_status_messages(&$variables){
+    $display = $variables['display'];
+    $output = '';
+
+    $status_heading = array(
+        'status' => t('Status message'),
+        'error' => t('Error message'),
+        'warning' => t('Warning message'),
+    );
+    foreach (drupal_get_messages($display) as $type => $messages) {
+        if (!user_access('administer') && $type == 'warning') {
+            continue;
+        }
+        $t_message = "<div class=\"messages $type\">\n";
+        if (!empty($status_heading[$type])) {
+            $t_message .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
+        }
+
+        //<em class="placeholder">Warning</em>: file_get_contents(/misc/ui/jquery.ui.widget.min.js): failed to open stream: No such file or directory in <em class="placeholder">_locale_parse_js_file()</em> (line <em class="placeholder">1488</em> of <em class="placeholder">/Users/chioshinu/projects/praxis/includes/locale.inc</em>).
+        if (count($messages) > 1) {
+            $t_message .= " <ul>\n";
+            $l_message = "";
+            foreach ($messages as $message) {
+                if (strpos($message, "file_get_contents(/misc/ui/jquery.ui") === false){
+                    $l_message .= '  <li>' . $message . "</li>\n";
+                }
+            }
+            if ($l_message != ""){
+                $t_message .= $l_message . " </ul>\n";
+            }
+            else{
+                continue;
+            }
+        }
+        else {
+            $t_message .= $messages[0];
+        }
+        $output .= $t_message  . "</div>\n";
+    }
+    return $output;
+}
