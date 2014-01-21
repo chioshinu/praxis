@@ -2293,12 +2293,19 @@ a.news-attachment {
 .node-specialties-page .field-name-field-header-image img {
     display: block;
 }
+.field-name-field-header-image .field-items .field-item{
+    height: 312px;
+}
+.field-name-field-header-image .field-items .field-item img{
+    height: 100%;
+}
+
 .node-specialties-page .field-name-title-field {
     overflow: hidden;
     position: relative;
     z-index: 5;
     height: 60px;
-    margin: -79px 0 20px;
+    margin: -77px 0 20px;
     padding: 0 0 0 30px;
     line-height: 60px;
     color: #fff;
