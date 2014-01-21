@@ -742,7 +742,7 @@ ul.links {
 
 /* ------------------ Sidebar ----------------- */
 .sidebar .section {
-  padding-top: 10px;
+  padding-top: 0;
 }
 .sidebar .block {
   
