@@ -2401,3 +2401,19 @@ a.news-attachment {
     overflow: hidden;
     margin: 31px 0 0 0;
 }
+
+.login-links{
+    margin: -10px 0 0 0;
+}
+
+.login-links a{
+    color: #39A8B4;
+}
+
+.login-links .forgot-password{
+    margin: 0 0 0 103px;
+}
+
+.login-links .sign-up{
+    margin: 0 0 0 120px;
+}

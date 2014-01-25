@@ -41,6 +41,7 @@ function service_form_submit($form, &$form_state) {
     $values = $form_state['values'];
     $service = new Service($values, 'service');
     $service->save();
+    $service = service_load($values['sid']);
     if ($service->status != 0){
         $doctor = doctor_load($service->did);
         drupal_mail('ems', 'service_approved', $doctor->email, 'en', array('service' => $service));

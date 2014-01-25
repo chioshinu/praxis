@@ -13,6 +13,28 @@ define('TOTAL_ITEMS_PER_PAGE', 50);
 define('ADMIN_CONTENT_DOCTOR_MANAGE_URI', 'admin/content/doctor/manage/');
 define('ADMIN_CONTENT_DOCTOR_URI', 'admin/content/doctors');
 
+function ems_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+    // Remove Notfall role from edit user form
+    foreach (user_roles() as $rid => $name) {
+        if ($name == 'Notfal doctor') {
+            unset($form['account']['roles']['#options'][$rid]);
+        }
+    }
+}
+/**
+ * Alters user_register_form
+ */
+function ems_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+    if(isset($form['account']['roles'])){
+        // Remove Notfall role from edit user form
+        foreach (user_roles() as $rid => $name) {
+            if ($name == 'Notfal doctor') {
+                unset($form['account']['roles']['#options'][$rid]);
+            }
+        }
+    }
+}
+
 function ems_user_login(&$edit, $account){
 //    if ($account->access == "0" and isset($account->roles[4])){
     if (isset($account->roles[5])){
@@ -21,30 +43,37 @@ function ems_user_login(&$edit, $account){
 }
 
 function ems_user_insert(&$edit, $account, $category) {
-    if (isset($account->roles[5])){
-        $doctor = new Doctor(array(), 'doctor');
-        $doctor->uid = $account->uid;
-        $doctor->title = $account->name;
-        $doctor->email = $account->mail;
-        $doctor->save();
-    }
+//    if (isset($account->roles[5])){
+//        $query = new EntityFieldQuery();
+//        $query
+//            ->entityCondition('entity_type', 'doctor');
+//        $query->propertyCondition('uid', $account->uid, '=');
+//        $res = $query->execute();
+//        if (count($res) == 0){
+//            $doctor = new Doctor(array(), 'doctor');
+//            $doctor->uid = $account->uid;
+//            $doctor->title = $account->name;
+//            $doctor->email = $account->mail;
+//            $doctor->save();
+//        }
+//    }
 }
 
 function ems_user_update(&$edit, $account, $category){
-    if (isset($account->roles[5])){
-        $query = new EntityFieldQuery();
-        $query
-            ->entityCondition('entity_type', 'doctor');
-        $query->propertyCondition('uid', $account->uid, '=');
-        $doctors = $query->execute();
-        if (count($doctors)==0){
-            $doctor = new Doctor(array(), 'doctor');
-            $doctor->uid = $account->uid;
-            $doctor->title = $account->name;
-            $doctor->email = $account->mail;
-            $doctor->save();
-        }
-    }
+//    if (isset($account->roles[5])){
+//        $query = new EntityFieldQuery();
+//        $query
+//            ->entityCondition('entity_type', 'doctor');
+//        $query->propertyCondition('uid', $account->uid, '=');
+//        $doctors = $query->execute();
+//        if (count($doctors)==0){
+//            $doctor = new Doctor(array(), 'doctor');
+//            $doctor->uid = $account->uid;
+//            $doctor->title = $account->name;
+//            $doctor->email = $account->mail;
+//            $doctor->save();
+//        }
+//    }
 }
 
 /**
@@ -206,6 +235,8 @@ function ems_menu() {
         'access arguments' => array('access content'),
         'access callback' => 'user_service_access',
         'file' => 'includes/pages.inc',
+        'type' => MENU_NORMAL_ITEM,
+        'menu_name' => 'main-menu'
     );
 
     return $items;

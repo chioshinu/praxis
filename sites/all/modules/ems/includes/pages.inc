@@ -186,7 +186,7 @@ function ems_service_form($form, &$form_state, $doctor){
         '#default_value' => '',
         '#required' => TRUE,
         '#maxlength' => 255,
-        '#size' => 40,
+        '#size' => 28,
         '#attributes' =>array('class' => array('date'))
     );
     $form['end'] = array(
@@ -195,7 +195,7 @@ function ems_service_form($form, &$form_state, $doctor){
         '#default_value' => '',
         '#required' => TRUE,
         '#maxlength' => 255,
-        '#size' => 40,
+        '#size' => 28,
         '#attributes' =>array('class' => array('date'))
     );
     $form['actions'] = array(

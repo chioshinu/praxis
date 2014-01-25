@@ -160,11 +160,11 @@
                                 </h1>
                             <?php endif; ?>
                             <?php print render($title_suffix); ?>
-                            <?php if ($tabs): ?>
-                                <div class="tabs">
-                                    <?php print render($tabs); ?>
-                                </div>
-                            <?php endif; ?>
+<!--                            --><?php //if ($tabs): ?>
+<!--                                <div class="tabs">-->
+<!--                                    --><?php //print render($tabs); ?>
+<!--                                </div>-->
+<!--                            --><?php //endif; ?>
                             <?php print render($page['help']); ?>
                             <?php if ($action_links): ?>
                                 <ul class="action-links">
@@ -173,6 +173,11 @@
                             <?php endif; ?>
 
                             <?php print render($page['content']); ?>
+                            <div style="clear: both"></div>
+                            <div class="login-links">
+                                <a class="forgot-password" href="/user/password">Forgot password?</a>
+                                <a class="sign-up" href="/ems/register">Sing up</a>
+                            </div>
                             <?php print $feed_icons; ?>
 
                         </div><!-- /.section, /#content -->

@@ -159,6 +159,9 @@ function _path_breadcrumbs_build_breadcrumbs($path_breadcrumb, $contexts = array
   $titles = implode("\n", $path_breadcrumb->titles);
   $paths  = implode("\n", $path_breadcrumb->paths);
 
+  // Replace %nn sequences to prevent mixing them with contexts.
+  $paths = rawurldecode($paths);
+
   // Replace module placeholders.
   $replace = array();
   $search = array();
@@ -786,16 +789,18 @@ function _path_breadcrumbs_sort_weight($a, $b) {
  */
 function path_breadcrumbs_export($path_breadcrumbs, $indent) {
   // Structure object according to schema.
-  $path_breadcrumbs->data = array(
-    'titles'        => $path_breadcrumbs->titles,
-    'paths'         => $path_breadcrumbs->paths,
-    'home'          => $path_breadcrumbs->home,
-    'translatable'  => $path_breadcrumbs->translatable,
-    'arguments'     => $path_breadcrumbs->arguments,
-    'access'        => $path_breadcrumbs->access,
-  );
-  if (!empty($path_breadcrumbs->custom)) {
-    $path_breadcrumbs->data['custom'] = $path_breadcrumbs->custom;
+  if (empty($path_breadcrumbs->data)) {
+    $path_breadcrumbs->data = array(
+      'titles'        => $path_breadcrumbs->titles,
+      'paths'         => $path_breadcrumbs->paths,
+      'home'          => $path_breadcrumbs->home,
+      'translatable'  => $path_breadcrumbs->translatable,
+      'arguments'     => $path_breadcrumbs->arguments,
+      'access'        => $path_breadcrumbs->access,
+    );
+    if (!empty($path_breadcrumbs->custom)) {
+      $path_breadcrumbs->data['custom'] = $path_breadcrumbs->custom;
+    }
   }
   return ctools_export_object('path_breadcrumbs', $path_breadcrumbs, $indent);
 }
@@ -852,8 +857,13 @@ function path_breadcrumbs_panels_pane_content_alter(&$content, $pane, $args, $co
  * @return string Cleared URL.
  */
 function _path_breadcrumbs_clean_url($url, &$options, $method = NULL) {
-  $url_short = $url;
-  $url_parts = parse_url($url);
+  // Reset options.
+  $options['fragment'] = '';
+  $options['query'] = array();
+
+  // Decode &amp; back to &.
+  $url_short = htmlspecialchars_decode($url, ENT_NOQUOTES);
+  $url_parts = parse_url($url_short);
 
   // Remove #hash from URL.
   if (!empty($url_parts['fragment'])) {
@@ -861,10 +871,10 @@ function _path_breadcrumbs_clean_url($url, &$options, $method = NULL) {
     list($url_short, ) = explode('#', $url_short, 2);
   }
   // Remove query string from URL.
+  $options['query'] = array();
   if (!empty($url_parts['query'])) {
     list($url_short, ) = explode('?', $url_short, 2);
     parse_str($url_parts['query'], $query);
-    $options['query'] = isset($options['query']) ? $options['query'] : array();
     $options['query'] += $query;
   }
 
@@ -897,6 +907,8 @@ function _path_breadcrumbs_clean_url($url, &$options, $method = NULL) {
     foreach ($pieces as $piece) {
       $results[] = ctools_cleanstring($piece, $ctools_cleanstring_settings);
     }
+    $options['fragment'] = ctools_cleanstring($options['fragment'], $ctools_cleanstring_settings);
+
   }
   elseif ($method == 'pathauto' && module_exists('pathauto')) {
     module_load_include('inc', 'pathauto');
@@ -904,6 +916,8 @@ function _path_breadcrumbs_clean_url($url, &$options, $method = NULL) {
     foreach ($pieces as $piece) {
       $results[] = pathauto_cleanstring($piece);
     }
+    $options['fragment'] = pathauto_cleanstring($options['fragment']);
+
   }
   else {
     $results = $pieces;

@@ -172,18 +172,19 @@ function doctor_form_submit($form, &$form_state) {
     $values = $form_state['values'];
     $doctor = new Doctor($values, 'doctor');
     $doctor->save();
-    $doctor = doctor_load($values['did']);
-    if ((!isset($doctor->uid) || !$doctor->uid) && $doctor->status == 1){
+
+    $new_doctor = doctor_load($values['did']);
+    if ((!isset($new_doctor->uid) || !$new_doctor->uid) && $new_doctor->status == 1){
         //create user and send email for confirmation
         $password = user_password(8);
 
         //set up the user fields
         $fields = array(
-            'name' => $doctor->title,
-            'mail' => $doctor->email,
+            'name' => $new_doctor->title,
+            'mail' => $new_doctor->email,
             'pass' => $password,
             'status' => 1,
-            'init' => $doctor->email,
+            'init' => $new_doctor->email,
             'roles' => array(
                 DRUPAL_AUTHENTICATED_RID => 'authenticated user',
                 5 => 'Notfal doctor'
@@ -197,19 +198,24 @@ function doctor_form_submit($form, &$form_state) {
 
         // Manually set the password so it appears in the e-mail.
         $account->password = $fields['pass'];
-        $doctor->uid = $account->uid;
-        $doctor->save();
+        $new_doctor->uid = $account->uid;
+        doctor_save($new_doctor);
 
         // Send the e-mail through the user module.
         drupal_mail('user', 'register_no_approval_required', $account->mail, NULL, array('account' => $account), variable_get('site_mail', 'no-reply@praxis.com'));
 
     }
-    if ($doctor->uid){
-        if ($doctor->status != 1){
-            user_save($doctor->uid, array('status' => 0));
+    if ($new_doctor->uid){
+        $user = user_load($new_doctor->uid);
+        if ($new_doctor->status != 1){
+            $user->status = 0;
+            user_save($user, array('status' => 0));
+//            user_save($new_doctor->uid, array('status' => 0));
         }
         else{
-            user_save($doctor->uid, array('status' => 1));
+            $user->status = 1;
+            user_save($user,array('status' => 1));
+//            user_save($new_doctor->uid, array('status' => 1));
         }
     }
     drupal_set_message("Doctor was successfully updated");
