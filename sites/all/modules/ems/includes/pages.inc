@@ -169,7 +169,7 @@ function doctor_register_form_submit($form, &$form_state) {
     }
     $form_state['redirect'] = 'ems/register';
 
-    drupal_set_message("You request successfully stored and wait to Admin overview");
+    drupal_set_message("Thank you for your registration. We will review your application and inform you soon.");
     // $form_state['redirect'] = 'admin/content/lawmakers';
 //    $form_state['redirect'] = 'lawmakers/' . $lawmakers->lawmakers_id;
 }
@@ -268,7 +268,7 @@ function ems_service_form_submit($form, &$form_state){
     }
     $form_state['redirect'] = 'ems/services';
 
-    drupal_set_message("Your data was send and you will be notified on the status change of your submission");
+    drupal_set_message("Thank you for your request. It will be reviewed and we notify you about the status.");
 
 }
 
