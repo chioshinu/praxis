@@ -756,7 +756,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .timetable > li p {
   display: inline-block;
-  width: 62px;
+  width: 68px;
   height: 20px;
   margin: 0;
   line-height: 20px;
@@ -974,6 +974,10 @@ display: block;
   font-size: 12px;
   font-family: Arial, sans-serif;
   background: url("../images/breadcrumb_arrow.png") no-repeat right 3px;
+}
+
+.breadcrumb .last a{
+    background: none;
 }
 .breadcrumb a:hover {
   color: #fff;

@@ -29,9 +29,9 @@ function praxis_preprocess_html(&$variables) {
     if (count($variables['head_title_array']) > 1){
         $variables['head_title'] = $variables['head_title_array']['name'] .  " | " . $variables['head_title_array']['title'];
     }
-
-
-
+    elseif(count($variables['head_title_array']) == 1 && $variables['is_front']){
+        $variables['head_title'] = $variables['head_title_array']['name'] . " | Home";
+    }
 }
 
 /**
