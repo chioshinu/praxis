@@ -2406,9 +2406,6 @@ a.news-attachment {
     clear: both;
 }
 
-#ems-service-form div div.form-actions #edit-submit{
-    margin: 0;
-}
 
 #login-wrapper div div.tabs{
     overflow: hidden;
@@ -2574,7 +2571,8 @@ html.js input.webform-calendar {
     -ms-border-radius: 7px 7px 7px 7px;
 }
 
-#doctor-register-form div .form-actions #edit-submit{
+#doctor-register-form div .form-actions #edit-submit,
+#ems-service-form div .form-actions #edit-submit{
     margin: 0 0 0 5px;
 }
 
