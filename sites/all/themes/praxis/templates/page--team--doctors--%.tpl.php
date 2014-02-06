@@ -188,11 +188,7 @@
 
                             </div></div> <!-- /.section, /#content -->
 
-                        <?php if ($page['sidebar_second']): ?>
-                            <div id="sidebar-second" class="column sidebar single-doctors-sidebar"><div class="section">
-                                    <?php print render($page['sidebar_second']); ?>
-                                </div></div> <!-- /.section, /#sidebar-second -->
-                        <?php endif; ?>
+
                     </div>
 
                 </div></div> <!-- /#main, /#main-wrapper -->

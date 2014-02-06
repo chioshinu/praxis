@@ -437,10 +437,6 @@ ul.menu > li  a {
   overflow: visible;
   width: 600px;
 }
-#main-menu .menu >li.expanded:hover ul.menu {
-  display: block;
-  z-index: 30;
-}
 #main-menu .menu >li.expanded ul.menu li {
   display: block;
   float: left;
@@ -1868,6 +1864,7 @@ a.news-attachment {
     width: 543px;
     margin-right: auto;
     min-height: 819px;
+    float: left;
 }
 .doctor .main-content .page-body {
     overflow: hidden;
@@ -2435,9 +2432,6 @@ a.news-attachment {
     clear: both;
 }
 
-#ems-service-form div div.form-actions #edit-submit{
-    margin: 0;
-}
 
 #login-wrapper div div.tabs{
     overflow: hidden;
@@ -2603,6 +2597,15 @@ html.js input.webform-calendar {
     -ms-border-radius: 7px 7px 7px 7px;
 }
 
-#doctor-register-form div .form-actions #edit-submit{
+#doctor-register-form div .form-actions #edit-submit,
+#ems-service-form div .form-actions #edit-submit{
     margin: 0 0 0 5px;
+}
+
+.welcome{
+    float: right;
+}
+
+.welcome .doctor-name{
+    color: #0071B3;
 }
