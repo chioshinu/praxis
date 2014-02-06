@@ -2581,3 +2581,11 @@ html.js input.webform-calendar {
 #doctor-register-form div .form-actions #edit-submit{
     margin: 0 0 0 5px;
 }
+
+.welcome{
+    float: right;
+}
+
+.welcome .doctor-name{
+    color: #0071B3;
+}
