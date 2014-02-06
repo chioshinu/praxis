@@ -6,6 +6,7 @@ $image = array(
     'height' => '',
 
 );
+$region = block_get_blocks_by_region('sidebar_second');
 $items = field_get_items('node', $doctor, 'title_field');
 $name = field_view_value('node', $doctor, 'title_field', $items[0], array(), $lang);
 $items = field_get_items('node', $doctor, 'field_degree');
@@ -154,5 +155,7 @@ $pref = $lang != 'en' ? "/".$lang : "";
             <?php endif; ?>
         <?php endif; ?>
     </div>
-
+    <div id="inner-sidebar-second" class="column sidebar specialities-page-sidebar"><div class="section">
+            <?php print render($region); ?>
+    </div></div>
 </div>

@@ -1839,6 +1839,7 @@ a.news-attachment {
     width: 543px;
     margin-right: auto;
     min-height: 819px;
+    float: left;
 }
 .doctor .main-content .page-body {
     overflow: hidden;
