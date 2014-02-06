@@ -437,10 +437,6 @@ ul.menu > li  a {
   overflow: visible;
   width: 600px;
 }
-#main-menu .menu >li.expanded:hover ul.menu {
-  display: block;
-  z-index: 30;
-}
 #main-menu .menu >li.expanded ul.menu li {
   display: block;
   float: left;
