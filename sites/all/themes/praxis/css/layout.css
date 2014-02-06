@@ -1376,6 +1376,11 @@ a.news-attachment {
     background-position: -70px 0;
 }
 
+.item-list .pager li.pager-current,
+.item-list .pager li.pager-current:hover{
+    background: url("../images/news-pagger-active.png") no-repeat;
+}
+
 /*----------------------------------------------------------------*/
 /*--------------------------< Press Page >------------------------*/
 .view-presse-page {
@@ -1857,6 +1862,7 @@ a.news-attachment {
     font-size: 18px;
     color: #005B7F;
     line-height: normal;
+    font-weight: bold;
 }
 .doctor .main-content ul.list {
     overflow: hidden;
@@ -2570,4 +2576,8 @@ html.js input.webform-calendar {
     -webkit-border-radius: 7px 7px 7px 7px;
     -o-border-radius: 7px 7px 7px 7px;
     -ms-border-radius: 7px 7px 7px 7px;
+}
+
+#doctor-register-form div .form-actions #edit-submit{
+    margin: 0 0 0 5px;
 }

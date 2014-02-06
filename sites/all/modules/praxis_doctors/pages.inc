@@ -63,7 +63,7 @@ function team_view($type){
 
             }
         }
-
+        drupal_set_title($types[$type]);
 
     }
 
