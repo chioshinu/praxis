@@ -1691,6 +1691,7 @@ a.news-attachment {
     -ms-box-shadow: 0 0 4px 1px #fff inset;
     color: #383838;
     background: url("../images/acordeon_vertical_down_arrow.png") no-repeat 520px 18px #EBEBEB;
+    font-weight: bold;
 }
 #accordion h3.ui-state-active {
     height: 40px;
@@ -1705,6 +1706,7 @@ a.news-attachment {
     -o-box-shadow: 0 0 4px 1px #fff inset;
     -ms-box-shadow: 0 0 4px 1px #fff inset;
     background: url("../images/acordeon_vertical_up_arrow.png") no-repeat 520px 18px #CFE4E7;
+    font-weight: bold;
 }
 #accordion .ui-accordion-content .doctor-middle a:hover {
     text-decoration: none;
