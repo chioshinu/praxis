@@ -1177,6 +1177,24 @@ display: block;
 .news-head h2.dirty-blue {
     background-color: rgba(47,68,92, 0.8);
 }
+.news-head h2.dirty-pink {
+    background-color: rgba(188,159,145, 0.8);
+}
+.news-head h2.pink {
+    background-color: rgba(183,118,76, 0.5);
+}
+.news-head h2.dark-blue {
+    background-color: rgba(57,80,125, 0.8);
+}
+.news-head h2 span.news-head-help-text {
+    float: right;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: normal;
+    margin: 0 3% 0 0;
+    overflow: hidden;
+}
 .landing div.section div#main-wrapper div#main div.body-inner div.region #block-system-main {
     overflow: hidden;
     width: 643px;
@@ -1729,7 +1747,8 @@ a.news-attachment {
 .doctors-links-block ul.links > li {
     overflow: hidden;
     margin: 0 0 7px;
-    padding: 10px;
+    height: 41px;
+    line-height: 41px;
     background-color: #EBEBEB;
     border: 2px solid #CFCFCF;
     border-radius: 8px 8px 8px 8px;
@@ -1754,11 +1773,17 @@ a.news-attachment {
 .doctors-links-block ul.links > li a {
     font-size: 16px;
     color: #308D97;
+    padding: 0 10px;
+    display: block;
 }
 .doctors-links-block ul.links > li a:hover {
     text-decoration: none;
-    opacity: 0.8;
-    filter:alpha(opacity=80);
+    background-color: #A5D5DA;
+    box-shadow: 0 0 6px 2px #FFFFFF inset;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+    display: block;
 }
 .doctor .wrap .doctor-img-wrap {
     overflow: hidden;
@@ -1819,7 +1844,7 @@ a.news-attachment {
     opacity: 0.8;
     filter:alpha(opacity=80);
 }
-.doctor .email {
+.doctor .email a {
     overflow: hidden;
     margin: 0 0 24px 13px;
     padding: 0 0 0 28px;
