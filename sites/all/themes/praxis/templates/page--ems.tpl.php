@@ -148,9 +148,9 @@
                     <div id="fix-breadcrumb"></div>
 
                     <div class="login-top-block">
-                        <img src="/sites/all/themes/praxis/images/notfall_img.png" alt="login" />
+                        <img src="/sites/all/themes/praxis/images/loged_in_img.png" alt="login" />
                         <?php if ($title): ?>
-                            <h2 class="brown"><?php print $title; ?></h2>
+                            <h2 class="pink-dirty"><?php print $title; ?></h2>
                         <?php endif; ?>
 
                     </div>
