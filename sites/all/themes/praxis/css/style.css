@@ -1652,7 +1652,9 @@ div.admin-panel .description {
 }
 
 #ems-service-form .date{
-    background: url("../images/calendar.png") no-repeat 209px 3px;
+    background: url("../images/calendar.png") no-repeat 223px 3px;
+    /*width: 95%;*/
+    /*margin: 0 2% 0 0;*/
 }
 
 
