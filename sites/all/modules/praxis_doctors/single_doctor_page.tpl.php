@@ -74,14 +74,14 @@ $pref = $lang != 'en' ? "/".$lang : "";
                         <?php if ($page && $page->nid == $value->nid): ?>
                             <?php print render($title); ?>
                         <?php else: ?>
-                            <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>/page/<?php print $value->nid; ?>/"><?php print render($title); ?></a>
+                            <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>/page/<?php print $value->nid; ?>/"><?php print $title['#title']; ?></a>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
-                <?php if (($user->uid == $doctor->uid) && count($pages)<4): ?>
+                <?php if (($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles))) && count($pages)<4): ?>
                     <li><a href="/node/add/doctor-page"><?php print t('Add page'); ?></a></li>
                 <?php endif; ?>
-                <?php if ($user->uid == $doctor->uid): ?>
+                <?php if ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles))): ?>
                     <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
                 <?php endif; ?>
             </ul>
