@@ -36,10 +36,10 @@ function praxis_doctors_user_login(&$edit, $account){
 
 function praxis_doctors_form_alter(&$form, &$form_state, $form_id){
     global $user;
-    if ($form_id == 'doctor_biography_node_form' and isset($user->roles[4])){
+    if ($form_id == 'doctor_biography_node_form' and (isset($user->roles[4]) || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))){
         $form['actions']['submit']['#submit'][] = 'praxis_doctor_biografy_form_submit_alter';
     }
-    if ($form_id == 'doctor_page_node_form' and isset($user->roles[4])){
+    if ($form_id == 'doctor_page_node_form' and (isset($user->roles[4]) || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))){
         $form['actions']['submit']['#submit'][] = 'praxis_doctor_page_form_submit_alter';
     }
     if ($form_id == 'news_node_form'){
@@ -67,7 +67,7 @@ function praxis_doctor_page_form_submit_alter($form, &$form_state){
     global $language;
     global $user;
 //    $part = $language->language == 'en' ? '' : '/'.$language->language;
-    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'uid' => $user->uid));
+    $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'uid' => $form['#entity']->uid));
     if (count($nodes)>0){
         $node = array_shift($nodes);
         $form_state['redirect'] = 'team/doctors/'.$node->nid.'/page/'.$form['nid']['#value'];

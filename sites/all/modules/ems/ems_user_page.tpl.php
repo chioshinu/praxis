@@ -1,6 +1,6 @@
 <?php $status = array('Pending', 'Approved', 'Declined'); ?>
 
-    <div class="welcome">Welcome <span class="doctor-name"><?php print $doctor->first_name ?> <?php print $doctor->last_name ?></span>!</div>
+    <div class="welcome">Welcome <span class="doctor-name"><?php print $doctor->first_name ?> <?php print $doctor->last_name ?></span></div>
     <a class="logout" href="/user/logout">Logout</a>
     <div style="clear: both;"></div>
     <div class="service-form">
