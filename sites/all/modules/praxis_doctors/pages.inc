@@ -104,11 +104,12 @@ function doctor_view_page($bio_id, $page_id){
     global $user;
     global $language;
     $bio = node_load($bio_id);
-    $page = node_load($page_id);
+
+    $nodes = node_load_multiple(array(), array('type' => 'doctor_page', 'status' => 1, 'uid' => $bio->uid));
+    $page = isset($nodes[$page_id]) ? $nodes[$page_id] : false;
     if (!$bio || !$page){
         drupal_not_found();
     }
-    $nodes = node_load_multiple(array(), array('type' => 'doctor_page', 'status' => 1, 'uid' => $bio->uid));
     $output = theme('single_doctor_page', array('doctor'=>$bio, 'pages' => $nodes, 'lang' => $language->language, 'user' => $user, 'page' => $page));
     return $output;
 }

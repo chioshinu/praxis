@@ -69,10 +69,16 @@ $pref = $lang != 'en' ? "/".$lang : "";
                     <?php
                     $items = field_get_items('node', $value, 'field_button_title');
                     $title = field_view_value('node', $value, 'field_button_title', $items[0], array(), $lang);
+                    if ($page && $page->nid == $value->nid){
+                        $class = 'active';
+                    }
+                    else{
+                        $class = '';
+                    }
                     ?>
-                    <li <?php if ($page && $page->nid == $value->nid): ?> class="active" <?php endif; ?>>
+                    <li class="<?php print $class; ?>">
                         <?php if ($page && $page->nid == $value->nid): ?>
-                            <?php print render($title); ?>
+                            <?php print $title['#title']; ?>
                         <?php else: ?>
                             <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>/page/<?php print $value->nid; ?>/"><?php print $title['#title']; ?></a>
                         <?php endif; ?>
@@ -81,13 +87,18 @@ $pref = $lang != 'en' ? "/".$lang : "";
                 <?php if (($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles))) && count($pages)<4): ?>
                     <li><a href="/node/add/doctor-page"><?php print t('Add page'); ?></a></li>
                 <?php endif; ?>
-                <?php if ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles))): ?>
-                    <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
-                <?php endif; ?>
             </ul>
 
         </div>
         <div class="doctor-img-wrap"><?php print theme('image_style', $image); ?></div>
+        <ul class="editing-nav">
+            <?php if ( ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
+                <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
+            <?php endif; ?>
+            <?php if ($page && ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
+                <li><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/delete"><?php print t('Delete'); ?></a></li>
+            <?php endif; ?>
+        </ul>
         <div class="brief-info">
             <h2 class="name"><?php print render($name); ?></h2>
             <div class="degree"><?php print render($degree) ?></div>
