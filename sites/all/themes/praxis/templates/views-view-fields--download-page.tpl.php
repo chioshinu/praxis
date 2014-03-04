@@ -36,7 +36,7 @@
                 $title = substr($file['raw']['filename'], 0, strlen($file['raw']['filename'])-4);
 
             ?>
-            <a href="<?php print file_create_url($file['raw']['uri']) ?>"><?php print $title; ?></a>
+            <a href="<?php print file_create_url($file['raw']['uri']) ?>" target="_blank"><?php print $title; ?></a>
             <span class="type-size">[<?php print strtoupper($ext); ?> <?php print $size; ?> KB]</span>
         </li>
         <?php endforeach; ?>

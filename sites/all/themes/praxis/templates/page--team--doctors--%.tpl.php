@@ -92,10 +92,10 @@
                 <div class="header-right-block">
                     <ul class="social-media">
                         <li class="fb">
-                            <a href="#">Facebook</a>
+                            <a href="http://www.facebook.com/pages/Praxis-am-Bahnhof/127140757364554">Facebook</a>
                         </li>
                         <li class="tw">
-                            <a href="#">Twitter</a>
+                            <a href="http://twitter.com/praxisambahnhof">Twitter</a>
                         </li>
                         <li class="like">
                             <a href="#">Like</a>

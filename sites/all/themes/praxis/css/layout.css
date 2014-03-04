@@ -284,6 +284,20 @@ only screen and (min-device-pixel-ratio: 1.5) {
   height: 37px;
   background: url(../images/telephone.png) no-repeat left center;
 }
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+    .telephone span {background-image:url(../images/telephone@2x.png);
+        -moz-background-size:37px 37px;
+        -ie-background-size:37px 37px;
+        -o-background-size:37px 37px;
+        -webkit-background-size:37px 37px;
+        background-size:37px 37px;
+        background-position: left center;
+        background-repeat: no-repeat;
+    }
+}
 #block-locale-language {
   overflow: hidden;
 }
@@ -376,6 +390,20 @@ only screen and (min-device-pixel-ratio: 1.5) {
   background: url(../images/notfall_cirkle.png) no-repeat;
   outline: none;
 }
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+    .notfall a {background-image:url(../images/notfall_cirkle@2x.png);
+        -moz-background-size:70px 71px;
+        -ie-background-size:70px 71px;
+        -o-background-size:70px 71px;
+        -webkit-background-size:70px 71px;
+        background-size:70px 71px;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
+}
 .notfall a:hover {
   transform:rotate(360deg);
   -moz-transform:rotate(360deg);
@@ -395,6 +423,20 @@ only screen and (min-device-pixel-ratio: 1.5) {
   height: 50px;
   background: url(../images/notfall_cross.png) no-repeat;
   text-indent: -9999px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+    .notfall a span {background-image:url(../images/notfall_cross@2x.png);
+        -moz-background-size:50px 50px;
+        -ie-background-size:50px 50px;
+        -o-background-size:50px 50px;
+        -webkit-background-size:50px 50px;
+        background-size:50px 50px;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+    }
 }
 /*----------------------< Main Menu >--------------------*/
 ul.menu {
@@ -563,7 +605,7 @@ ul.menu > li  a {
   margin: 0;
   padding: 0 12px;
   font-size: 13px;
-  color: #C3C3C3;
+  color: #000;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -590,7 +632,7 @@ ul.menu > li  a {
 .home-main-sidebar {
   overflow: hidden;
   margin: 8px 0 0;
-  padding: 11px 11px 25px 14px;
+  padding: 11px 11px 20px 14px;
   border: 4px solid #E6E6E6;
   border-radius: 4px 4px 4px 4px;
   -moz-border-radius: 4px 4px 4px 4px;
@@ -621,7 +663,7 @@ ul.menu > li  a {
 }
 .scadhule-title span {
   display: block;
-  width: 64px;
+  width: 63px;
   height: 55px;
   float: left;
   background: url(../images/clock.png) no-repeat;
@@ -651,7 +693,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
 }
 .praxis-info {
   overflow: hidden;
-  margin: 0 0 34px;
+  margin: 0 0 33px;
   padding: 14px 4px 0;
   border: 1px solid #DBDBDB;
   box-shadow: 0 0 2px 0 #F0F0F0;
@@ -660,11 +702,26 @@ only screen and (min-device-pixel-ratio: 1.5) {
   overflow: hidden;
   display: block;
   width: 105px;
-  height: 27px;
+  height: 35px;
   margin: 0 12px 0 0;
   float: left;
-  background: url(../images/small_logo.png) no-repeat;
+  background: url(../images/small_logo.png) no-repeat center center;
 }
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (-o-min-device-pixel-ratio: 3/2),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-device-pixel-ratio: 1.5) {
+    .praxis-info .small-logo {background-image:url(../images/small_logo@2x.png);
+        -moz-background-size:105px 35px;
+        -ie-background-size:105px 35px;
+        -o-background-size:105px 35px;
+        -webkit-background-size:105px 35px;
+        background-size:105px 35px;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+}
+
 .praxis-info .praxis-contact {
   overflow: hidden;
 }
@@ -692,15 +749,23 @@ only screen and (min-device-pixel-ratio: 1.5) {
 .links-listing > li {
   overflow: hidden;
   float: left;
-  height: 57px;  
+  height: 63px;
   margin: 0;  
 }
 .links-listing > li a {
   display: block;
-  height: 57px;
-  line-height: 57px;
-  background: url(../images/links_list_sprite.png) no-repeat;
+  height: 63px;
+  background: url(../images/links_list_sprite1.png);
+  background-repeat: no-repeat;
   text-indent: -9999px;
+  background-size: 311px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 240dpi) {
+    .links-listing > li a {
+        background-image: url(../images/links_list_sprite@2x.png);
+    }
 }
 .links-listing > li a:hover {
     opacity: 0.7;
@@ -708,18 +773,18 @@ only screen and (min-device-pixel-ratio: 1.5) {
     zoom: 1;
 }
 .links-listing > li.equam a {
-  width: 56px;
-  margin: 0 25px 0 0;
-  background-position: -11px 0;
+  width: 62px;
+  margin: 0 9px 0 0;
+  background-position: 0 0;
 }
 .links-listing > li.emergency a {
-  width: 70px;
-  margin: 0 24px 0 0;
-  background-position: -84px 1px;
+  width: 80px;
+  margin: 0 8px 0 0;
+  background-position: -91px 0;
 }
 .links-listing > li.medix a {
-  width: 100px;
-  background-position: -173px 3px;
+  width: 116px;
+  background-position: -197px 0;
 }
 .timetable {
   overflow: hidden;
@@ -863,10 +928,20 @@ li.slidesjs-slide ul > li a span {
 }
 a.slidesjs-previous {
   margin: 0 0 7px 574px;
-  background: url(../images/previous_btn.png) no-repeat 0 0;
+  background: url(../images/previous_btn1.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 17px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 240dpi) {
+    a.slidesjs-previous {
+        background-image: url(../images/previous_btn@2x.png);
+    }
 }
 a.slidesjs-previous:hover {
-  background-position: 0 -21px;
+  background-position: 0 -25px;
 }
 a.slidesjs-previous, a.slidesjs-next {
   width: 17px;
@@ -874,15 +949,24 @@ a.slidesjs-previous, a.slidesjs-next {
   height: 17px;
   line-height: 17px;
   text-indent: -99999px;
-
   outline: none;
 }
 a.slidesjs-next {
   margin: 0 18px 7px 6px;
-  background: url(../images/next_btn.png) no-repeat 0 0;
+  background: url(../images/next_btn1.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 17px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+only screen and (min--moz-device-pixel-ratio: 1.5),
+only screen and (min-resolution: 240dpi) {
+    a.slidesjs-next {
+        background-image: url(../images/next_btn@2x.png);
+    }
 }
 a.slidesjs-next:hover {
-  background-position: 0 -21px;
+  background-position: 0 -25px;
 }
 .views-slideshow-cycle-main-frame-row, .skin-default {
   overflow: hidden;
@@ -1001,10 +1085,7 @@ display: block;
 #block-views-specialties-view-block {
     overflow: hidden;
     background-color: #F2F9FA;
-    border-top: 1px solid #C4DAD9;
-    border-right: 1px solid #C4DAD9;
-    border-bottom: 2px solid #C4DAD9;
-    border-left: 2px solid #C4DAD9;
+    border: 2px solid #C4DAD9;
 }
 .sidebar-right-inner .scadhule-block,
 .sidebar-right-inner .praxis-contact,
@@ -1026,11 +1107,8 @@ display: block;
 .sidebar-right-inner .subscribe {
     overflow: hidden;
     background-color: #F2F9FA;
-    padding: 20px 17px 16px 18px;
-    border-top: 1px solid #C4DAD9;
-    border-right: 1px solid #C4DAD9;
-    border-bottom: 2px solid #C4DAD9;
-    border-left: 2px solid #C4DAD9;
+    padding: 20px 17px 16px 17px;
+    border: 2px solid #C4DAD9;
 }
 .sidebar-right-inner .subscribe input.subscribe {
     background-color: #fff;
@@ -2355,7 +2433,7 @@ a.news-attachment {
     position: relative;
     z-index: 5;
     height: 60px;
-    margin: -77px 0 20px;
+    margin: -77px 0 31px;
     padding: 0 0 0 30px;
     line-height: 60px;
     color: #fff;
@@ -2377,7 +2455,7 @@ a.news-attachment {
 .specialities-page-sidebar {
     float: right;
     width: 326px;
-
+    margin: 5px 0 0;
 }
 .content-specialities-wrapper {
     overflow: hidden;
