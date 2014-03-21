@@ -99,15 +99,17 @@ $pref = $lang != 'en' ? "/".$lang : "";
             </ul>
 
         </div>
-        <div class="doctor-img-wrap"><?php print theme('image_style', $image); ?></div>
-        <ul class="editing-nav">
-            <?php if ( ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
-                <li class="edit-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
-            <?php endif; ?>
-            <?php if ($page && ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
-                <li class="remove-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/delete"><?php print t('Delete'); ?></a></li>
-            <?php endif; ?>
-        </ul>
+        <div class="left-column-single-doctors">
+            <div class="doctor-img-wrap"><?php print theme('image_style', $image); ?></div>
+            <ul class="editing-nav">
+                <?php if ( ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
+                    <li class="edit-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
+                <?php endif; ?>
+                <?php if ($page && ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
+                    <li class="remove-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/delete"><?php print t('Delete'); ?></a></li>
+                <?php endif; ?>
+            </ul>
+        </div>
         <div class="brief-info">
             <h2 class="name"><?php print render($name); ?></h2>
             <div class="degree"><?php print render($degree) ?></div>
