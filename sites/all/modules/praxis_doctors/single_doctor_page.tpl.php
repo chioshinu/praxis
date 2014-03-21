@@ -13,11 +13,14 @@ $items = field_get_items('node', $doctor, 'field_degree');
 $degree = field_view_value('node', $doctor, 'field_degree', $items[0], array(), $lang);
 $items = field_get_items('node', $doctor, 'field_position');
 $position = field_view_value('node', $doctor, 'field_position', $items[0], array(), $lang);
-$items = field_get_items('node', $doctor, 'field_hospitals');
+
 $hospitals = array();
-foreach ($items as $item){
-    $hospitals[] = field_view_value('node', $doctor, 'field_hospitals', $item, array(), $lang);
+if ($items = field_get_items('node', $doctor, 'field_hospitals')){
+    foreach ($items as $item){
+        $hospitals[] = field_view_value('node', $doctor, 'field_hospitals', $item, array(), $lang);
+    }
 }
+
 $items = field_get_items('node', $doctor, 'field_email');
 $email = field_view_value('node', $doctor, 'field_email', $items[0], array(), $lang);
 
@@ -27,29 +30,35 @@ $press = field_view_value('node', $doctor, 'field_press', $items[0], array(), $l
 $items = field_get_items('node', $doctor, 'field_description');
 $description = field_view_value('node', $doctor, 'field_description', $items[0], array(), $lang);
 
-$items = field_get_items('node', $doctor, 'field_education');
 $educations = array();
-foreach ($items as $item){
-    $educations[] = field_view_value('node', $doctor, 'field_education', $item, array(), $lang);
+if ($items = field_get_items('node', $doctor, 'field_education')){
+    foreach ($items as $item){
+        $educations[] = field_view_value('node', $doctor, 'field_education', $item, array(), $lang);
+    }
 }
 
-$items = field_get_items('node', $doctor, 'field_training');
+
 $training = array();
-foreach ($items as $item){
-    $training[] = field_view_value('node', $doctor, 'field_training', $item, array(), $lang);
+if ($items = field_get_items('node', $doctor, 'field_training')){
+    foreach ($items as $item){
+        $training[] = field_view_value('node', $doctor, 'field_training', $item, array(), $lang);
+    }
 }
 
-$items = field_get_items('node', $doctor, 'field_honors');
 $honors = array();
-foreach ($items as $item){
-    $honors[] = field_view_value('node', $doctor, 'field_honors', $item, array(), $lang);
+if ($items = field_get_items('node', $doctor, 'field_honors')){
+    foreach ($items as $item){
+        $honors[] = field_view_value('node', $doctor, 'field_honors', $item, array(), $lang);
+    }
 }
 
-$items = field_get_items('node', $doctor, 'field_certification');
 $certifications = array();
-foreach ($items as $item){
-    $certifications[] = field_view_value('node', $doctor, 'field_certification', $item, array(), $lang);
+if ($items = field_get_items('node', $doctor, 'field_certification')){
+    foreach ($items as $item){
+        $certifications[] = field_view_value('node', $doctor, 'field_certification', $item, array(), $lang);
+    }
 }
+
 
 $pref = $lang != 'en' ? "/".$lang : "";
 
@@ -78,9 +87,9 @@ $pref = $lang != 'en' ? "/".$lang : "";
                     ?>
                     <li class="<?php print $class; ?>">
                         <?php if ($page && $page->nid == $value->nid): ?>
-                            <?php print $title['#title']; ?>
+                            <?php print isset($title['#title']) ? $title['#title'] : ""; ?>
                         <?php else: ?>
-                            <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>/page/<?php print $value->nid; ?>/"><?php print $title['#title']; ?></a>
+                            <a href="<?php print $pref ?>/team/doctors/<?php print $doctor->nid; ?>/page/<?php print $value->nid; ?>/"><?php print isset($title['#title']) ? $title['#title'] : ""; ?></a>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
