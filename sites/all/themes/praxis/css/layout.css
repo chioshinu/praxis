@@ -1122,11 +1122,12 @@ display: block;
 #block-views-internal-block-1 h2,
 .praxis-contact h3,
 #block-views-specialties-view-block h2 {
-    margin: 0;
+    margin: 0 0 5px;
     font-size: 20px;
     font-weight: bold;
     color: #0A817F;
     border: none;
+    line-height: normal;
 }
 #block-views-specialties-view-block h2 {
     margin: 0 0 2%;
@@ -1145,7 +1146,8 @@ display: block;
     font-size: 13px;
 }
 #block-views-internal-block-1 h2 {
-    margin: 0 0 8px;
+    margin: 0 0 5px;
+    line-height: normal;
 }
 .views-field-field-attachment {
     overflow:hidden;
@@ -1786,7 +1788,7 @@ a.news-attachment {
     -webkit-box-shadow: 0 0 4px 1px #fff inset;
     -o-box-shadow: 0 0 4px 1px #fff inset;
     -ms-box-shadow: 0 0 4px 1px #fff inset;
-    background: url("../images/acordeon_vertical_up_arrow1.png") no-repeat 520px 18px #CFE4E7;
+    background: url("../images/acordeon_vertical_up_arrow.png") no-repeat 520px 18px #CFE4E7;
     font-weight: bold;
 }
 #accordion .ui-accordion-content .doctor-middle a:hover {
@@ -1812,6 +1814,7 @@ a.news-attachment {
 .doctor .wrap {
     overflow: hidden;
     height: 274px;
+    position: relative;
 }
 .doctors-links-block {
     overflow: hidden;
@@ -2272,7 +2275,7 @@ a.news-attachment {
 }
 /*---------------------------< Logger Block >------------------------------*/
 .block-loger h2 {
-    margin: 0 0 20px;
+    margin: 0 0 5px;
 }
 .loger-list {
     overflow: hidden;
@@ -2720,4 +2723,36 @@ a.logout:hover {
 
 #ui-datepicker-div{
     display: none;
+}
+.editing-nav {
+    bottom: 8%;
+    left: 0;
+    position: absolute;
+}
+.editing-nav > li {
+    overflow: hidden;
+    float: left;
+    margin: 0 20px 0 0;
+}
+.editing-nav > li a {
+    display: block;
+    height: 40px;
+    width: 40px;
+    text-indent: -9999px;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 0 4px 1px #ccc inset;
+}
+.editing-nav > li.edit-btn a {
+    background: url("../images/edit_bg.png") no-repeat rgba(255,255,255,0.1);
+}
+.editing-nav > li.remove-btn a {
+    background: url("../images/bin_bg.png") no-repeat rgba(255,255,255,0.1);
+}
+.editing-nav > li.edit-btn a:hover {
+    background: url("../images/edit_bg.png") no-repeat rgba(0,0,0,0.2);
+    box-shadow: 0 0 4px 1px #fff inset;
+}
+.editing-nav > li.remove-btn a:hover {
+    background: url("../images/bin_bg.png") no-repeat rgba(0,0,0,0.2);
+    box-shadow: 0 0 4px 1px #fff inset;
 }
