@@ -58,6 +58,16 @@ if ($items = field_get_items('node', $doctor, 'field_certification')){
         $certifications[] = field_view_value('node', $doctor, 'field_certification', $item, array(), $lang);
     }
 }
+if ($item = field_get_items('node', $doctor, 'field_main_subject')){
+    $subject = field_view_value('node', $doctor, 'field_main_subject', $item[0], array(), $lang);
+}
+
+$subjects = array();
+if ($items = field_get_items('node', $doctor, 'field_subjects')){
+    foreach ($items as $item){
+        $subjects[] = field_view_value('node', $doctor, 'field_subjects', $item, array(), $lang);
+    }
+}
 
 
 $pref = $lang != 'en' ? "/".$lang : "";
@@ -94,7 +104,7 @@ $pref = $lang != 'en' ? "/".$lang : "";
                     </li>
                 <?php endforeach; ?>
                 <?php if (($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles))) && count($pages)<4): ?>
-                    <li><a href="/node/add/doctor-page"><?php print t('Add page'); ?></a></li>
+                    <li><a href="/node/add/doctor-page?nid=<?php print $doctor->nid; ?>"><?php print t('Add page'); ?></a></li>
                 <?php endif; ?>
             </ul>
 
@@ -103,7 +113,7 @@ $pref = $lang != 'en' ? "/".$lang : "";
             <div class="doctor-img-wrap"><?php print theme('image_style', $image); ?></div>
             <ul class="editing-nav">
                 <?php if ( ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
-                    <li class="edit-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit"><?php print t('Edit'); ?></a></li>
+                    <li class="edit-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit<?php if ($page): ?>?nid=<?php print $doctor->nid ?><?php endif; ?>"><?php print t('Edit'); ?></a></li>
                 <?php endif; ?>
                 <?php if ($page && ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
                     <li class="remove-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/delete"><?php print t('Delete'); ?></a></li>
@@ -115,8 +125,9 @@ $pref = $lang != 'en' ? "/".$lang : "";
             <div class="degree"><?php print render($degree) ?></div>
             <div class="position"><?php print render($position) ?></div>
             <ul class="hospitals">
-                <?php foreach ($hospitals as $hospital): ?>
-                    <li><?php print render($hospital); ?></li>
+                <li><?php print render($subject); ?></li>
+                <?php foreach($subjects as $value): ?>
+                    <li><?php print render($value); ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>

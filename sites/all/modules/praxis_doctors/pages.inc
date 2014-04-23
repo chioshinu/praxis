@@ -89,7 +89,14 @@ function doctor_view($id){
     if (!$node){
         drupal_not_found();
     }
-    $nodes = node_load_multiple(array(), array('type' => 'doctor_page', 'status' => 1, 'uid' => $node->uid));
+    $query = new EntityFieldQuery();
+    $entities = $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'doctor_page')
+        ->fieldCondition('field_biografy_page','value', $id, '=')
+        ->pager(5)
+        ->execute();
+
+    $nodes = node_load_multiple(array_keys($entities['node']));
 
     $output = theme('single_doctor_page', array(
         'doctor'=>$node,
@@ -105,7 +112,14 @@ function doctor_view_page($bio_id, $page_id){
     global $language;
     $bio = node_load($bio_id);
 
-    $nodes = node_load_multiple(array(), array('type' => 'doctor_page', 'status' => 1, 'uid' => $bio->uid));
+    $query = new EntityFieldQuery();
+    $entities = $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'doctor_page')
+        ->fieldCondition('field_biografy_page','value', $bio_id, '=')
+        ->pager(5)
+        ->execute();
+
+    $nodes = node_load_multiple(array_keys($entities['node']));
     $page = isset($nodes[$page_id]) ? $nodes[$page_id] : false;
     if (!$bio || !$page){
         drupal_not_found();
