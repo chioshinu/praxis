@@ -593,10 +593,10 @@ ul.menu > li  a {
 }
 #sidebar-first #block-views-specialties-view-block-1 ul {
   overflow-y: auto;
-  margin: 0;
+  margin: 0 0 4px;
   padding: 0;
-  max-height: 211px;
-  height: 211px;
+  max-height: 207px;
+  height: 207px;
 }
 #sidebar-first #block-views-specialties-view-block-1 ul > li {
   display: block;
@@ -1829,7 +1829,7 @@ a.news-attachment {
     overflow: hidden;
 }
 .doctor .wrap {
-    overflow: hidden
+    overflow: hidden;
     height: 274px;
 }
 .doctors-links-block {
@@ -2428,29 +2428,32 @@ a.news-attachment {
 .node-specialties-page {
     overflow: hidden;
 }
-.node-specialties-page .field-name-field-header-image {
+.node-specialties-page .field-name-field-header-image,
+.node-sub-specialties .field-name-field-header-image {
     overflow: hidden;
     position: relative;
     width: 960px;
     height: 329px;
     z-index: 1;
 }
-.node-specialties-page .field-name-field-header-image img {
+.node-specialties-page .field-name-field-header-image img,
+.node-sub-specialties .field-name-field-header-image img {
     display: block;
 }
 .field-name-field-header-image .field-items .field-item{
-    height: 312px;
+    height: 313px;
 }
-.field-name-field-header-image .field-items .field-item img{
-    height: 100%;
+.field-name-field-header-image .field-items .field-item img {
+    height: 313px;
 }
 
-.node-specialties-page .field-name-title-field {
+.node-specialties-page .field-name-title-field,
+.node-sub-specialties .field-name-title-field {
     overflow: hidden;
     position: relative;
     z-index: 5;
     height: 60px;
-    margin: -77px 0 31px;
+    margin: -76px 0 31px;
     padding: 0 0 0 30px;
     line-height: 60px;
     color: #fff;
@@ -2458,16 +2461,19 @@ a.news-attachment {
     font-size: 32px;
     background-color: rgba(11, 11, 11, 0.8);
 }
-.node-specialties-page .field-name-body {
+.node-specialties-page .field-name-body,
+.node-sub-specialties .field-name-body {
     float: left;
     width: 550px;
 }
-.node-specialties-page .field-name-body p {
+.node-specialties-page .field-name-body p,
+.node-sub-specialties .field-name-body p {
     overflow: hidden;
-    margin: 0 0 20px;
+    margin: 0 0 20px !important;
     color: #323232;
     font-size: 16px;
     line-height: 1.5;
+    text-indent: 0 !important;
 }
 .specialities-page-sidebar {
     float: right;
@@ -2476,7 +2482,7 @@ a.news-attachment {
 }
 .content-specialities-wrapper {
     overflow: hidden;
-    min-height: 2540px;
+    /*min-height: 2540px;*/
 }
 #page-specialities {
     position: relative;
