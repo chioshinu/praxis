@@ -83,19 +83,27 @@
         <?php
         // We hide the comments and links now so that we can render them later.
         hide($content['comments']);
-        hide($content['links']);
+        hide($content['links']);  ?>
 
-        print render($content['field_header_image']);
-        print render($content['title_field']);
-        print render($content['body']); ?>
-
-        <div class="main-doctor-title">
-            <h3>In charge</h3>
+        <div class="field field-name-field-header-image field-type-image field-label-hidden">
+            <div class="field-items">
+                <div class="field-item even">
+                    <img width="960" height="313" alt="" src="/sites/all/themes/praxis/images/subject_page_img.png" />
+                </div>
+            </div>
         </div>
-        <div>
-            <?php print render($region['subject_bottom']); ?>
-        </div>
+        <?php print render($content['title_field']); ?>
+        <div class="doctors-subpage-content-wrap">
 
+           <?php print render($content['body']); ?>
+
+            <div class="main-doctor-title">
+                <h3>In charge</h3>
+            </div>
+            <div>
+                <?php print render($region['subject_bottom']); ?>
+            </div>
+        </div>
 
         <div id="inner-sidebar-second" class="column sidebar specialities-page-sidebar"><div class="section">
                 <?php print render($region['sidebar_second']); ?>

@@ -2790,12 +2790,12 @@ a.logout:hover {
 }
 .main-doctor-title {
     overflow: hidden;
-    width: 630px;
+    width: 606px;
     float: left;
 }
 .main-doctor-title h3 {
     display: block;
-    margin: 60px 0 2px;
+    margin: 0 0 2px;
     height: 31px;
     line-height: 31px;
     background-color: #38A8B4;
@@ -2808,21 +2808,21 @@ a.logout:hover {
 .view.view-main-doctor {
     border: 1px solid #EAE4D6;
     background-color: #FCFBF9;
-    width: 628px;
+    width: 604px;
 }
 .view.view-main-doctor,
 .view.view-subject-other-doctors {
-    margin: 0 51px 0 0;
+    margin: 0;
 }
 .view.view-subject-other-doctors {
     margin: 12px 0 0 -12px;
-    width: 642px;
+    width: 100%;
 }
 .view.view-subject-other-doctors .views-row {
     overflow: hidden;
     margin: 0 0 12px 12px;
     float: left;
-    width: 89px;
+    width: 85px;
     border: 1px solid #BCBCBC;
     padding: 2px;
     background-color: #fff;
@@ -2837,8 +2837,8 @@ a.logout:hover {
 }
 .view.view-subject-other-doctors .views-row .views-field-field-ph .field-content {
     overflow: hidden;
-    width: 75px;
-    height: 84px;
+    width: 71px;
+    height: 80px;
 }
 .view.view-subject-other-doctors .views-row .views-field-field-ph .field-content img {
     display: block;
@@ -2918,4 +2918,17 @@ a.logout:hover {
     font-size: 16px;
     line-height: 1.1;
     color: #3C3C3A;
+}
+.doctors-subpage-content-wrap {
+    overflow: hidden;
+    float: left;
+    width: 618px;
+}
+
+.doctors-subpage-content-wrap .node-subject .field-name-body {
+    float: none;
+    margin: 0 0 60px;
+}
+.node-subject .specialities-page-sidebar {
+    margin: 0;
 }
