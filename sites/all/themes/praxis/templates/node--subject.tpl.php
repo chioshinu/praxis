@@ -89,12 +89,18 @@
         print render($content['title_field']);
         print render($content['body']); ?>
 
+        <div class="main-doctor-title">
+            <h3>In charge</h3>
+        </div>
+        <div>
+            <?php print render($region['subject_bottom']); ?>
+        </div>
+
+
         <div id="inner-sidebar-second" class="column sidebar specialities-page-sidebar"><div class="section">
                 <?php print render($region['sidebar_second']); ?>
             </div></div>
     </div>
 </div>
-<div class="main-doctor-title">
-    <h3>In charge</h3>
-</div>
+
 <?php  ?>
