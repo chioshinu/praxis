@@ -135,7 +135,7 @@ function praxis_preprocess_node(&$variables) {
     $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->type;
     $variables['theme_hook_suggestions'][] = 'node__'.$variables['node']->nid;
   }
-    if ($variables['type'] == 'specialties_page'){
+    if ($variables['type'] == 'specialties_page' || $variables['type'] == 'sub_specialties' || $variables['type'] == 'subject'){
         if ($blocks = block_get_blocks_by_region('sidebar_second')){
             $variables['region']['sidebar_second'] = $blocks;
         }
