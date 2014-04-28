@@ -2429,7 +2429,8 @@ a.news-attachment {
     overflow: hidden;
 }
 .node-specialties-page .field-name-field-header-image,
-.node-sub-specialties .field-name-field-header-image {
+.node-sub-specialties .field-name-field-header-image,
+.node-subject .field-name-field-header-image {
     overflow: hidden;
     position: relative;
     width: 960px;
@@ -2437,7 +2438,8 @@ a.news-attachment {
     z-index: 1;
 }
 .node-specialties-page .field-name-field-header-image img,
-.node-sub-specialties .field-name-field-header-image img {
+.node-sub-specialties .field-name-field-header-image img,
+.node-subject .field-name-field-header-image img {
     display: block;
 }
 .field-name-field-header-image .field-items .field-item{
@@ -2448,7 +2450,8 @@ a.news-attachment {
 }
 
 .node-specialties-page .field-name-title-field,
-.node-sub-specialties .field-name-title-field {
+.node-sub-specialties .field-name-title-field,
+.node-subject .field-name-title-field {
     overflow: hidden;
     position: relative;
     z-index: 5;
@@ -2462,12 +2465,14 @@ a.news-attachment {
     background-color: rgba(11, 11, 11, 0.8);
 }
 .node-specialties-page .field-name-body,
-.node-sub-specialties .field-name-body {
+.node-sub-specialties .field-name-body,
+.node-subject .field-name-body {
     float: left;
     width: 550px;
 }
 .node-specialties-page .field-name-body p,
-.node-sub-specialties .field-name-body p {
+.node-sub-specialties .field-name-body p,
+.node-subject .field-name-body p {
     overflow: hidden;
     margin: 0 0 20px !important;
     color: #323232;
@@ -2782,4 +2787,135 @@ a.logout:hover {
     float: left;
     margin: 0 24px 0 0;
     padding: 0 0 65px;
+}
+.main-doctor-title {
+    overflow: hidden;
+    width: 630px;
+    float: left;
+}
+.main-doctor-title h3 {
+    display: block;
+    margin: 60px 0 2px;
+    height: 31px;
+    line-height: 31px;
+    background-color: #38A8B4;
+    color: #fff;
+    font-family: Lato, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0 0 0 16px;
+}
+.view.view-main-doctor {
+    border: 1px solid #EAE4D6;
+    background-color: #FCFBF9;
+    width: 628px;
+}
+.view.view-main-doctor,
+.view.view-subject-other-doctors {
+    margin: 0 51px 0 0;
+}
+.view.view-subject-other-doctors {
+    margin: 12px 0 0 -12px;
+    width: 642px;
+}
+.view.view-subject-other-doctors .views-row {
+    overflow: hidden;
+    margin: 0 0 12px 12px;
+    float: left;
+    width: 89px;
+    border: 1px solid #BCBCBC;
+    padding: 2px;
+    background-color: #fff;
+}
+.view.view-subject-other-doctors .views-row .views-field-field-ph {
+    border-top: 1px solid #DDDDDB;
+    border-left: 1px solid #DDDDDB;
+    border-right: 1px solid #DDDDDB;
+    padding: 6px;
+    overflow: hidden;
+    background-color: #fff;
+}
+.view.view-subject-other-doctors .views-row .views-field-field-ph .field-content {
+    overflow: hidden;
+    width: 75px;
+    height: 84px;
+}
+.view.view-subject-other-doctors .views-row .views-field-field-ph .field-content img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.view.view-subject-other-doctors .views-row .views-field-title {
+    border-bottom: 1px solid #DDDDDB;
+    border-left: 1px solid #DDDDDB;
+    border-right: 1px solid #DDDDDB;
+    padding: 2px;
+}
+.view.view-subject-other-doctors .views-row .views-field-title .field-content {
+    overflow: hidden;
+    display: block;
+}
+.view.view-subject-other-doctors .views-row .views-field-title .field-content a {
+    color: #242223;
+    text-align: center;
+    font-family: Lato, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+}
+
+
+.view-main-doctor .view-content {
+    padding: 27px 17px 19px;
+}
+.view-main-doctor .views-field-field-ph {
+    overflow: hidden;
+    float: left;
+    margin: 0 28px 0 0;
+    border: 1px solid #BCBCBC;
+    padding: 3px;
+    background-color: #FAFAF8;
+}
+.view-main-doctor .views-field-field-ph .field-content {
+    border: 1px solid #DDDDDB;
+    padding: 10px;
+    background-color: #fff;
+    overflow: hidden;
+    height: 120px;
+    width: 107px;
+}
+.view-main-doctor .views-field-field-ph .field-content img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.view-main-doctor .view-content,
+.view-main-doctor .view-content .views-row,
+.view-main-doctor .view-content .views-row .views-field-title,
+.view-main-doctor .view-content .views-row .views-field-field-position,
+.view-main-doctor .view-content .views-row .views-field-field-degree {
+    overflow: hidden;
+}
+.view-main-doctor .view-content .views-row .views-field-title {
+    margin: 9px 0 14px;
+}
+.view-main-doctor .view-content .views-row .views-field-title .field-content a {
+    font-size: 22px;
+    color: #21201E;
+}
+.view-main-doctor .view-content .views-row .views-field-field-position {
+    margin: 0 0 15px;
+    width: 235px;
+}
+.view-main-doctor .view-content .views-row .views-field-title .field-content a,
+.view-main-doctor .view-content .views-row .views-field-field-position,
+.view-main-doctor .view-content .views-row .views-field-field-degree {
+    font-family: Lato, sans-serif;
+    font-weight: bold;
+}
+.view-main-doctor .view-content .views-row .views-field-field-position,
+.view-main-doctor .view-content .views-row .views-field-field-degree {
+    font-size: 16px;
+    line-height: 1.1;
+    color: #3C3C3A;
 }
