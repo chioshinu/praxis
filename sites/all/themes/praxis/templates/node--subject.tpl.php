@@ -85,14 +85,20 @@
         hide($content['comments']);
         hide($content['links']);  ?>
 
-        <div class="field field-name-field-header-image field-type-image field-label-hidden">
+        <div class="field field-name-field-header-image field-type-image field-label-hidden" >
             <div class="field-items">
                 <div class="field-item even">
                     <img width="960" height="313" alt="" src="/sites/all/themes/praxis/images/subject_page_img.png" />
                 </div>
             </div>
         </div>
-        <?php print render($content['title_field']); ?>
+        <div class="field field-name-title-field field-type-text field-label-hidden" style="background-color: rgba(171, 171, 171, 0.8);">
+            <div class="field-items">
+                <div class="field-item even"><?php print render($title); ?></div>
+            </div>
+        </div>
+
+
         <div class="doctors-subpage-content-wrap">
 
            <?php print render($content['body']); ?>

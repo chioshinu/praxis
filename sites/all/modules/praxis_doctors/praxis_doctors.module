@@ -86,13 +86,25 @@ function praxis_doctor_biografy_form_submit_alter($form, &$form_state){
             )
         );
         user_save($user, $edit);
-
+    }
+    if (count($form_state['node']->field_in_charge)>0 && count($form_state['node']->field_in_charge['und'])>0 && $form_state['node']->field_in_charge['und'][0]['value'] == 1){
+        $query = new EntityFieldQuery();
+        $entities = $query->entityCondition('entity_type', 'node')
+            ->entityCondition('bundle', 'doctor_biography')
+            ->fieldCondition('field_in_charge','value', 1, '=')
+            ->fieldCondition('field_main_subject', 'nid', $form_state['node']->field_main_subject['und'][0]['nid'], '=')
+            ->execute();
+        foreach($entities['node'] as $key => $entity){
+            if ($key != $form_state['node']->nid){
+                $node = node_load($key);
+                $node->field_in_charge['und'][0]['value'] = 0;
+                node_save($node);
+            }
+        }
     }
     $node = $form_state['node'];
     $node->uid = $uid;
     node_save($node);
-
-
 }
 
 function praxis_doctor_page_form_submit_alter($form, &$form_state){

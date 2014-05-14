@@ -58,6 +58,13 @@ if ($items = field_get_items('node', $doctor, 'field_certification')){
         $certifications[] = field_view_value('node', $doctor, 'field_certification', $item, array(), $lang);
     }
 }
+$memberships = array();
+if ($items = field_get_items('node', $doctor, 'field_membership')){
+    foreach ($items as $item){
+        $memberships[] = field_view_value('node', $doctor, 'field_membership', $item, array(), $lang);
+    }
+}
+
 if ($item = field_get_items('node', $doctor, 'field_main_subject')){
     $subject = field_view_value('node', $doctor, 'field_main_subject', $item[0], array(), $lang);
 }
@@ -65,7 +72,10 @@ if ($item = field_get_items('node', $doctor, 'field_main_subject')){
 $subjects = array();
 if ($items = field_get_items('node', $doctor, 'field_subjects')){
     foreach ($items as $item){
-        $subjects[] = field_view_value('node', $doctor, 'field_subjects', $item, array(), $lang);
+        if ($item['nid'] != $subject['#options']['entity']->nid){
+            $subjects[] = field_view_value('node', $doctor, 'field_subjects', $item, array(), $lang);
+        }
+
     }
 }
 
@@ -103,7 +113,7 @@ $pref = $lang != 'en' ? "/".$lang : "";
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
-                <?php if (($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles))) && count($pages)<4): ?>
+                <?php if ((($user->uid == $doctor->uid && $user->uid != 0) || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles))) && count($pages)<4): ?>
                     <li><a href="/node/add/doctor-page?nid=<?php print $doctor->nid; ?>"><?php print t('Add page'); ?></a></li>
                 <?php endif; ?>
             </ul>
@@ -112,20 +122,20 @@ $pref = $lang != 'en' ? "/".$lang : "";
         <div class="left-column-single-doctors">
             <div class="doctor-img-wrap"><?php print theme('image_style', $image); ?></div>
             <ul class="editing-nav">
-                <?php if ( ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
+                <?php if ( (($user->uid == $doctor->uid && $user->uid != 0) || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
                     <li class="edit-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/edit<?php if ($page): ?>?nid=<?php print $doctor->nid ?><?php endif; ?>"><?php print t('Edit'); ?></a></li>
                 <?php endif; ?>
-                <?php if ($page && ($user->uid == $doctor->uid || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
+                <?php if ($page && (($user->uid == $doctor->uid && $user->uid != 0) || in_array('administrator', array_values($user->roles)) || in_array('Super admin', array_values($user->roles)))): ?>
                     <li class="remove-btn"><a href="<?php print $pref ?>/node/<?php print ($page ? $page->nid : $doctor->nid) ?>/delete"><?php print t('Delete'); ?></a></li>
                 <?php endif; ?>
             </ul>
         </div>
         <div class="brief-info">
             <h2 class="name"><?php print render($name); ?></h2>
-            <div class="degree"><?php print render($degree) ?></div>
-            <div class="position"><?php print render($position) ?></div>
+            <div class="degree"><?php print nl2br($degree['#markup']) ?></div>
+            <div class="position"><?php print nl2br($position['#markup']) ?></div>
             <ul class="hospitals">
-                <li><?php print render($subject); ?></li>
+                <li style="font-weight: bold;"><?php print render($subject); ?></li>
                 <?php foreach($subjects as $value): ?>
                     <li><?php print render($value); ?></li>
                 <?php endforeach; ?>
@@ -143,6 +153,11 @@ $pref = $lang != 'en' ? "/".$lang : "";
             ?>
             <div class="page-body"><?php print render($body); ?></div>
         <?php else: ?>
+            <?php
+            $items = field_get_items('node', $doctor, 'body');
+            $body = field_view_value('node', $doctor, 'body', $items[0], array(), $lang);
+            ?>
+            <div class="page-body"><?php print render($body); ?></div>
         <div class="description"><?php print render($description); ?></div>
             <?php if (count($educations)>0): ?>
                 <h3><?php print t("Education"); ?></h3>
@@ -168,6 +183,14 @@ $pref = $lang != 'en' ? "/".$lang : "";
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
+            <?php if (count($memberships)>0): ?>
+                <h3><?php print t("Membership") ?></h3>
+                <ul class="certifications list">
+                    <?php foreach ($memberships as $value): ?>
+                        <li><?php print render($value); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
             <?php if (count($honors)>0): ?>
                 <h3><?php print t("Honors") ?></h3>
                 <ul class="honors list">
@@ -176,16 +199,16 @@ $pref = $lang != 'en' ? "/".$lang : "";
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
-            <?php if (count($honors)>0): ?>
-                <h3><?php print t("Selected Publications") ?></h3>
-                <?php
-                $press = render($press);
-                if (strpos($press, 'http') === false){
-                    $press = "http://" . $press;
-                }
-                ?>
-                <a href="<?php print $press; ?>" target="_blank"><?php print t('Click Here') ?></a>
-            <?php endif; ?>
+<!--            --><?php //if (count($press)>0): ?>
+<!--                <h3>--><?php //print t("Selected Publications") ?><!--</h3>-->
+<!--                --><?php
+//                $press = render($press);
+//                if (strpos($press, 'http') === false){
+//                    $press = "http://" . $press;
+//                }
+//                ?>
+<!--                <a href="--><?php //print $press; ?><!--" target="_blank">--><?php //print t('Click Here') ?><!--</a>-->
+<!--            --><?php //endif; ?>
         <?php endif; ?>
     </div>
     <div id="inner-sidebar-second" class="column sidebar specialities-page-sidebar"><div class="section">

@@ -2826,6 +2826,7 @@ a.logout:hover {
     border: 1px solid #BCBCBC;
     padding: 2px;
     background-color: #fff;
+    min-height: 143px;
 }
 .view.view-subject-other-doctors .views-row .views-field-field-ph {
     border-top: 1px solid #DDDDDB;
@@ -2850,6 +2851,7 @@ a.logout:hover {
     border-left: 1px solid #DDDDDB;
     border-right: 1px solid #DDDDDB;
     padding: 2px;
+    height: 45px;
 }
 .view.view-subject-other-doctors .views-row .views-field-title .field-content {
     overflow: hidden;

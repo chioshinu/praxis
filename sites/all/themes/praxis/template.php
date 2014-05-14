@@ -143,7 +143,7 @@ function praxis_preprocess_node(&$variables) {
             $variables['region']['sidebar_second'] = array();
         }
     }
-    if ($variables['type'] == 'subject'){
+    if ($variables['type'] == 'specialties_page'){
         if ($blocks = block_get_blocks_by_region('subject_bottom')){
             $variables['region']['subject_bottom'] = $blocks;
         }
