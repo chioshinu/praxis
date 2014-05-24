@@ -593,10 +593,11 @@ ul.menu > li  a {
 }
 #sidebar-first #block-views-specialties-view-block-1 ul {
   overflow-y: auto;
-  margin: 0 0 4px;
+  margin: 0 0 16px;
   padding: 0;
-  max-height: 207px;
-  height: 207px;
+  max-height: 257px;
+  height: 257px;
+  cursor:ns-resize;
 }
 #sidebar-first #block-views-specialties-view-block-1 ul > li {
   display: block;
