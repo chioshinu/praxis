@@ -90,9 +90,6 @@
 
     <div class="doctors-subpage-content-wrap">
         <?php print render($content['body']); ?>
-      <div class="main-doctor-title">
-          <h3>In charge</h3>
-      </div>
       <div>
           <?php print render($region['subject_bottom']); ?>
       </div>

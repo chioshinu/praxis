@@ -480,7 +480,7 @@ ul.menu > li  a {
 }
 #main-menu .menu > li a:hover, 
 #main-menu .menu >li a.active {
-  background-color: #39A8B4;
+  background-color: #20409a;
   color:#fff;
   text-decoration: none;
 }
@@ -516,7 +516,7 @@ ul.menu > li  a {
 }
 #main-menu .menu >li.expanded ul.menu li a:hover,
 #main-menu .menu >li.expanded ul.menu li a.active {
-  background-color: #39A8B4;
+  background-color: #20409a;
   color:#fff;
   text-decoration: none;
 }
@@ -538,7 +538,7 @@ ul.menu > li  a {
 .main-wrap-bg {
   width: 100%;
   height: 318px;
-  background-color: #39A8B4;
+  background-color: #20409a;
 }
 .content-wrapper {
   overflow: hidden;
@@ -605,9 +605,13 @@ ul.menu > li  a {
   line-height: 14px;
   background: url(../images/list_icon.png) no-repeat center left;
 }
-#sidebar-first #block-views-specialties-view-block-1 ul > li span a {
+#sidebar-first #block-views-specialties-view-block-1 ul > li a {
     font-size: 12px;
     color: #fff;
+}
+#inner-sidebar-second ul > li a {
+    font-size: 13px;
+    color: #393939;
 }
 .subscribe {
   overflow: hidden;
@@ -945,7 +949,7 @@ li.slidesjs-slide ul > li a span {
 }
 a.slidesjs-previous {
   margin: 0 0 7px 574px;
-  background: url(../images/previous_btn1.png);
+  background: url(../images/previous_btn.png);
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 17px;
@@ -970,7 +974,7 @@ a.slidesjs-previous, a.slidesjs-next {
 }
 a.slidesjs-next {
   margin: 0 18px 7px 6px;
-  background: url(../images/next_btn1.png);
+  background: url(../images/next_btn.png);
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 17px;
@@ -990,7 +994,7 @@ a.slidesjs-next:hover {
   width: 643px;
   height: 318px;
   margin: 0;
-    background-color: #39A8B4;
+    background-color: #20409a;
 }
 .slidesjs-container {
     overflow: hidden;
@@ -1009,7 +1013,7 @@ a.slidesjs-next:hover {
   width: 960px;
   min-width: 920px;
   margin: 0 auto;
-  padding: 10px 17px 9px;
+  padding: 10px 0px 9px;
   background-color: #E6E6E6;
 }
 .footer-block .copyright {
@@ -1018,6 +1022,7 @@ a.slidesjs-next:hover {
   margin: 0;
   font-family: Arial, sans-serif;
   font-size: 13px;
+    padding: 0 17px;
   color: #595959;
 }
 #block-menu-menu-footer-menu {
@@ -1025,6 +1030,7 @@ a.slidesjs-next:hover {
 }
 #block-menu-menu-footer-menu .content .menu {
   overflow: hidden;
+    padding: 0 17px;
 }
 #block-menu-menu-footer-menu .content .menu > li {
   overflow: hidden;
@@ -1101,8 +1107,8 @@ display: block;
 #block-views-internal-block-1,
 #block-views-specialties-view-block {
     overflow: hidden;
-    background-color: #F2F9FA;
-    border: 2px solid #C4DAD9;
+    background-color: #f4f6fb;
+    border: 2px solid #c8d0e6;
 }
 .sidebar-right-inner .scadhule-block,
 .sidebar-right-inner .praxis-contact,
@@ -1123,9 +1129,9 @@ display: block;
 }
 .sidebar-right-inner .subscribe {
     overflow: hidden;
-    background-color: #F2F9FA;
+    background-color: #f4f6fb;
     padding: 20px 17px 16px 17px;
-    border: 2px solid #C4DAD9;
+    border: 2px solid #c8d0e6;
 }
 .sidebar-right-inner .subscribe input.subscribe {
     background-color: #fff;
@@ -1142,7 +1148,7 @@ display: block;
     margin: 0 0 5px;
     font-size: 20px;
     font-weight: bold;
-    color: #0A817F;
+    color: #0c2c8f;
     border: none;
     line-height: normal;
 }
@@ -1152,13 +1158,14 @@ display: block;
 #sidebar-second #block-views-specialties-view-block ul {
     overflow: hidden;
 }
-#sidebar-second #block-views-specialties-view-block ul > li {
+#sidebar-second #block-views-specialties-view-block ul > li,
+#inner-sidebar-second ul > li {
     overflow: hidden;
     padding: 0 0 0 11px;
     list-style: none;
     background: url(../images/sidebar-right-dot.png) no-repeat left center;
 }
-#sidebar-second #block-views-specialties-view-block ul > li span a {
+#sidebar-second #block-views-specialties-view-block ul > li a {
     color: #393939;
     font-size: 13px;
 }
@@ -1320,7 +1327,7 @@ display: block;
 .view-presse-page h3{
     margin: 0 0 5px;
     font: 23px/normal Lato;
-    color: #39A7B3;
+    color: #0c2c8f;
     display: block;
     line-height: 29px;
     clear: both;
@@ -1329,7 +1336,7 @@ display: block;
 
 .view-news-page .views-row .views-field-title-field a, .view-news-page .views-row .views-field-title-field a:hover,
 .view-presse-page h3{
-    color: #39A7B3;
+    color: #0c2c8f;
 }
 
 .view-news-page .views-row .views-field-created{
@@ -1423,7 +1430,7 @@ a.news-attachment {
     overflow: hidden;
     display: block;
     margin: 32px 1px 29px;
-    color: #0072BC;
+    color: #0f5abe;
     font-size: 13px;
     line-height: normal;
     font-weight: bold;
@@ -1515,7 +1522,7 @@ a.news-attachment {
 .view-presse-page .view-content .views-row .views-field-title .field-content  a {
     display: block;
     margin: 0 0 14px;
-    color: #005A7E;
+    color: #0f5abe;
     font-size: 22px;
     font-weight: bold;
     font-family: Arial, sans-serif;
@@ -1652,7 +1659,7 @@ a.news-attachment {
     width: 365px;
 }
 .view-freie-stellen-page  .views-row  .views-field-title span a {
-    color: #357A9B;
+    color: #0f5abe;
     font-weight: bold;
     font-size: 18px;
 }
@@ -1706,7 +1713,7 @@ a.news-attachment {
 .jobs-single-main .field-name-title-field .field-items .field-item {
     overflow: hidden;
     margin: 0 0 20px;
-    color: #005A7E;
+    color: #0f5abe;
     font-size: 22px;
     font-weight: bold;
     line-height: normal;
@@ -1805,7 +1812,7 @@ a.news-attachment {
     -webkit-box-shadow: 0 0 4px 1px #fff inset;
     -o-box-shadow: 0 0 4px 1px #fff inset;
     -ms-box-shadow: 0 0 4px 1px #fff inset;
-    background: url("../images/acordeon_vertical_up_arrow.png") no-repeat 520px 18px #CFE4E7;
+    background: url("../images/acordeon_vertical_up_arrow.png") no-repeat 520px 18px #567cd6;
     font-weight: bold;
 }
 #accordion .ui-accordion-content .doctor-middle a:hover {
@@ -1857,7 +1864,7 @@ a.news-attachment {
     text-align: center;
 }
 .doctors-links-block ul.links > li.active {
-    background-color: #A5D5DA;
+    background-color: #20409a;
     box-shadow: 0 0 6px 2px #fff inset;
     -moz-box-shadow: 0 0 6px 2px #fff inset;
     -webkit-box-shadow: 0 0 6px 2px #fff inset;
@@ -1870,13 +1877,13 @@ a.news-attachment {
 }
 .doctors-links-block ul.links > li a {
     font-size: 16px;
-    color: #308D97;
+    color: #0f5abe;
     padding: 0 10px;
     display: block;
 }
 .doctors-links-block ul.links > li a:hover {
     text-decoration: none;
-    background-color: #A5D5DA;
+    background-color: #567cd6;
     box-shadow: 0 0 6px 2px #FFFFFF inset;
     color: #FFFFFF;
     font-size: 16px;
@@ -1988,7 +1995,7 @@ a.news-attachment {
     padding: 0 0 7px;
     border-bottom: 1px solid #C0C0C2;
     font-size: 18px;
-    color: #005B7F;
+    color: #0c2c8f;
     line-height: normal;
     font-weight: bold;
 }
@@ -2022,7 +2029,7 @@ a.news-attachment {
     display: block;
     margin: 0 0 20px;
     padding: 0 0 7px;
-    color: #39A7B3;
+    color: #0c2c8f;
     font-size: 19px;
     border-bottom: 1px solid #CCC;
     line-height: normal;
@@ -2140,7 +2147,7 @@ a.news-attachment {
 .content-login-wrapper {
     overflow: hidden;
     width: 100%;
-    background: url(../images/login_wrap_bg.png) repeat-x;
+    background: url(../images/pages_top_bg.png) repeat-x;
 }
 #login-wrapper h1 {
     display: none;
@@ -2180,7 +2187,7 @@ a.news-attachment {
 }
 #login-aside .stuff-ocupation h3 {
     font-size: 20px;
-    color: #0A817F;
+    color: #0c2c8f;
 }
 #login-aside .stuff-ocupation .ocupation-list li {
     overflow: hidden;
@@ -2321,7 +2328,7 @@ a.news-attachment {
     margin: 0 20px 0 0;
     font-size: 16px;
     text-align: right;
-    color: #0A817F;
+    color: #0f5abe;
 }
 /*----------------------------< Adressen Page >---------------------------*/
 .adressen-inner {
@@ -2375,7 +2382,7 @@ a.news-attachment {
 #node-282 p.adressen-info span {
     display: block;
     margin: 0 0 5px;
-    color: #39A8B4;
+    color: #20409a;
     font-size: 18px;
     font-weight: bold;
     line-height: normal;
@@ -2560,7 +2567,7 @@ a.news-attachment {
 }
 
 .login-links a{
-    color: #39A8B4;
+    color: #20409a;
 }
 
 .login-links .forgot-password{
@@ -2706,7 +2713,7 @@ html.js input.webform-calendar {
     margin: 0 124px 0 0;
     padding: 0 35px;
     float: right;
-    background-color: #39A8B4;
+    background-color: #20409a;
     border-radius: 7px 7px 7px 7px;
     -moz-border-radius: 7px 7px 7px 7px;
     -webkit-border-radius: 7px 7px 7px 7px;
@@ -2731,7 +2738,7 @@ html.js input.webform-calendar {
 }
 
 .welcome .doctor-name{
-    color: #0071B3;
+    color: #0f5abe;
 }
 a.logout {
     display: block;
@@ -2798,7 +2805,7 @@ a.logout:hover {
     margin: 0 0 2px;
     height: 31px;
     line-height: 31px;
-    background-color: #38A8B4;
+    background-color: #0c2c8f;
     color: #fff;
     font-family: Lato, sans-serif;
     font-weight: bold;
@@ -2806,9 +2813,12 @@ a.logout:hover {
     padding: 0 0 0 16px;
 }
 .view.view-main-doctor {
+    overflow: hidden;
+    width: 606px;
+}
+.view.view-main-doctor .view-content {
     border: 1px solid #EAE4D6;
     background-color: #FCFBF9;
-    width: 604px;
 }
 .view.view-main-doctor,
 .view.view-subject-other-doctors {
