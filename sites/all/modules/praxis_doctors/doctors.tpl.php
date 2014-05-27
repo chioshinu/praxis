@@ -5,7 +5,7 @@
             <ul>
                 <?php foreach($slide as $node): ?>
                     <li class="doctor-thumbnail">
-                        <a href="<?php if ($lang != 'en'): ?>/<?php print $lang; ?><?php endif ?>/team/doctors/<?php print $node->nid ?>">
+                        <a href="<?php if ($lang != 'de'): ?>/<?php print $lang; ?><?php endif ?>/team/doctors/<?php print $node->nid ?>">
                             <?php
                                 $image = array(
                                     'style_name' => 'home_doctor',

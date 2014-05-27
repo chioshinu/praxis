@@ -159,8 +159,8 @@ function theme_site_map_menu_link(array $variables) {
                 $items = field_get_items('node', $node, 'title_field');
                 $name = field_view_value('node', $node, 'title_field', $items[0], array(), $language->language);
 
-                $pref = $language->language != 'de' ? $language->language."/" : '';
-                $url = "/{$pref}team/doctors/{$node->nid}";
+
+                $url = "team/doctors/{$node->nid}";
 
                 $elements[] = '<li>'.l($name['#markup'], $url).'</li>';
             }
