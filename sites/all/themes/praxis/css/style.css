@@ -960,8 +960,8 @@ ul.links {
 }
 .tabs ul.primary li a {
   color: #fff;
-  border-color: #39A8B4;
-  background-color: #39A7B3;
+  border-color: #c8d0e6;
+  background-color: #f4f6fb;
   height: 1.8em;
   line-height: 1.9;
   display: block;
@@ -1076,7 +1076,7 @@ div.password-confirm {
 
 input.form-submit,
 a.button {
-  background-color: #39A8B4;
+  background-color: #20409a;
   color: #FFF;
   cursor: pointer;
   font-size: 16px;
@@ -1225,7 +1225,7 @@ input.form-submit:focus {
   text-decoration: none;
   color: #fff;
   opacity: 0.8;
-  background-color: #39A8B4;
+  background-color: #567cd6;
 }
 .password-suggestions ul li {
   margin-left: 1.2em; /* LTR */

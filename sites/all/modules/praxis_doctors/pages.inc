@@ -8,64 +8,105 @@ function team_view($type){
         'therapists' => 'Terapeuten'
     );
 
-    $terms = taxonomy_get_tree(2, 0, null, true);
-    $arr = array('' => 'Uncategorized');
-    foreach($terms as $value){
-        $term = i18n_taxonomy_term_get_translation($value, $language->language);
 
-        $arr[$term->tid] = $term->name;
-    }
-    $js = array();
-
-    if ($type == 'staff'){
-        $nodes = node_load_multiple(array(), array('type' => 'team_staff', 'status' => 1));
-    }
-    else{
-        $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
-    }
-
-//    drupal_debug($nodes[0]);
     $res = array();
-    $i =0;
-    foreach ($nodes as $node){
-        if ($type == 'staff'){
-            if (isset($node->field_secialization['und'])){
-                $term = taxonomy_term_load($node->field_secialization['und'][0]['tid']);
-                $translation = i18n_taxonomy_term_get_translation($term, $language->language);
-                if (!isset($res[$translation->tid])){
+    $js = array();
+    if ($type == 'staff'){
+        $terms = taxonomy_get_tree(8, 0, null, true);
+        $arr = array('' => 'Uncategorized');
+        foreach($terms as $value){
+            $term = i18n_taxonomy_term_get_translation($value, $language->language);
 
-//                $res[] = array();
-                    $js[slug($arr[$translation->tid])] = $i;
-                    $i++;
-                }
-                $res[$translation->tid][] = $node;
-            }
-            else{
-                $res[''][] = $node;
-            }
+            $arr[$term->tid] = $term->name;
         }
-        else{
-            if($node->field_type['und'][0]['value'] == $types[$type]){
-                if (isset($node->field_secialization['und'])){
-                    $term = taxonomy_term_load($node->field_secialization['und'][0]['tid']);
+
+        $nodes = node_load_multiple(array(), array('type' => 'team_staff', 'status' => 1));
+
+        $i=0;
+        foreach($nodes as $node){
+            $f = false;
+            if (isset($node->field_category['und'])){
+                foreach($node->field_category['und'] as $value){
+                    $term = taxonomy_term_load($value['tid']);
                     $translation = i18n_taxonomy_term_get_translation($term, $language->language);
                     if (!isset($res[$translation->tid])){
-
-//                $res[] = array();
                         $js[slug($arr[$translation->tid])] = $i;
                         $i++;
                     }
                     $res[$translation->tid][] = $node;
                 }
-                else{
-                    $res[''][] = $node;
-                }
-
+            }
+            else{
+                $res[''][] = $node;
             }
         }
-        drupal_set_title($types[$type]);
-
     }
+    else{
+        $specialities = node_load_multiple(array(), array('type' => 'specialties_page', 'status' => 1));
+        $arr = array();
+        foreach($specialities as $speciality){
+            $arr[$speciality->nid] = isset($speciality->title_field[$language->language]) ? $speciality->title_field[$language->language][0]['value'] : $speciality->title;
+        }
+        $arr[''] = 'Uncategorized';
+
+
+
+        $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
+        $i =0;
+        foreach ($nodes as $node){
+            $f = false;
+            if($node->field_type['und'][0]['value'] == $types[$type]){
+                if ($item = field_get_items('node', $node, 'field_main_subject')){
+                    $subject_id = $item[0]['nid'];
+                    if (!isset($res[$subject_id])){
+                        $js[slug($arr[$subject_id])] = $i;
+                        $i++;
+                        $res[$subject_id] = array();
+                    }
+                    if (!in_array($node, $res[$subject_id])){
+                        $res[$subject_id][] = $node;
+                    }
+
+                }
+                else{
+                    $f = true;
+                }
+
+                if ($items = field_get_items('node', $node, 'field_subjects')){
+                    foreach($items as $item){
+                        $subject_id = $item['nid'];
+                        if (!isset($res[$subject_id])){
+                            $js[slug($arr[$subject_id])] = $i;
+                            $i++;
+                            $res[$subject_id] = array();
+                        }
+                        if (!in_array($node, $res[$subject_id])){
+                            $res[$subject_id][] = $node;
+                        }
+                    }
+                    $f = false;
+                }
+                else{
+                    $f = $f && true;
+                }
+                if ($f){
+                    $res[''][] = $node;
+                }
+            }
+            drupal_set_title($types[$type]);
+        }
+    }
+
+
+
+
+
+
+//    drupal_debug($nodes[0]);
+
+
+
+    krsort($res);
 
     drupal_add_js(array('ids' => $js), 'setting');
     drupal_add_js('/misc/ui/jquery.ui.core.min.js');
@@ -96,7 +137,7 @@ function doctor_view($id){
         ->pager(5)
         ->execute();
 
-    $nodes = node_load_multiple(array_keys($entities['node']));
+    $nodes = isset($entities['node']) ? node_load_multiple(array_keys($entities['node'])) : array();
 
     $output = theme('single_doctor_page', array(
         'doctor'=>$node,
