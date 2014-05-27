@@ -11,19 +11,19 @@
  * Returns HTML for a site map feed icon legend.
  */
 function theme_site_map_rss_legend() {
-  $output .= '<p><strong>' . t('Legend:') . '</strong><br />';
-  $output .= '<span class="rss">' . theme('site_map_feed_icon', array('type' => 'node')) . '</span> ' . t('Link to a content RSS feed');
-  $output .= '<br /><span class="rss">' . theme('site_map_feed_icon', array('type' => 'comment')) . '</span> ' . t('Link to a comment RSS feed');
-  $output .= '</p>';
+    $output .= '<p><strong>' . t('Legend:') . '</strong><br />';
+    $output .= '<span class="rss">' . theme('site_map_feed_icon', array('type' => 'node')) . '</span> ' . t('Link to a content RSS feed');
+    $output .= '<br /><span class="rss">' . theme('site_map_feed_icon', array('type' => 'comment')) . '</span> ' . t('Link to a comment RSS feed');
+    $output .= '</p>';
 
-  return $output;
+    return $output;
 }
 
 /**
  * Preprocesses the variables for theme_site_map_box().
  */
 function template_preprocess_site_map_box(&$variables) {
-  $variables['attributes']['class'][] = 'site-map-box';
+    $variables['attributes']['class'][] = 'site-map-box';
 }
 
 /**
@@ -36,23 +36,23 @@ function template_preprocess_site_map_box(&$variables) {
  *   - attributes:  Optional attributes for the box.
  */
 function theme_site_map_box($variables) {
-  $title = $variables['title'];
-  $content = $variables['content'];
-  $attributes = $variables['attributes'];
+    $title = $variables['title'];
+    $content = $variables['content'];
+    $attributes = $variables['attributes'];
 
-  $output = '';
-  if (!empty($title) || !empty($content)) {
-    $output .= '<div' . drupal_attributes($attributes) . '>';
-    if (!empty($title)) {
-      $output .= '<h2 class="title">' . $title . '</h2>';
+    $output = '';
+    if (!empty($title) || !empty($content)) {
+        $output .= '<div' . drupal_attributes($attributes) . '>';
+        if (!empty($title)) {
+            $output .= '<h2 class="title">' . $title . '</h2>';
+        }
+        if (!empty($content)) {
+            $output .= '<div class="content">' . $content . '</div>';
+        }
+        $output .= '</div>';
     }
-    if (!empty($content)) {
-      $output .= '<div class="content">' . $content . '</div>';
-    }
-    $output .= '</div>';
-  }
 
-  return $output;
+    return $output;
 }
 
 /**
@@ -64,33 +64,33 @@ function theme_site_map_box($variables) {
  *   - type: The type of feed icon.
  */
 function theme_site_map_feed_icon($variables) {
-  $output = '';
+    $output = '';
 
-  switch ($variables['type']) {
-    case 'node':
-      $output = theme('image', array(
-        'path' => drupal_get_path('module', 'site_map') . '/feed-small.png',
-        'title' => t('Syndicate content'),
-        'alt' => t('Syndicate content'),
-        )
-      );
-      break;
+    switch ($variables['type']) {
+        case 'node':
+            $output = theme('image', array(
+                    'path' => drupal_get_path('module', 'site_map') . '/feed-small.png',
+                    'title' => t('Syndicate content'),
+                    'alt' => t('Syndicate content'),
+                )
+            );
+            break;
 
-    case 'comment':
-      $output = theme('image', array(
-        'path' => drupal_get_path('module', 'site_map') . '/feed-small-comment.png',
-        'title' => t('Syndicate comments'),
-        'alt' => t('Syndicate comments'),
-        )
-      );
-      break;
-  }
+        case 'comment':
+            $output = theme('image', array(
+                    'path' => drupal_get_path('module', 'site_map') . '/feed-small-comment.png',
+                    'title' => t('Syndicate comments'),
+                    'alt' => t('Syndicate comments'),
+                )
+            );
+            break;
+    }
 
-  if (!empty($variables['url'])) {
-    $output = l($output, $variables['url'], array('attributes' => array('class' => 'feed-link'), 'html' => TRUE));
-  }
+    if (!empty($variables['url'])) {
+        $output = l($output, $variables['url'], array('attributes' => array('class' => 'feed-link'), 'html' => TRUE));
+    }
 
-  return $output;
+    return $output;
 }
 
 /**
@@ -101,7 +101,7 @@ function theme_site_map_feed_icon($variables) {
  * Preprocesses the rendered tree for theme_site_map_menu_tree().
  */
 function template_preprocess_site_map_menu_tree(&$variables) {
-  $variables['tree'] = $variables['tree']['#children'];
+    $variables['tree'] = $variables['tree']['#children'];
 }
 
 /**
@@ -119,7 +119,7 @@ function template_preprocess_site_map_menu_tree(&$variables) {
  * @ingroup themeable
  */
 function theme_site_map_menu_tree($variables) {
-  return '<ul class="site-map-menu">' . $variables['tree'] . '</ul>';
+    return '<ul class="site-map-menu">' . $variables['tree'] . '</ul>';
 }
 
 /**
@@ -135,14 +135,39 @@ function theme_site_map_menu_tree($variables) {
  * @ingroup themeable
  */
 function theme_site_map_menu_link(array $variables) {
-  $element = $variables['element'];
-  $sub_menu = '';
+    global $language;
+    $element = $variables['element'];
+    $sub_menu = '';
 
-  if ($element['#below']) {
-    $sub_menu = drupal_render($element['#below']);
-  }
-  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+    if ($element['#below']) {
+        $sub_menu = drupal_render($element['#below']);
+    }
+    $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+    if (($element['#href'] == 'team/doctors' || $element['#href'] == 'team/therapists') && count($element['#below']) == 0 ){
+        $nodes = node_load_multiple(array(), array('type' => 'doctor_biography', 'status' => 1));
+        if ($element['#href'] == 'team/doctors'){
+            $type = 'Arzte';
+        }
+        else{
+            $type = 'Terapeuten';
+        }
+        $elements = array();
+        foreach ($nodes as $node){
+
+            if($node->field_type['und'][0]['value'] == $type){
+
+                $items = field_get_items('node', $node, 'title_field');
+                $name = field_view_value('node', $node, 'title_field', $items[0], array(), $language->language);
+
+                $pref = $language->language != 'de' ? $language->language."/" : '';
+                $url = "/{$pref}team/doctors/{$node->nid}";
+
+                $elements[] = '<li>'.l($name['#markup'], $url).'</li>';
+            }
+            $sub_menu = '<ul class="doctors-sitemap">'.implode('', $elements).'</ul>';
+        }
+    }
+    return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
 
 /**
@@ -151,39 +176,39 @@ function theme_site_map_menu_link(array $variables) {
  * @see site-map.tpl.php
  */
 function template_preprocess_site_map(&$variables) {
-  $message = variable_get('site_map_message', array());
-  if (!empty($message)) {
-    $variables['message'] = check_markup($message['value'], $message['format']);
-  }
+    $message = variable_get('site_map_message', array());
+    if (!empty($message)) {
+        $variables['message'] = check_markup($message['value'], $message['format']);
+    }
 
-  if ((variable_get('site_map_show_rss_links', 1) != 0) && module_exists('commentrss') && variable_get('commentrss_site', COMMENTRSS_SITE_FRONT_PAGE)) {
-    $variables['rss_legend'] = theme('site_map_rss_legend');
-  }
+    if ((variable_get('site_map_show_rss_links', 1) != 0) && module_exists('commentrss') && variable_get('commentrss_site', COMMENTRSS_SITE_FRONT_PAGE)) {
+        $variables['rss_legend'] = theme('site_map_rss_legend');
+    }
 
-  if (variable_get('site_map_show_front', 1)) {
-    $variables['front_page'] = _site_map_front_page();
-  }
+    if (variable_get('site_map_show_front', 1)) {
+        $variables['front_page'] = _site_map_front_page();
+    }
 
-  if (variable_get('site_map_show_blogs', 1)) {
-    $variables['blogs'] = _site_map_blogs();
-  }
+    if (variable_get('site_map_show_blogs', 1)) {
+        $variables['blogs'] = _site_map_blogs();
+    }
 
-  // Compile the books trees.
-  $variables['books'] = _site_map_books();
+    // Compile the books trees.
+    $variables['books'] = _site_map_books();
 
-  // Compile the menu trees.
-  $variables['menus'] = _site_map_menus();
+    // Compile the menu trees.
+    $variables['menus'] = _site_map_menus();
 
-  if (variable_get('site_map_show_faq', 0)) {
-    $variables['faq'] = _site_map_faq();
-  }
+    if (variable_get('site_map_show_faq', 0)) {
+        $variables['faq'] = _site_map_faq();
+    }
 
-  // Compile the vocabulary trees.
-  $variables['taxonomys'] = _site_map_taxonomys();
+    // Compile the vocabulary trees.
+    $variables['taxonomys'] = _site_map_taxonomys();
 
-  // Invoke all custom modules and get themed HTML to be integrated into the site map.
-  $additional = module_invoke_all('site_map');
-  foreach ($additional as $themed_site_map_code) {
-    $variables['additional'] .= $themed_site_map_code;
-  }
+    // Invoke all custom modules and get themed HTML to be integrated into the site map.
+    $additional = module_invoke_all('site_map');
+    foreach ($additional as $themed_site_map_code) {
+        $variables['additional'] .= $themed_site_map_code;
+    }
 }
