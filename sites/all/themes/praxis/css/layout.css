@@ -593,10 +593,10 @@ ul.menu > li  a {
 }
 #sidebar-first #block-views-specialties-view-block-1 ul {
   overflow-y: auto;
-  margin: 0 0 16px;
+  margin: 0 0 11px;
   padding: 0;
-  max-height: 257px;
-  height: 257px;
+  max-height: 262px;
+  height: 262px;
   cursor:ns-resize;
 }
 #sidebar-first #block-views-specialties-view-block-1 ul > li {
@@ -818,6 +818,7 @@ only screen and (min-resolution: 240dpi) {
   float: left;
   height: 22px;
   margin: 2px 5px 0 0;
+  padding: 0 !important;
 }
 .timetable > li span {
   display: block;
@@ -840,9 +841,9 @@ only screen and (min-resolution: 240dpi) {
 .timetable > li p {
   display: inline-block;
   width: 67px;
-  height: 20px;
+  height: 18px;
   margin: 0;
-  line-height: 20px;
+  line-height: 18px;
   padding: 0 0 0 3px;
   background-color: #fff;
   border: 1px solid;
@@ -1156,15 +1157,17 @@ display: block;
 #block-views-specialties-view-block h2 {
     margin: 0 0 2%;
 }
-#sidebar-second #block-views-specialties-view-block ul {
-    overflow: hidden;
-}
 #sidebar-second #block-views-specialties-view-block ul > li,
+#sidebar-second #block-views-specialties-view-block ul > li,
+#inner-sidebar-second .view-specialties-view ul.ocupation-list > li {
+    overflow: hidden;
+    background: url(../images/sidebar-right-dot.png) no-repeat left center;
+    padding: 0 0 0 11px;
+}
 #inner-sidebar-second ul > li {
     overflow: hidden;
-    padding: 0 0 0 11px;
+    padding: 0;
     list-style: none;
-    background: url(../images/sidebar-right-dot.png) no-repeat left center;
 }
 #sidebar-second #block-views-specialties-view-block ul > li a {
     color: #393939;
@@ -1419,7 +1422,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
     clear: both;
 }
 .pager li {
-    background: url("../images/news-pagger.png") no-repeat;
+    /*background: url("../images/news-pagger.png") no-repeat;*/
     display: block;
     width: 30px;
     height: 30px;
@@ -1454,53 +1457,55 @@ a.news-attachment {
 .item-list .pager  {
     overflow: hidden;
     text-align: center;
+    margin: 10px 0 0;
 }
 .item-list .pager li {
     display: inline-block;
     padding: 0;
     width: 30px;
-    height: 29px;
+    height: 30px;
     text-align: center;
 }
 .item-list .pager li a,
 .item-list .pager li.pager-current {
     display: inline-block;
     width: 30px;
-    height: 29px;
+    height: 30px;
     color: #FFF;
-    font: 14px/29px Arial, sans-serif;
-    background: url("../images/news-pagger.png") no-repeat;
+    font: 14px/30px Arial, sans-serif;
+    background: url("../images/new_pagination.png") no-repeat;
 }
-.item-list .pager li a:hover,
-.item-list .pager li.pager-current:hover {
+.item-list .pager li a {
+    background-position: -69px 0;
+}
+.item-list .pager li a:hover {
     color: #fff;
     text-decoration: none;
-    opacity: 0.8;
-    filter: alpha(opacity=80);
+    opacity: 0.7;
+    filter: alpha(opacity=70);
 }
 .item-list .pager li.pager-first a,
 .item-list .pager li.pager-previous a,
 .item-list .pager li.pager-next a,
 .item-list .pager li.pager-last a {
     text-indent: -9999px;
-    background: url("../images/pagination_arrows_sprite.png") no-repeat;
+    /*background: url("../images/pagination_arrows_sprite.png") no-repeat;*/
 }
 .item-list .pager li.pager-first a {
     background-position: 0 0;
 }
 .item-list .pager li.pager-previous a {
-    background-position: -36px 0;
+    background-position: -35px 0;
 }
 .item-list .pager li.pager-next a {
-    background-position: -105px 0;
+    background-position: -104px 0;
 }
 .item-list .pager li.pager-last a {
-    background-position: -70px 0;
+    background-position: -138px 0;
 }
 
-.item-list .pager li.pager-current,
-.item-list .pager li.pager-current:hover{
-    background: url("../images/news-pagger-active.png") no-repeat;
+.item-list .pager li.pager-current {
+    background-position: -69px -49px;
 }
 
 /*----------------------------------------------------------------*/
@@ -1577,12 +1582,13 @@ a.news-attachment {
 /* Team page*/
 #accordion .section-wrapper.ui-accordion-content{
     border: none;
+    margin: 12px 0 0;
 }
 #accordion .section-wrapper ul{
     clear: both;
     overflow: hidden;
     display: block;
-    margin: 15px 0 0 -13px;
+    margin: 0 0 0 -13px;
 }
 #accordion .section-wrapper ul li.doctor-middle{
     overflow: hidden;
@@ -1600,7 +1606,7 @@ a.news-attachment {
     display: block;
     border: 1px solid #EEEFEF;
     width: 144px;
-    height: 204px;
+    height: 224px;
     margin: 5px;
 }
 #accordion .section-wrapper ul li.doctor-middle a img,
@@ -1785,6 +1791,9 @@ a.news-attachment {
     width: 550px;
     margin: 31px 84px 0 0;
 }
+#accordion h3 {
+    margin: 0 0 3px !important;
+}
 #accordion h3.ui-state-default {
     height: 40px;
     margin: 0 0 3px;
@@ -1798,23 +1807,20 @@ a.news-attachment {
     -o-box-shadow: 0 0 4px 1px #fff inset;
     -ms-box-shadow: 0 0 4px 1px #fff inset;
     color: #383838;
-    background: url("../images/acordeon_vertical_down_arrow.png") no-repeat 520px 18px #EBEBEB;
+    background: url("../images/acordeon_vertical_down_arrow_new.png") no-repeat 96% center #EBEBEB;
     font-weight: bold;
 }
 #accordion h3.ui-state-active {
     height: 40px;
+    margin: 0 0 3px;
     padding: 0 14px 0 17px;
     line-height: 40px;
     outline: none;
-    border: 1px solid;
-    border-color: #DEE2E3 #F2F2F0 #CDD1D2 #D7D7D7;
-    box-shadow: 0 0 4px 1px #fff inset;
-    -moz-box-shadow: 0 0 4px 1px #fff inset;
-    -webkit-box-shadow: 0 0 4px 1px #fff inset;
-    -o-box-shadow: 0 0 4px 1px #fff inset;
-    -ms-box-shadow: 0 0 4px 1px #fff inset;
-    background: url("../images/acordeon_vertical_up_arrow.png") no-repeat 520px 18px #567cd6;
+    border: 1px solid #20409A;
+    box-shadow: none;
+    background: url("../images/acordeon_vertical_up_arrow_new.png") no-repeat 96% center #20409A;
     font-weight: bold;
+    color: #fff;
 }
 #accordion .ui-accordion-content .doctor-middle a:hover {
     text-decoration: none;
@@ -1955,7 +1961,7 @@ a.news-attachment {
     padding: 4px 0 0 28px;
     height: 35px;
     line-height: 35px;
-    background: url("../images/doctors_email_icon.png") no-repeat left 15px;
+    background: url("../images/enveloper-single-doctor-page.png") no-repeat left 15px;
     color: #fff;
     font-size: 14px;
     white-space: nowrap;
@@ -2526,9 +2532,9 @@ a.news-attachment {
     display: block;
     width: 166px;
     padding: 0 25px;
-    color: #464646;
+    color: #fff;
     font-size: 16px;
-    background-color: #AADBE0;
+    background-color: #20409a;
     font-weight: bold;
 }
 .site-map-menu > li a:hover {
@@ -2552,6 +2558,9 @@ a.news-attachment {
     background-color: #fff;
     padding: 0;
     font-weight: normal;
+}
+.site-map-menu > li .site-map-menu > li a {
+    color: #464646;
 }
 #ems-service-form div div.form-actions{
     clear: both;
@@ -2928,7 +2937,7 @@ a.logout:hover {
 }
 .view-main-doctor .view-content .views-row .views-field-field-position,
 .view-main-doctor .view-content .views-row .views-field-field-degree {
-    font-size: 16px;
+    font-size: 12px;
     line-height: 1.1;
     color: #3C3C3A;
 }

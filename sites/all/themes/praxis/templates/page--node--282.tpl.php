@@ -213,7 +213,7 @@
             </div> <!-- /#footer-columns -->
         <?php endif; ?>
         <div class="footer-block">
-            <p class="copyright">Design by JZdesign</p>
+            <a class="copyright" href="http://jz-design.ch/">Design by JZdesign</a>
             <?php if ($page['footer']): ?>
                 <div id="footer">
                     <?php print render($page['footer']); ?>
