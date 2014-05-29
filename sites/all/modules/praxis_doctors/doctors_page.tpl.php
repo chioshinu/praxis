@@ -13,7 +13,7 @@
                             $tag = "div";
                         }
                         else{
-                            $pref = $lang != 'en' ? $lang."/" : '';
+                            $pref = $lang != 'de' ? $lang."/" : '';
                             $url = "/{$pref}team/doctors/{$doctor->nid}";
                             $js = '';
                             $tag = "a";

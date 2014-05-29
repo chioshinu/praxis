@@ -71,24 +71,24 @@ function team_view($type){
                 else{
                     $f = true;
                 }
-
-                if ($items = field_get_items('node', $node, 'field_subjects')){
-                    foreach($items as $item){
-                        $subject_id = $item['nid'];
-                        if (!isset($res[$subject_id])){
-                            $js[slug($arr[$subject_id])] = $i;
-                            $i++;
-                            $res[$subject_id] = array();
-                        }
-                        if (!in_array($node, $res[$subject_id])){
-                            $res[$subject_id][] = $node;
-                        }
-                    }
-                    $f = false;
-                }
-                else{
-                    $f = $f && true;
-                }
+                //show doctors by they other subjects
+//                if ($items = field_get_items('node', $node, 'field_subjects')){
+//                    foreach($items as $item){
+//                        $subject_id = $item['nid'];
+//                        if (!isset($res[$subject_id])){
+//                            $js[slug($arr[$subject_id])] = $i;
+//                            $i++;
+//                            $res[$subject_id] = array();
+//                        }
+//                        if (!in_array($node, $res[$subject_id])){
+//                            $res[$subject_id][] = $node;
+//                        }
+//                    }
+//                    $f = false;
+//                }
+//                else{
+//                    $f = $f && true;
+//                }
                 if ($f){
                     $res[''][] = $node;
                 }
